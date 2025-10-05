@@ -22,7 +22,8 @@
                 "communication": 72,
                 "leadership": 60
             },
-            "potential_rating": 3.8
+            "potential_rating": 3.8,
+            "target_success_role": "Senior Developer"
         },
         {
             "id": 2,
@@ -46,7 +47,8 @@
                 "communication": 80,
                 "leadership": 62
             },
-            "potential_rating": 3.5
+            "potential_rating": 3.5,
+            "target_success_role": "Data Science Manager"
         },
         {
             "id": 3,
@@ -70,7 +72,8 @@
                 "communication": 70,
                 "leadership": 65
             },
-            "potential_rating": 4.0
+            "potential_rating": 4.0,
+            "target_success_role": "Technical Lead"
         },
         {
             "id": 4,
@@ -94,7 +97,8 @@
                 "communication": 85,
                 "leadership": 60
             },
-            "potential_rating": 3.4
+            "potential_rating": 3.4,
+            "target_success_role": "Business Analyst Lead"
         },
         {
             "id": 5,
@@ -118,7 +122,8 @@
                 "communication": 75,
                 "leadership": 68
             },
-            "potential_rating": 4.2
+            "potential_rating": 4.2,
+            "target_success_role": "DevOps Manager"
         },
         {
             "id": 6,
@@ -142,7 +147,8 @@
                 "communication": 78,
                 "leadership": 55
             },
-            "potential_rating": 3.6
+            "potential_rating": 3.6,
+            "target_success_role": "Senior Developer"
         },
         {
             "id": 7,
@@ -166,7 +172,8 @@
                 "communication": 74,
                 "leadership": 64
             },
-            "potential_rating": 4.0
+            "potential_rating": 4.0,
+            "target_success_role": "Data Science Manager"
         },
         {
             "id": 8,
@@ -190,7 +197,8 @@
                 "communication": 88,
                 "leadership": 70
             },
-            "potential_rating": 3.7
+            "potential_rating": 3.7,
+            "target_success_role": "HR Manager"
         },
         {
             "id": 9,
@@ -214,7 +222,8 @@
                 "communication": 90,
                 "leadership": 88
             },
-            "potential_rating": 4.5
+            "potential_rating": 4.5,
+            "target_success_role": "Product Manager"
         },
         {
             "id": 10,
@@ -238,7 +247,8 @@
                 "communication": 73,
                 "leadership": 58
             },
-            "potential_rating": 3.4
+            "potential_rating": 3.4,
+            "target_success_role": "Quality Assurance Lead"
         },
         {
             "id": 11,
@@ -262,7 +272,8 @@
                 "communication": 60,
                 "leadership": 75
             },
-            "potential_rating": 4.1
+            "potential_rating": 4.1,
+            "target_success_role": "Senior Developer"
         },
         {
             "id": 12,
@@ -286,7 +297,8 @@
                 "communication": 85,
                 "leadership": 80
             },
-            "potential_rating": 4.2
+            "potential_rating": 4.2,
+            "target_success_role": "Marketing Manager"
         },
         {
             "id": 13,
@@ -310,7 +322,8 @@
                 "communication": 70,
                 "leadership": 45
             },
-            "potential_rating": 3.2
+            "potential_rating": 3.2,
+            "target_success_role": "Operations Supervisor"
         },
         {
             "id": 14,
@@ -334,7 +347,8 @@
                 "communication": 65,
                 "leadership": 40
             },
-            "potential_rating": 3.0
+            "potential_rating": 3.0,
+            "target_success_role": "Operations Supervisor"
         },
         {
             "id": 15,
@@ -358,7 +372,8 @@
                 "communication": 60,
                 "leadership": 50
             },
-            "potential_rating": 3.2
+            "potential_rating": 3.2,
+            "target_success_role": "Operations Supervisor"
         },
         {
             "id": 16,
@@ -382,7 +397,8 @@
                 "communication": 90,
                 "leadership": 55
             },
-            "potential_rating": 3.3
+            "potential_rating": 3.3,
+            "target_success_role": "Marketing Manager"
         },
         {
             "id": 17,
@@ -406,7 +422,8 @@
                 "communication": 55,
                 "leadership": 35
             },
-            "potential_rating": 2.8
+            "potential_rating": 2.8,
+            "target_success_role": "Operations Supervisor"
         },
         {
             "id": 18,
@@ -430,7 +447,8 @@
                 "communication": 85,
                 "leadership": 50
             },
-            "potential_rating": 3.1
+            "potential_rating": 3.1,
+            "target_success_role": "Operations Supervisor"
         },
         {
             "id": 19,
@@ -454,12 +472,14 @@
                 "communication": 75,
                 "leadership": 58
             },
-            "potential_rating": 3.6
+            "potential_rating": 3.6,
+            "target_success_role": "Marketing Manager"
         }
     ],
     "success_roles": [
         {
             "role": "Technical Lead",
+            "role_description": "Lead software development teams, architect scalable systems, and mentor junior developers. Drive technical decisions, code reviews, and best practices while collaborating with cross-functional teams to deliver high-quality solutions and ensure project success.",
             "required_experience": 5,
             "required_skills": [
                 "Python",
@@ -468,10 +488,16 @@
                 "System Design"
             ],
             "min_performance_rating": 4.0,
-            "min_potential_rating": 4.0
+            "min_potential_rating": 4.0,
+            "required_scores": {
+                "technical": 88,
+                "communication": 75,
+                "leadership": 80
+            }
         },
         {
             "role": "Data Science Manager",
+            "role_description": "Manage data science teams, oversee ML model development, and translate business requirements into analytical solutions. Lead strategic data initiatives, manage stakeholder relationships, and drive data-driven decision making across the organization.",
             "required_experience": 6,
             "required_skills": [
                 "Python",
@@ -480,10 +506,16 @@
                 "Project Management"
             ],
             "min_performance_rating": 4.2,
-            "min_potential_rating": 4.2
+            "min_potential_rating": 4.2,
+            "required_scores": {
+                "technical": 85,
+                "communication": 80,
+                "leadership": 85
+            }
         },
         {
             "role": "Product Manager",
+            "role_description": "Define product strategy, manage roadmaps, and coordinate with engineering, design, and business teams. Conduct market research, gather user feedback, prioritize features, and ensure successful product launches while meeting business objectives.",
             "required_experience": 5,
             "required_skills": [
                 "Business Analysis",
@@ -492,7 +524,138 @@
                 "Leadership"
             ],
             "min_performance_rating": 4.0,
-            "min_potential_rating": 3.8
+            "min_potential_rating": 3.8,
+            "required_scores": {
+                "technical": 70,
+                "communication": 85,
+                "leadership": 80
+            }
+        },
+        {
+            "role": "Senior Developer",
+            "role_description": "Design and implement complex software solutions, lead code architecture decisions, and mentor junior team members. Collaborate with stakeholders, optimize system performance, and ensure code quality standards across development projects.",
+            "required_experience": 4,
+            "required_skills": [
+                "Programming",
+                "System Design",
+                "Mentoring",
+                "Problem Solving"
+            ],
+            "min_performance_rating": 3.8,
+            "min_potential_rating": 3.5,
+            "required_scores": {
+                "technical": 82,
+                "communication": 70,
+                "leadership": 65
+            }
+        },
+        {
+            "role": "DevOps Manager",
+            "role_description": "Lead infrastructure automation, manage CI/CD pipelines, and oversee cloud operations. Drive DevOps culture adoption, optimize deployment processes, and ensure system reliability while managing technical teams and vendor relationships.",
+            "required_experience": 5,
+            "required_skills": [
+                "AWS",
+                "Docker",
+                "Leadership",
+                "Automation"
+            ],
+            "min_performance_rating": 4.0,
+            "min_potential_rating": 3.8,
+            "required_scores": {
+                "technical": 85,
+                "communication": 75,
+                "leadership": 80
+            }
+        },
+        {
+            "role": "HR Manager",
+            "role_description": "Oversee talent acquisition, employee relations, and organizational development. Design HR policies, manage performance review processes, lead training initiatives, and foster positive workplace culture while ensuring compliance with regulations.",
+            "required_experience": 4,
+            "required_skills": [
+                "Leadership",
+                "Communication",
+                "Policy Management",
+                "Employee Relations"
+            ],
+            "min_performance_rating": 3.7,
+            "min_potential_rating": 3.6,
+            "required_scores": {
+                "technical": 65,
+                "communication": 88,
+                "leadership": 85
+            }
+        },
+        {
+            "role": "Marketing Manager",
+            "role_description": "Develop marketing strategies, manage digital campaigns, and analyze market trends. Lead content creation, oversee brand positioning, coordinate with sales teams, and drive customer acquisition through innovative marketing initiatives.",
+            "required_experience": 3,
+            "required_skills": [
+                "Digital Marketing",
+                "Analytics",
+                "Leadership",
+                "Communication"
+            ],
+            "min_performance_rating": 3.6,
+            "min_potential_rating": 3.8,
+            "required_scores": {
+                "technical": 70,
+                "communication": 85,
+                "leadership": 75
+            }
+        },
+        {
+            "role": "Quality Assurance Lead",
+            "role_description": "Lead testing teams, develop QA processes, and ensure software quality standards. Design test strategies, manage automation frameworks, coordinate with development teams, and drive continuous improvement in quality assurance practices.",
+            "required_experience": 4,
+            "required_skills": [
+                "Testing",
+                "Automation",
+                "Leadership",
+                "Quality Management"
+            ],
+            "min_performance_rating": 3.5,
+            "min_potential_rating": 3.4,
+            "required_scores": {
+                "technical": 80,
+                "communication": 70,
+                "leadership": 70
+            }
+        },
+        {
+            "role": "Business Analyst Lead",
+            "role_description": "Lead requirements gathering, analyze business processes, and bridge technical and business teams. Drive process improvements, manage stakeholder communications, and ensure project alignment with business objectives and strategic goals.",
+            "required_experience": 3,
+            "required_skills": [
+                "Business Analysis",
+                "Communication",
+                "Leadership",
+                "Process Improvement"
+            ],
+            "min_performance_rating": 3.4,
+            "min_potential_rating": 3.3,
+            "required_scores": {
+                "technical": 75,
+                "communication": 80,
+                "leadership": 70
+            }
+        },
+        {
+            "role": "Operations Supervisor",
+            "role_description": "Supervise daily operations, manage administrative processes, and coordinate cross-departmental activities. Lead operational efficiency initiatives, ensure compliance standards, and support organizational growth through effective resource management.",
+            "required_experience": 6,
+            "required_skills": [
+                "Operations Management",
+                "Leadership",
+                "Coordination",
+                "Process Optimization"
+            ],
+            "min_performance_rating": 3.2,
+            "min_potential_rating": 3.0,
+            "required_scores": {
+                "technical": 65,
+                "communication": 75,
+                "leadership": 70
+            }
         }
     ]
 }
