@@ -1,0 +1,498 @@
+{
+    "employees": [
+        {
+            "id": 1,
+            "name": "Amit Sharma",
+            "role": "Software Engineer",
+            "department": "IT",
+            "education": "BTech",
+            "recruitment_channel": "Sourcing",
+            "num_trainings": 2,
+            "age": 27,
+            "length_of_service_years": 2,
+            "experience_years": 3,
+            "skills": [
+                "Python",
+                "SQL",
+                "Machine Learning"
+            ],
+            "performance_rating": 4.2,
+            "assessment_scores": {
+                "technical": 85,
+                "communication": 72,
+                "leadership": 60
+            },
+            "potential_rating": 3.8
+        },
+        {
+            "id": 2,
+            "name": "Priya Nair",
+            "role": "Data Analyst",
+            "department": "R&D",
+            "education": "BSc",
+            "recruitment_channel": "Referred",
+            "num_trainings": 3,
+            "age": 26,
+            "length_of_service_years": 3,
+            "experience_years": 4,
+            "skills": [
+                "Excel",
+                "Power BI",
+                "SQL"
+            ],
+            "performance_rating": 4.0,
+            "assessment_scores": {
+                "technical": 78,
+                "communication": 80,
+                "leadership": 62
+            },
+            "potential_rating": 3.5
+        },
+        {
+            "id": 3,
+            "name": "Rohit Verma",
+            "role": "Backend Developer",
+            "department": "IT",
+            "education": "BTech",
+            "recruitment_channel": "Sourcing",
+            "num_trainings": 4,
+            "age": 30,
+            "length_of_service_years": 4,
+            "experience_years": 5,
+            "skills": [
+                "Java",
+                "Spring Boot",
+                "Microservices"
+            ],
+            "performance_rating": 4.5,
+            "assessment_scores": {
+                "technical": 90,
+                "communication": 70,
+                "leadership": 65
+            },
+            "potential_rating": 4.0
+        },
+        {
+            "id": 4,
+            "name": "Neha Gupta",
+            "role": "Business Analyst",
+            "department": "Business",
+            "education": "BA",
+            "recruitment_channel": "Other",
+            "num_trainings": 1,
+            "age": 24,
+            "length_of_service_years": 1,
+            "experience_years": 2,
+            "skills": [
+                "Excel",
+                "SQL",
+                "Business Communication"
+            ],
+            "performance_rating": 3.6,
+            "assessment_scores": {
+                "technical": 70,
+                "communication": 85,
+                "leadership": 60
+            },
+            "potential_rating": 3.4
+        },
+        {
+            "id": 5,
+            "name": "Karan Mehta",
+            "role": "DevOps Engineer",
+            "department": "IT",
+            "education": "BTech",
+            "recruitment_channel": "Referred",
+            "num_trainings": 5,
+            "age": 32,
+            "length_of_service_years": 6,
+            "experience_years": 6,
+            "skills": [
+                "AWS",
+                "Docker",
+                "Kubernetes"
+            ],
+            "performance_rating": 4.7,
+            "assessment_scores": {
+                "technical": 92,
+                "communication": 75,
+                "leadership": 68
+            },
+            "potential_rating": 4.2
+        },
+        {
+            "id": 6,
+            "name": "Simran Kaur",
+            "role": "Frontend Developer",
+            "department": "IT",
+            "education": "BTech",
+            "recruitment_channel": "Sourcing",
+            "num_trainings": 2,
+            "age": 25,
+            "length_of_service_years": 3,
+            "experience_years": 3,
+            "skills": [
+                "React",
+                "JavaScript",
+                "CSS"
+            ],
+            "performance_rating": 3.9,
+            "assessment_scores": {
+                "technical": 82,
+                "communication": 78,
+                "leadership": 55
+            },
+            "potential_rating": 3.6
+        },
+        {
+            "id": 7,
+            "name": "Arjun Reddy",
+            "role": "Data Scientist",
+            "department": "R&D",
+            "education": "MTech",
+            "recruitment_channel": "Sourcing",
+            "num_trainings": 4,
+            "age": 28,
+            "length_of_service_years": 4,
+            "experience_years": 4,
+            "skills": [
+                "Python",
+                "TensorFlow",
+                "Data Visualization"
+            ],
+            "performance_rating": 4.3,
+            "assessment_scores": {
+                "technical": 88,
+                "communication": 74,
+                "leadership": 64
+            },
+            "potential_rating": 4.0
+        },
+        {
+            "id": 8,
+            "name": "Meera Iyer",
+            "role": "HR Specialist",
+            "department": "HR",
+            "education": "BA",
+            "recruitment_channel": "Referred",
+            "num_trainings": 3,
+            "age": 35,
+            "length_of_service_years": 5,
+            "experience_years": 5,
+            "skills": [
+                "Recruitment",
+                "Employee Relations",
+                "Policy Management"
+            ],
+            "performance_rating": 3.8,
+            "assessment_scores": {
+                "technical": 68,
+                "communication": 88,
+                "leadership": 70
+            },
+            "potential_rating": 3.7
+        },
+        {
+            "id": 9,
+            "name": "Siddharth Joshi",
+            "role": "Project Manager",
+            "department": "R&D",
+            "education": "MTech",
+            "recruitment_channel": "Other",
+            "num_trainings": 6,
+            "age": 40,
+            "length_of_service_years": 7,
+            "experience_years": 7,
+            "skills": [
+                "Agile",
+                "Scrum",
+                "Risk Management"
+            ],
+            "performance_rating": 4.6,
+            "assessment_scores": {
+                "technical": 80,
+                "communication": 90,
+                "leadership": 88
+            },
+            "potential_rating": 4.5
+        },
+        {
+            "id": 10,
+            "name": "Ananya Das",
+            "role": "Quality Analyst",
+            "department": "IT",
+            "education": "BCA",
+            "recruitment_channel": "Sourcing",
+            "num_trainings": 1,
+            "age": 26,
+            "length_of_service_years": 3,
+            "experience_years": 3,
+            "skills": [
+                "Selenium",
+                "Postman",
+                "Automation Testing"
+            ],
+            "performance_rating": 3.7,
+            "assessment_scores": {
+                "technical": 76,
+                "communication": 73,
+                "leadership": 58
+            },
+            "potential_rating": 3.4
+        },
+        {
+            "id": 11,
+            "name": "Ravi Kumar",
+            "role": "Junior Developer",
+            "department": "IT",
+            "education": "BCA",
+            "recruitment_channel": "Campus",
+            "num_trainings": 0,
+            "age": 22,
+            "length_of_service_years": 1,
+            "experience_years": 1,
+            "skills": [
+                "JavaScript",
+                "HTML",
+                "CSS"
+            ],
+            "performance_rating": 3.2,
+            "assessment_scores": {
+                "technical": 65,
+                "communication": 60,
+                "leadership": 75
+            },
+            "potential_rating": 4.1
+        },
+        {
+            "id": 12,
+            "name": "Sneha Patel",
+            "role": "Marketing Intern",
+            "department": "Marketing",
+            "education": "MBA",
+            "recruitment_channel": "Campus",
+            "num_trainings": 1,
+            "age": 24,
+            "length_of_service_years": 0.5,
+            "experience_years": 1,
+            "skills": [
+                "Digital Marketing",
+                "Social Media",
+                "Analytics"
+            ],
+            "performance_rating": 3.8,
+            "assessment_scores": {
+                "technical": 72,
+                "communication": 85,
+                "leadership": 80
+            },
+            "potential_rating": 4.2
+        },
+        {
+            "id": 13,
+            "name": "Vikram Singh",
+            "role": "Administrative Assistant",
+            "department": "Admin",
+            "education": "Diploma",
+            "recruitment_channel": "Other",
+            "num_trainings": 0,
+            "age": 45,
+            "length_of_service_years": 8,
+            "experience_years": 12,
+            "skills": [
+                "Office Management",
+                "Documentation",
+                "Coordination"
+            ],
+            "performance_rating": 3.0,
+            "assessment_scores": {
+                "technical": 55,
+                "communication": 70,
+                "leadership": 45
+            },
+            "potential_rating": 3.2
+        },
+        {
+            "id": 14,
+            "name": "Pooja Sharma",
+            "role": "Accounts Clerk",
+            "department": "Finance",
+            "education": "BCom",
+            "recruitment_channel": "Other",
+            "num_trainings": 1,
+            "age": 38,
+            "length_of_service_years": 6,
+            "experience_years": 8,
+            "skills": [
+                "Tally",
+                "Excel",
+                "GST Filing"
+            ],
+            "performance_rating": 2.8,
+            "assessment_scores": {
+                "technical": 60,
+                "communication": 65,
+                "leadership": 40
+            },
+            "potential_rating": 3.0
+        },
+        {
+            "id": 15,
+            "name": "Deepak Jain",
+            "role": "Security Guard",
+            "department": "Security",
+            "education": "12th",
+            "recruitment_channel": "Other",
+            "num_trainings": 0,
+            "age": 52,
+            "length_of_service_years": 10,
+            "experience_years": 15,
+            "skills": [
+                "Security Protocols",
+                "Emergency Response",
+                "Surveillance"
+            ],
+            "performance_rating": 3.6,
+            "assessment_scores": {
+                "technical": 70,
+                "communication": 60,
+                "leadership": 50
+            },
+            "potential_rating": 3.2
+        },
+        {
+            "id": 16,
+            "name": "Manisha Rao",
+            "role": "Content Writer",
+            "department": "Marketing",
+            "education": "MA English",
+            "recruitment_channel": "Freelancer",
+            "num_trainings": 2,
+            "age": 29,
+            "length_of_service_years": 2,
+            "experience_years": 4,
+            "skills": [
+                "Content Writing",
+                "SEO",
+                "Copywriting"
+            ],
+            "performance_rating": 4.1,
+            "assessment_scores": {
+                "technical": 78,
+                "communication": 90,
+                "leadership": 55
+            },
+            "potential_rating": 3.3
+        },
+        {
+            "id": 17,
+            "name": "Rajesh Tiwari",
+            "role": "Office Boy",
+            "department": "Admin",
+            "education": "10th",
+            "recruitment_channel": "Other",
+            "num_trainings": 0,
+            "age": 35,
+            "length_of_service_years": 4,
+            "experience_years": 6,
+            "skills": [
+                "Office Support",
+                "Maintenance",
+                "Customer Service"
+            ],
+            "performance_rating": 2.9,
+            "assessment_scores": {
+                "technical": 45,
+                "communication": 55,
+                "leadership": 35
+            },
+            "potential_rating": 2.8
+        },
+        {
+            "id": 18,
+            "name": "Kavita Agarwal",
+            "role": "Receptionist",
+            "department": "Admin",
+            "education": "BBA",
+            "recruitment_channel": "Sourcing",
+            "num_trainings": 1,
+            "age": 28,
+            "length_of_service_years": 3,
+            "experience_years": 4,
+            "skills": [
+                "Customer Service",
+                "Phone Handling",
+                "Scheduling"
+            ],
+            "performance_rating": 3.4,
+            "assessment_scores": {
+                "technical": 68,
+                "communication": 85,
+                "leadership": 50
+            },
+            "potential_rating": 3.1
+        },
+        {
+            "id": 19,
+            "name": "Ajay Mishra",
+            "role": "Sales Executive",
+            "department": "Sales",
+            "education": "BCom",
+            "recruitment_channel": "Sourcing",
+            "num_trainings": 2,
+            "age": 31,
+            "length_of_service_years": 4,
+            "experience_years": 5,
+            "skills": [
+                "Sales",
+                "Customer Relations",
+                "Negotiation"
+            ],
+            "performance_rating": 3.2,
+            "assessment_scores": {
+                "technical": 65,
+                "communication": 75,
+                "leadership": 58
+            },
+            "potential_rating": 3.6
+        }
+    ],
+    "success_roles": [
+        {
+            "role": "Technical Lead",
+            "required_experience": 5,
+            "required_skills": [
+                "Python",
+                "Java",
+                "Leadership",
+                "System Design"
+            ],
+            "min_performance_rating": 4.0,
+            "min_potential_rating": 4.0
+        },
+        {
+            "role": "Data Science Manager",
+            "required_experience": 6,
+            "required_skills": [
+                "Python",
+                "Machine Learning",
+                "Leadership",
+                "Project Management"
+            ],
+            "min_performance_rating": 4.2,
+            "min_potential_rating": 4.2
+        },
+        {
+            "role": "Product Manager",
+            "required_experience": 5,
+            "required_skills": [
+                "Business Analysis",
+                "Agile",
+                "Communication",
+                "Leadership"
+            ],
+            "min_performance_rating": 4.0,
+            "min_potential_rating": 3.8
+        }
+    ]
+}
