@@ -12,8 +12,13 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/succession
 const results: any[] = [];
 
 fs.createReadStream(path.resolve(__dirname, "../data/employee_dataset.csv"))
-  .pipe(csv())
-  .on("data", (data) => results.push(data))
+  .pipe(csv({ mapHeaders: ({ header }) => header.trim() }))
+  .on("data", (data) => {
+    if (!data.assessment_technical || !data.assessment_communication || !data.assessment_leadership) {
+      console.warn(`Missing assessment data for employee: ${data.name}`);
+    }
+    results.push(data);
+  })
   .on("end", async () => {
     try {
       await mongoose.connect(MONGO_URI);
@@ -30,20 +35,19 @@ fs.createReadStream(path.resolve(__dirname, "../data/employee_dataset.csv"))
         department: row.department,
         education: row.education,
         recruitment_channel: row.recruitment_channel,
-        num_trainings: parseFloat(row.num_trainings) || 0,
+        num_trainings: parseFloat(row.number_of_trainings) || 0,
         age: parseFloat(row.age) || 0,
         length_of_service_years: parseFloat(row.length_of_service_years) || 0,
         experience_years: parseFloat(row.experience_years) || 0,
         skills: row.skills ? row.skills.split(",").map((s: string) => s.trim()) : [],
-
         performance_rating: parseFloat(row.performance_rating) || 0,
         assessment_scores: {
-          technical: parseFloat(row.technical) || 0,
-          communication: parseFloat(row.communication) || 0,
-          leadership: parseFloat(row.leadership) || 0,
+          technical: parseFloat(row.assessment_technical) || 0,
+          communication: parseFloat(row.assessment_communication) || 0,
+          leadership: parseFloat(row.assessment_leadership) || 0,
         },
         potential_rating: parseFloat(row.potential_rating) || 0,
-        target_success_role: row.target_success_role,
+        target_success_role: row.target_success_role || "",
       }));
 
       const inserted = await Employee.insertMany(employees);
