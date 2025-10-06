@@ -8,3 +8,4 @@ numpy
 plotly
 langchain-groq
 langchain-core
+pymongo
