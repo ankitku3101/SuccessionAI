@@ -4,7 +4,7 @@ const assessmentSchema = new mongoose.Schema({
   technical: Number,
   communication: Number,
   leadership: Number,
-});
+}, { _id: false });
 
 const employeeSchema = new mongoose.Schema({
   id: Number,
@@ -22,6 +22,17 @@ const employeeSchema = new mongoose.Schema({
   assessment_scores: assessmentSchema,
   potential_rating: Number,
   target_success_role: String,
+  user_role: { type: String, enum: ["employee", "committee"], default: "employee" },
+  email: { type: String, index: true, sparse: true },
+  password: { type: String, select: false },
+}, {
+  timestamps: true
 });
+
+// helpful indexes
+employeeSchema.index({ role: 1 });
+employeeSchema.index({ department: 1 });
+employeeSchema.index({ experience_years: -1 });
+employeeSchema.index({ user_role: 1 });
 
 export default mongoose.model("Employee", employeeSchema);

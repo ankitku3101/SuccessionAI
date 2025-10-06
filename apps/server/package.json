@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "ts-node src/seed/seedSuccessRoles.ts",
+    "seed": "ts-node src/seed/seedEmployees.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
@@ -15,9 +15,11 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^24.6.2",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
     "dotenv": "^17.2.3",
