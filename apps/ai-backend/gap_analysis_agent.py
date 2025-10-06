@@ -148,8 +148,8 @@ if __name__ == "__main__":
     import json
     
     # Load actual employee data from JSON file
-   
-    with open("data/sample_employee_data.json", "r") as f:
+
+    with open("apps/ai-backend/data/sample_employee_data.json", "r") as f:
         data = json.load(f)
     
     # Based on nine-box matrix: Low/Medium/High Performance × Low/Medium/High Potential
