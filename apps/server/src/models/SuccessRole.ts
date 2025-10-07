@@ -1,6 +1,20 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 
-const SuccessRoleSchema = new mongoose.Schema({
+export interface SuccessRoleDoc {
+  role: string;
+  role_description?: string;
+  required_experience: number;
+  required_skills: string[];
+  min_performance_rating: number;
+  min_potential_rating: number;
+  required_scores?: {
+    technical: number;
+    communication: number;
+    leadership: number;
+  };
+}
+
+const SuccessRoleSchema = new mongoose.Schema<SuccessRoleDoc>({
   role: { type: String, required: true },
   role_description: { type: String },
   required_experience: { type: Number, default: 0 },
@@ -14,5 +28,8 @@ const SuccessRoleSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.SuccessRole ||
-  mongoose.model("Success_Role", SuccessRoleSchema);
+const SuccessRoleModel: Model<SuccessRoleDoc> =
+  (mongoose.models["Success_Role"] as Model<SuccessRoleDoc>) ||
+  mongoose.model<SuccessRoleDoc>("Success_Role", SuccessRoleSchema);
+
+export default SuccessRoleModel;
