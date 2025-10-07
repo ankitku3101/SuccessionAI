@@ -22,6 +22,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -39,6 +40,15 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  function logout() {
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('user')
+      document.cookie = 'token=; Max-Age=0; path=/'
+      document.cookie = 'role=; Max-Age=0; path=/'
+      window.location.href = '/login'
+    }
+  }
 
   return (
     <SidebarMenu>
@@ -86,19 +96,11 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <IconUserCircle />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconNotification />
-                Notifications
+                Profile
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={logout}>
               <IconLogout />
               Log out
             </DropdownMenuItem>

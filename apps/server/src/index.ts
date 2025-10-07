@@ -4,6 +4,8 @@ import connectDB from './config/mongo';
 import authRoutes from './routes/auth.routes';
 import employeeRoutes from './routes/employee.routes';
 import committeeRoutes from './routes/committee.routes';
+import cors from 'cors';
+
 
 dotenv.config();
 
@@ -11,6 +13,7 @@ const app = express();
 
 connectDB();
 
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
