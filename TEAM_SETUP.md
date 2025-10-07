@@ -15,4 +15,4 @@ git config --global merge.ours.driver true
 # Make git pull automatically rebase
 git config --global pull.rebase true
 ```
-After every pull, do **npm install**
+After every pull, do **npm install** at the project root.
