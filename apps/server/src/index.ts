@@ -1,13 +1,19 @@
-import Express from "express";
-import cors from "cors";
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/mongo';
+import authRoutes from './routes/auth.routes';
 
-const app = Express();
-app.use(cors());
+dotenv.config();
 
-app.get("/", (req, res) => {
-  res.send("Working !");
-});
+const app = express();
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+connectDB();
+
+app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
