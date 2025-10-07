@@ -1,0 +1,51 @@
+id,name,role,department,education,recruitment_channel,number_of_trainings,age,length_of_service_years,experience_years,skills,performance_rating,assessment_technical,assessment_communication,assessment_leadership,potential_rating
+1,Nikhil Mehta_0,Research Associate,Sales,BBA,Referral,4,53,9,11,"Strategic Thinking, Problem Solving, Communication, Networking",2.99,93,71,73,2.81
+2,Manoj Pillai_1,Business Analyst,IT,MSc,Sourcing,6,28,6,7,"Networking, Strategic Thinking, Negotiation, Communication",2.71,67,92,81,3.27
+3,Tanvi Rao_2,Operations Manager,Marketing,MBA,Campus,3,25,8,13,"Strategic Thinking, SQL, Project Management, Communication",4.97,60,68,79,3.93
+4,Nikhil Mehta_3,Software Engineer,IT,BTech,Direct,3,34,9,12,"Networking, Machine Learning, SQL",4.17,60,65,90,2.41
+5,Rohit Gupta_4,Product Manager,Sales,MTech,Direct,4,27,3,4,"Leadership, Python, Java, Problem Solving, Networking, SQL",4.87,81,52,89,4.92
+6,Tanvi Rao_5,Sales Executive,IT,BCom,Campus,1,27,12,17,"Data Visualization, Financial Analysis, Networking, Communication, Strategic Thinking, SQL",3.13,52,96,82,3.02
+7,Amit Sharma_6,Finance Analyst,IT,MSc,Sourcing,6,54,11,12,"Customer Relationship, Financial Analysis, Networking, Problem Solving",2.08,56,78,63,3.17
+8,Karan Singh_7,Consultant,Marketing,PhD,Sourcing,3,46,20,22,"SQL, Strategic Thinking, Data Visualization, Project Management, Machine Learning",2.8,56,100,80,2.24
+9,Priya Verma_8,Network Engineer,Marketing,MSc,Referral,4,47,15,17,"Communication, Negotiation, SQL, Customer Relationship, Leadership",2.38,69,64,62,4.91
+10,Rohit Gupta_9,Research Associate,R&D,BCom,Sourcing,3,34,6,6,"Project Management, Networking, Strategic Thinking, Communication",3.4,57,77,84,4.83
+11,Priya Verma_10,Research Associate,IT,BCom,Campus,6,47,5,8,"Project Management, Leadership, Networking",4.19,90,83,77,2.39
+12,Manoj Pillai_11,Finance Analyst,Marketing,BA,Direct,5,44,14,19,"Negotiation, Data Visualization, Networking, Leadership, Communication, SQL",3.45,59,57,56,2.46
+13,Karan Singh_12,Product Manager,HR,BTech,Referral,0,28,20,21,"SQL, Strategic Thinking, Cloud Computing, Communication",3.47,52,52,80,3.24
+14,Rohit Gupta_13,Data Scientist,Operations,BA,Sourcing,0,49,12,17,"Leadership, Communication, Data Visualization, Cloud Computing, Networking",4.6,78,72,74,2.32
+15,Vikram Sethi_14,Finance Analyst,HR,BCom,Sourcing,4,39,11,15,"Problem Solving, Customer Relationship, SQL, Communication",3.81,59,56,75,2.07
+16,Tanvi Rao_15,Product Manager,HR,PhD,Campus,5,34,4,4,"Customer Relationship, Data Visualization, Leadership, Machine Learning, Python",3.29,95,67,74,3.73
+17,Karan Singh_16,HR Manager,Marketing,PhD,Sourcing,1,54,18,21,"Cloud Computing, Problem Solving, Financial Analysis, Data Visualization, Negotiation",3.68,99,69,98,4.22
+18,Nikhil Mehta_17,Consultant,R&D,BA,Sourcing,6,25,12,13,"Python, SQL, Data Visualization, Communication",2.58,74,90,71,4.67
+19,Siddharth Jain_18,Finance Analyst,R&D,PhD,Direct,1,39,15,17,"Customer Relationship, Financial Analysis, Java, Project Management, Data Visualization",3.35,76,94,64,3.81
+20,Ananya Das_19,Research Associate,IT,BCom,Sourcing,0,46,6,10,"Machine Learning, Financial Analysis, Project Management",2.69,97,59,96,3.75
+21,Siddharth Jain_20,Finance Analyst,Operations,MBA,Sourcing,6,45,15,15,"Leadership, SQL, Communication",2.49,86,87,75,2.27
+22,Karan Singh_21,Consultant,HR,MTech,Direct,5,36,16,21,"SQL, Data Visualization, Financial Analysis, Cloud Computing, Leadership",4.97,93,91,75,4.34
+23,Manoj Pillai_22,Finance Analyst,Marketing,BTech,Direct,1,44,19,23,"Negotiation, Leadership, Strategic Thinking, Communication",3.43,95,79,63,2.3
+24,Arjun Reddy_23,Operations Manager,Marketing,MBA,Campus,2,35,8,12,"SQL, Leadership, Communication, Data Visualization, Java, Negotiation",4.01,97,71,58,4.02
+25,Siddharth Jain_24,Operations Manager,HR,PhD,Direct,0,29,5,9,"Problem Solving, SQL, Strategic Thinking, Python, Customer Relationship",4.61,62,51,66,3.86
+26,Riya Kapoor_25,Network Engineer,HR,MTech,Sourcing,4,35,12,12,"Customer Relationship, Strategic Thinking, Financial Analysis, Problem Solving, Cloud Computing",3.98,90,69,86,3.79
+27,Nikhil Mehta_26,Network Engineer,Consulting,BBA,Referral,3,33,20,20,"Leadership, Java, Communication, Networking, SQL, Cloud Computing",2.3,85,84,73,3.21
+28,Vikram Sethi_27,Sales Executive,Marketing,BTech,Direct,5,43,12,17,"Python, Cloud Computing, Problem Solving, Customer Relationship, Financial Analysis",3.39,58,85,59,3.14
+29,Vikram Sethi_28,Operations Manager,Consulting,MSc,Sourcing,0,51,6,7,"Networking, Python, Java, Negotiation",4.5,96,73,52,2.77
+30,Priya Verma_29,Product Manager,HR,PhD,Direct,3,25,8,8,"Customer Relationship, Python, Leadership",3.12,78,100,81,4.38
+31,Karan Singh_30,Data Scientist,HR,BCom,Referral,5,53,1,2,"Python, Project Management, Communication, SQL, Java",3.63,91,64,52,2.03
+32,Nikhil Mehta_31,Finance Analyst,Marketing,MBA,Campus,5,33,16,21,"Strategic Thinking, Machine Learning, Leadership",4.06,93,78,94,2.19
+33,Arjun Reddy_32,Research Associate,HR,MSc,Campus,4,26,1,5,"Cloud Computing, Project Management, Java, Python, Financial Analysis, Problem Solving",3.61,67,84,78,4.92
+34,Amit Sharma_33,Operations Manager,IT,BTech,Sourcing,2,27,13,13,"Financial Analysis, Java, Negotiation, Problem Solving, Customer Relationship",2.26,81,57,95,2.31
+35,Nikhil Mehta_34,HR Manager,Consulting,MTech,Referral,6,55,17,22,"SQL, Communication, Project Management, Strategic Thinking",4.46,93,96,91,4.87
+36,Meera Nair_35,Marketing Specialist,HR,BA,Referral,4,43,10,14,"Networking, Strategic Thinking, Python, Project Management",2.34,61,81,63,3.63
+37,Karan Singh_36,Network Engineer,Consulting,MSc,Campus,5,47,1,3,"Customer Relationship, Project Management, Strategic Thinking",3.57,95,75,90,4.27
+38,Priya Verma_37,Finance Analyst,HR,MSc,Direct,2,36,18,23,"Strategic Thinking, Communication, Machine Learning",2.59,66,62,96,2.71
+39,Sneha Iyer_38,Product Manager,Finance,MSc,Campus,3,29,3,6,"Machine Learning, Communication, Project Management",4.88,89,65,75,2.52
+40,Arjun Reddy_39,Product Manager,Marketing,BA,Campus,4,36,5,6,"SQL, Machine Learning, Leadership",3.03,98,56,67,2.65
+41,Sneha Iyer_40,Consultant,Consulting,MBA,Direct,1,41,2,2,"Customer Relationship, Leadership, Communication, Machine Learning",4.69,93,82,69,3.63
+42,Amit Sharma_41,Software Engineer,IT,MSc,Sourcing,3,38,10,13,"Strategic Thinking, Python, SQL, Negotiation",4.44,80,55,97,3.76
+43,Siddharth Jain_42,Finance Analyst,HR,MSc,Referral,5,46,4,4,"Python, Cloud Computing, Problem Solving, Leadership, SQL",2.58,63,88,68,2.68
+44,Amit Sharma_43,Business Analyst,R&D,MBA,Referral,2,51,18,23,"Communication, Java, Problem Solving",3.91,99,63,69,4.9
+45,Pooja Mishra_44,Operations Manager,Sales,BTech,Sourcing,3,29,10,14,"Data Visualization, Problem Solving, Cloud Computing, Financial Analysis",4,73,85,87,3.65
+46,Sneha Iyer_45,Software Engineer,R&D,BTech,Direct,5,32,8,8,"Customer Relationship, Data Visualization, Project Management, Machine Learning, Negotiation, Strategic Thinking",3.79,51,95,55,2.06
+47,Manoj Pillai_46,Network Engineer,Finance,BBA,Sourcing,6,47,14,19,"Communication, Customer Relationship, Java, SQL",2.18,99,55,50,2.37
+48,Tanvi Rao_47,Sales Executive,R&D,MBA,Referral,5,26,2,3,"SQL, Leadership, Data Visualization, Project Management",4.34,94,57,70,3.82
+49,Arjun Reddy_48,Product Manager,Consulting,BTech,Sourcing,3,52,5,10,"Strategic Thinking, Leadership, Data Visualization, Networking",4.98,62,58,87,3.27
+50,Priya Verma_49,Business Analyst,IT,BA,Referral,4,48,19,24,"Communication, Machine Learning, Customer Relationship, Data Visualization",4.09,68,85,83,3.12
