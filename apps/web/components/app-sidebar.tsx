@@ -1,3 +1,5 @@
+// Update your AppSidebar component with these changes:
+
 "use client"
 
 import * as React from "react"
@@ -30,7 +32,14 @@ const fallbackUser = {
   avatar: "/avatars/shadcn.jpg",
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ 
+  activeView, 
+  setActiveView, 
+  ...props 
+}: React.ComponentProps<typeof Sidebar> & { 
+  activeView?: string; 
+  setActiveView?: (view: string) => void 
+}) {
   const user = typeof window !== "undefined" ? getUser() : null
   const role = user?.user_role
 
@@ -42,10 +51,30 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const items =
     role === "committee"
       ? [
-          { title: "Dashboard", url: "/dashboard/committee", icon: IconDashboard },
-          { title: "Employees", url: "/dashboard/committee?view=employees", icon: IconUsers },
-          { title: "Success Profiles", url: "/dashboard/committee?view=profiles", icon: IconFileAi },
-          { title: "Reports", url: "/dashboard/committee?view=reports", icon: IconReport },
+          { 
+            title: "Dashboard", 
+            url: "#", 
+            icon: IconDashboard,
+            onClick: () => setActiveView?.("dashboard")
+          },
+          { 
+            title: "Employees", 
+            url: "#", 
+            icon: IconUsers,
+            onClick: () => setActiveView?.("employees")
+          },
+          { 
+            title: "Success Profiles", 
+            url: "#", 
+            icon: IconFileAi,
+            onClick: () => setActiveView?.("profiles")
+          },
+          { 
+            title: "Reports", 
+            url: "#", 
+            icon: IconReport,
+            onClick: () => setActiveView?.("reports")
+          },
         ]
       : [
           { title: "Dashboard", url: "/dashboard/employee", icon: IconDashboard },
@@ -55,7 +84,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
-      {/* ---- Header ---- */}
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -72,12 +100,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
 
-      {/* ---- Main Navigation ---- */}
       <SidebarContent>
-        <NavMain items={items} />
+        <NavMain items={items} activeView={activeView} />
       </SidebarContent>
 
-      {/* ---- Footer User Info ---- */}
       <SidebarFooter>
         <NavUser
           user={{
