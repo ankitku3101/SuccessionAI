@@ -9,3 +9,6 @@ plotly
 langchain-groq
 langchain-core
 pymongo
+scikit-learn
+pandas
+joblib
