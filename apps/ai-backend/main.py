@@ -1,8 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from typing import List, Dict, Any
+from typing import List
 from pydantic import BaseModel
-import os
 import uvicorn
 
 from nine_box_matrix import NineBoxMatrix
