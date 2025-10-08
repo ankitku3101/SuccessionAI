@@ -16,12 +16,11 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">Succession AI Dashboard</h1>
         <div className="ml-auto flex items-center gap-2">
-          <ThemeToggleIcon />
           <Button variant="outline" size="sm" onClick={() => { clearAuth(); window.location.href = '/login' }}>Logout</Button>
+          <ThemeToggleIcon />
         </div>
       </div>
     </header>
   )
 }
 
-// Theme toggle moved to global layout

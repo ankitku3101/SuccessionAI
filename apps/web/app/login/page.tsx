@@ -14,10 +14,10 @@ export default function LoginPage() {
           </div>
           Succession AI
         </a>
-        <div className="absolute right-0 top-0">
-          <ThemeToggleIcon />
-        </div>
         <LoginForm />
+      </div>
+      <div className="absolute right-0 top-0 p-2">
+        <ThemeToggleIcon />
       </div>
     </div>
   )

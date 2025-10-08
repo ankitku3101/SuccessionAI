@@ -1,23 +1,14 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import {
-  IconCamera,
-  IconChartBar,
   IconDashboard,
-  IconDatabase,
   IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
   IconReport,
-  IconSearch,
-  IconSettings,
   IconUserCircle,
   IconUsers,
+  IconInnerShadowTop,
 } from "@tabler/icons-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -33,40 +24,38 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "/dashboard/employee",
-      icon: IconDashboard,
-    },
-  ],
-  navClouds: [],
-  navSecondary: [],
-  documents: [],
+const fallbackUser = {
+  name: "User",
+  email: "m@example.com",
+  avatar: "/avatars/shadcn.jpg",
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const user = typeof window !== 'undefined' ? getUser() : null
-  const dashboardUrl = user?.user_role === 'committee' ? '/dashboard/committee' : '/dashboard/employee'
-  const items = [
-    { title: 'Dashboard', url: dashboardUrl, icon: IconDashboard },
-    ...(user?.user_role === 'committee' ? [
-      { title: 'Employees', url: '/dashboard/committee', icon: IconUsers },
-      { title: 'Success Profiles', url: '/dashboard/committee?view=profiles', icon: IconFileAi },
-      { title: 'Reports', url: '/dashboard/committee?view=reports', icon: IconReport },
-    ] : [
-      { title: 'Mentorship', url: '/dashboard/employee?view=mentorship', icon: IconUsers },
-      { title: 'Profile', url: '/dashboard/employee?view=profile', icon: IconUserCircle },
-    ])
-  ]
+  const user = typeof window !== "undefined" ? getUser() : null
+  const role = user?.user_role
+
+  // Base dashboard URL depends on user role
+  const dashboardUrl =
+    role === "committee" ? "/dashboard/committee" : "/dashboard/employee"
+
+  // Define sidebar items dynamically
+  const items =
+    role === "committee"
+      ? [
+          { title: "Dashboard", url: "/dashboard/committee", icon: IconDashboard },
+          { title: "Employees", url: "/dashboard/committee?view=employees", icon: IconUsers },
+          { title: "Success Profiles", url: "/dashboard/committee?view=profiles", icon: IconFileAi },
+          { title: "Reports", url: "/dashboard/committee?view=reports", icon: IconReport },
+        ]
+      : [
+          { title: "Dashboard", url: "/dashboard/employee", icon: IconDashboard },
+          { title: "Mentorship", url: "/dashboard/employee?view=mentorship", icon: IconUsers },
+          { title: "Profile", url: "/dashboard/employee?view=profile", icon: IconUserCircle },
+        ]
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
+      {/* ---- Header ---- */}
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -74,19 +63,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <Link href={dashboardUrl}>
                 <IconInnerShadowTop className="!size-5" />
                 <span className="text-base font-semibold">Succession AI</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
+      {/* ---- Main Navigation ---- */}
       <SidebarContent>
         <NavMain items={items} />
       </SidebarContent>
+
+      {/* ---- Footer User Info ---- */}
       <SidebarFooter>
-        <NavUser user={{ name: user?.name || 'User', email: user?.email || '', avatar: data.user.avatar }} />
+        <NavUser
+          user={{
+            name: user?.name || fallbackUser.name,
+            email: user?.email || fallbackUser.email,
+            avatar: fallbackUser.avatar,
+          }}
+        />
       </SidebarFooter>
     </Sidebar>
   )

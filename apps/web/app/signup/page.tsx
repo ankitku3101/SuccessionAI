@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { apiPost } from "@/lib/api"
 import { saveAuth } from "@/lib/auth"
+import { ThemeToggleIcon } from "@/components/theme-toggle"
 
 export default function SignupPage() {
   const router = useRouter()
@@ -75,6 +76,9 @@ export default function SignupPage() {
             </form>
           </CardContent>
         </Card>
+      </div>
+      <div className="absolute right-0 top-0 p-2">
+        <ThemeToggleIcon />
       </div>
     </div>
   )
