@@ -41,15 +41,15 @@ class SegmentLabel(str, Enum):
 
 class NineBoxConfig(BaseModel):
     """Configuration for 9-box matrix thresholds."""
-    performance_low_threshold: float = Field(default=3.5, description="Below this is Low Performance")
+    performance_low_threshold: float = Field(default=3.3, description="Below this is Low Performance")
     performance_high_threshold: float = Field(default=4.0, description="Above this is High Performance")
-    potential_low_threshold: float = Field(default=3.5, description="Below this is Low Potential")
+    potential_low_threshold: float = Field(default=3.3, description="Below this is Low Potential")
     potential_high_threshold: float = Field(default=4.0, description="Above this is High Potential")
 
 
 class EmployeeSegmentation(BaseModel):
     """Result of employee segmentation."""
-    employee_id: int
+    employee_id: str   
     employee_name: str
     performance_rating: float
     potential_rating: float
@@ -147,7 +147,7 @@ class NineBoxMatrix:
         segment_label, segment_description = self._segment_mapping[(performance_level, potential_level)]
         
         return EmployeeSegmentation(
-            employee_id=employee_data["id"],
+            employee_id=str(employee_data["id"]),  # Convert to string for MongoDB compatibility
             employee_name=employee_data["name"],
             performance_rating=performance_rating,
             potential_rating=potential_rating,
