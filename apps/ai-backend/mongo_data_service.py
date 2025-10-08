@@ -1,6 +1,5 @@
 """
-MongoDB Data Access Module for SuccessionAI
-
+MongoDB Data Access Module for SuccessionAI:
 This module handles all MongoDB operations for fetching employee and role data.
 Integrates with existing nine-box matrix, gap analysis, and visualization modules.
 """
@@ -126,14 +125,18 @@ class MongoDataFetcher:
             "length_of_service_years": mongo_employee.get("length_of_service_years", 0),
             "experience_years": mongo_employee.get("experience_years", 0),
             "skills": mongo_employee.get("skills", []),
-            "performance_rating": mongo_employee.get("performance_rating", 0.0),
+            "performance_rating": float(mongo_employee.get("performance_rating", 0.0)),
             "assessment_scores": mongo_employee.get("assessment_scores", {
                 "technical": 0,
                 "communication": 0,
                 "leadership": 0
             }),
-            "potential_rating": mongo_employee.get("potential_rating", 0.0),
-            "target_success_role": mongo_employee.get("target_success_role", "")
+            "potential_rating": float(mongo_employee.get("potential_rating", 0.0)),
+            "target_success_role": mongo_employee.get("target_success_role", ""),
+            # Additional MongoDB fields for reference
+            "user_role": mongo_employee.get("user_role", "employee"),
+            "created_at": mongo_employee.get("createdAt"),
+            "updated_at": mongo_employee.get("updatedAt")
         }
         
         return transformed
@@ -200,6 +203,22 @@ def get_employee_and_role_for_gap_analysis(employee_id: str, role_name: str = No
         
         # Use provided role name or employee's target role
         target_role = role_name or employee.get("target_success_role")
+        
+        # If target_success_role is empty, provide a default suggestion based on current role
+        if not target_role or target_role.strip() == "":
+            # Simple role mapping for demonstration
+            role_suggestions = {
+                "Research Associate": "Senior Developer",
+                "Software Engineer": "Technical Lead", 
+                "Data Analyst": "Data Science Manager",
+                "Project Manager": "Product Manager",
+                "HR Specialist": "HR Manager",
+                "Quality Analyst": "Quality Assurance Lead"
+            }
+            current_role = employee.get("role", "")
+            target_role = role_suggestions.get(current_role, "Senior Developer")
+            print(f"ℹ️ No target role found for {employee['name']}, suggesting: {target_role}")
+        
         role = fetcher.fetch_role_by_name(target_role) if target_role else None
         
         return employee, role
