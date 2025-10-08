@@ -1,0 +1,3424 @@
+{
+  "dataset_info": {
+    "total_records": 200,
+    "features": [
+      "potential_rating",
+      "performance_rating",
+      "technical_score",
+      "communication_score",
+      "leadership_score",
+      "matched_skills_count",
+      "missing_skills_count",
+      "total_skills_required",
+      "experience_years"
+    ],
+    "target": "readiness_status",
+    "classes": [
+      "Ready",
+      "Developing",
+      "Not Ready"
+    ]
+  },
+  "training_data": [
+    {
+      "employee_id": "EMP_001",
+      "employee_name": "Seema Patel",
+      "features": {
+        "potential_rating": 3.31,
+        "performance_rating": 2.79,
+        "technical_score": 37,
+        "communication_score": 42,
+        "leadership_score": 46,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 1
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_002",
+      "employee_name": "Neha Srivastava",
+      "features": {
+        "potential_rating": 4.28,
+        "performance_rating": 3.72,
+        "technical_score": 49,
+        "communication_score": 72,
+        "leadership_score": 57,
+        "matched_skills_count": 4,
+        "missing_skills_count": 1,
+        "total_skills_required": 5,
+        "experience_years": 3
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_003",
+      "employee_name": "Simran Goel",
+      "features": {
+        "potential_rating": 3.66,
+        "performance_rating": 3.65,
+        "technical_score": 52,
+        "communication_score": 64,
+        "leadership_score": 69,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 5
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_004",
+      "employee_name": "Nisha Chopra",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.56,
+        "technical_score": 44,
+        "communication_score": 41,
+        "leadership_score": 30,
+        "matched_skills_count": 2,
+        "missing_skills_count": 4,
+        "total_skills_required": 6,
+        "experience_years": 1
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_005",
+      "employee_name": "Meera Tiwari",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 3.1,
+        "technical_score": 62,
+        "communication_score": 62,
+        "leadership_score": 49,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 3
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_006",
+      "employee_name": "Neha Srivastava",
+      "features": {
+        "potential_rating": 3.75,
+        "performance_rating": 3.24,
+        "technical_score": 63,
+        "communication_score": 63,
+        "leadership_score": 45,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 1
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_007",
+      "employee_name": "Amit Tiwari",
+      "features": {
+        "potential_rating": 3.09,
+        "performance_rating": 3.69,
+        "technical_score": 59,
+        "communication_score": 67,
+        "leadership_score": 47,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 6
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_008",
+      "employee_name": "Sangeeta Kaur",
+      "features": {
+        "potential_rating": 2.61,
+        "performance_rating": 3.13,
+        "technical_score": 40,
+        "communication_score": 56,
+        "leadership_score": 44,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 1
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_009",
+      "employee_name": "Ashish Nair",
+      "features": {
+        "potential_rating": 3.19,
+        "performance_rating": 3.8,
+        "technical_score": 74,
+        "communication_score": 74,
+        "leadership_score": 44,
+        "matched_skills_count": 5,
+        "missing_skills_count": 2,
+        "total_skills_required": 7,
+        "experience_years": 6
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_010",
+      "employee_name": "Seema Bansal",
+      "features": {
+        "potential_rating": 2.92,
+        "performance_rating": 3.72,
+        "technical_score": 70,
+        "communication_score": 58,
+        "leadership_score": 48,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 12
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_011",
+      "employee_name": "Simran Goel",
+      "features": {
+        "potential_rating": 3.3,
+        "performance_rating": 3.31,
+        "technical_score": 59,
+        "communication_score": 62,
+        "leadership_score": 57,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 8
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_012",
+      "employee_name": "Nisha Kumar",
+      "features": {
+        "potential_rating": 3.66,
+        "performance_rating": 3.73,
+        "technical_score": 74,
+        "communication_score": 55,
+        "leadership_score": 49,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 8
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_013",
+      "employee_name": "Karan Kumar",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.66,
+        "technical_score": 56,
+        "communication_score": 63,
+        "leadership_score": 36,
+        "matched_skills_count": 1,
+        "missing_skills_count": 7,
+        "total_skills_required": 8,
+        "experience_years": 3
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_014",
+      "employee_name": "Priya Kumar",
+      "features": {
+        "potential_rating": 3.91,
+        "performance_rating": 3.56,
+        "technical_score": 73,
+        "communication_score": 65,
+        "leadership_score": 48,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 7
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_015",
+      "employee_name": "Shweta Joshi",
+      "features": {
+        "potential_rating": 4.94,
+        "performance_rating": 4.61,
+        "technical_score": 72,
+        "communication_score": 66,
+        "leadership_score": 82,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 2
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_016",
+      "employee_name": "Varun Bhatia",
+      "features": {
+        "potential_rating": 3.59,
+        "performance_rating": 4.15,
+        "technical_score": 66,
+        "communication_score": 59,
+        "leadership_score": 63,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 7
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_017",
+      "employee_name": "Kavita Sethi",
+      "features": {
+        "potential_rating": 3.66,
+        "performance_rating": 3.14,
+        "technical_score": 40,
+        "communication_score": 56,
+        "leadership_score": 39,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 8
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_018",
+      "employee_name": "Nisha Tiwari",
+      "features": {
+        "potential_rating": 2.84,
+        "performance_rating": 3.47,
+        "technical_score": 59,
+        "communication_score": 49,
+        "leadership_score": 48,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 3
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_019",
+      "employee_name": "Rohan Singh",
+      "features": {
+        "potential_rating": 3.54,
+        "performance_rating": 3.55,
+        "technical_score": 66,
+        "communication_score": 67,
+        "leadership_score": 44,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 8
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_020",
+      "employee_name": "Varun Verma",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.95,
+        "technical_score": 51,
+        "communication_score": 44,
+        "leadership_score": 49,
+        "matched_skills_count": 2,
+        "missing_skills_count": 6,
+        "total_skills_required": 8,
+        "experience_years": 3
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_021",
+      "employee_name": "Ashish Kaur",
+      "features": {
+        "potential_rating": 2.63,
+        "performance_rating": 2.83,
+        "technical_score": 61,
+        "communication_score": 63,
+        "leadership_score": 49,
+        "matched_skills_count": 0,
+        "missing_skills_count": 5,
+        "total_skills_required": 5,
+        "experience_years": 1
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_022",
+      "employee_name": "Rohit Aggarwal",
+      "features": {
+        "potential_rating": 3.62,
+        "performance_rating": 3.67,
+        "technical_score": 63,
+        "communication_score": 54,
+        "leadership_score": 56,
+        "matched_skills_count": 2,
+        "missing_skills_count": 5,
+        "total_skills_required": 7,
+        "experience_years": 1
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_023",
+      "employee_name": "Priya Kumar",
+      "features": {
+        "potential_rating": 3.12,
+        "performance_rating": 2.51,
+        "technical_score": 50,
+        "communication_score": 40,
+        "leadership_score": 32,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 10
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_024",
+      "employee_name": "Abhin Khanna",
+      "features": {
+        "potential_rating": 2.69,
+        "performance_rating": 2.59,
+        "technical_score": 42,
+        "communication_score": 55,
+        "leadership_score": 38,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 10
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_025",
+      "employee_name": "Siddharth Reddy",
+      "features": {
+        "potential_rating": 3.95,
+        "performance_rating": 4.66,
+        "technical_score": 78,
+        "communication_score": 67,
+        "leadership_score": 55,
+        "matched_skills_count": 7,
+        "missing_skills_count": 1,
+        "total_skills_required": 8,
+        "experience_years": 11
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_026",
+      "employee_name": "Swati Mishra",
+      "features": {
+        "potential_rating": 3.51,
+        "performance_rating": 4.2,
+        "technical_score": 79,
+        "communication_score": 69,
+        "leadership_score": 50,
+        "matched_skills_count": 5,
+        "missing_skills_count": 1,
+        "total_skills_required": 6,
+        "experience_years": 8
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_027",
+      "employee_name": "Amit Aggarwal",
+      "features": {
+        "potential_rating": 4.76,
+        "performance_rating": 4.0,
+        "technical_score": 60,
+        "communication_score": 57,
+        "leadership_score": 71,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 7
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_028",
+      "employee_name": "Vikram Bhatia",
+      "features": {
+        "potential_rating": 4.12,
+        "performance_rating": 4.56,
+        "technical_score": 80,
+        "communication_score": 75,
+        "leadership_score": 73,
+        "matched_skills_count": 4,
+        "missing_skills_count": 4,
+        "total_skills_required": 8,
+        "experience_years": 6
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_029",
+      "employee_name": "Ravi Bansal",
+      "features": {
+        "potential_rating": 4.43,
+        "performance_rating": 3.9,
+        "technical_score": 58,
+        "communication_score": 55,
+        "leadership_score": 66,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 8
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_030",
+      "employee_name": "Manisha Singh",
+      "features": {
+        "potential_rating": 2.94,
+        "performance_rating": 3.5,
+        "technical_score": 56,
+        "communication_score": 57,
+        "leadership_score": 45,
+        "matched_skills_count": 4,
+        "missing_skills_count": 2,
+        "total_skills_required": 6,
+        "experience_years": 9
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_031",
+      "employee_name": "Ashish Malhotra",
+      "features": {
+        "potential_rating": 4.37,
+        "performance_rating": 3.8,
+        "technical_score": 56,
+        "communication_score": 61,
+        "leadership_score": 60,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 7
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_032",
+      "employee_name": "Vikram Mishra",
+      "features": {
+        "potential_rating": 3.99,
+        "performance_rating": 4.76,
+        "technical_score": 86,
+        "communication_score": 77,
+        "leadership_score": 84,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 5
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_033",
+      "employee_name": "Ananya Goel",
+      "features": {
+        "potential_rating": 4.0,
+        "performance_rating": 3.66,
+        "technical_score": 52,
+        "communication_score": 56,
+        "leadership_score": 57,
+        "matched_skills_count": 3,
+        "missing_skills_count": 4,
+        "total_skills_required": 7,
+        "experience_years": 4
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_034",
+      "employee_name": "Meera Agarwal",
+      "features": {
+        "potential_rating": 4.56,
+        "performance_rating": 4.49,
+        "technical_score": 63,
+        "communication_score": 78,
+        "leadership_score": 67,
+        "matched_skills_count": 6,
+        "missing_skills_count": 2,
+        "total_skills_required": 8,
+        "experience_years": 12
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_035",
+      "employee_name": "Sangeeta Bhatia",
+      "features": {
+        "potential_rating": 3.97,
+        "performance_rating": 3.94,
+        "technical_score": 79,
+        "communication_score": 58,
+        "leadership_score": 58,
+        "matched_skills_count": 6,
+        "missing_skills_count": 1,
+        "total_skills_required": 7,
+        "experience_years": 11
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_036",
+      "employee_name": "Ashish Bansal",
+      "features": {
+        "potential_rating": 4.02,
+        "performance_rating": 4.4,
+        "technical_score": 84,
+        "communication_score": 81,
+        "leadership_score": 60,
+        "matched_skills_count": 8,
+        "missing_skills_count": 0,
+        "total_skills_required": 8,
+        "experience_years": 10
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_037",
+      "employee_name": "Seema Tiwari",
+      "features": {
+        "potential_rating": 2.87,
+        "performance_rating": 2.93,
+        "technical_score": 60,
+        "communication_score": 56,
+        "leadership_score": 58,
+        "matched_skills_count": 0,
+        "missing_skills_count": 4,
+        "total_skills_required": 4,
+        "experience_years": 2
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_038",
+      "employee_name": "Shweta Tiwari",
+      "features": {
+        "potential_rating": 3.15,
+        "performance_rating": 3.51,
+        "technical_score": 61,
+        "communication_score": 50,
+        "leadership_score": 45,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 8
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_039",
+      "employee_name": "Rohit Patel",
+      "features": {
+        "potential_rating": 3.08,
+        "performance_rating": 2.81,
+        "technical_score": 38,
+        "communication_score": 62,
+        "leadership_score": 38,
+        "matched_skills_count": 1,
+        "missing_skills_count": 7,
+        "total_skills_required": 8,
+        "experience_years": 4
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_040",
+      "employee_name": "Neha Patel",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.74,
+        "technical_score": 35,
+        "communication_score": 44,
+        "leadership_score": 52,
+        "matched_skills_count": 3,
+        "missing_skills_count": 5,
+        "total_skills_required": 8,
+        "experience_years": 7
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_041",
+      "employee_name": "Simran Bhatia",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.73,
+        "technical_score": 71,
+        "communication_score": 74,
+        "leadership_score": 73,
+        "matched_skills_count": 5,
+        "missing_skills_count": 1,
+        "total_skills_required": 6,
+        "experience_years": 12
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_042",
+      "employee_name": "Hardik Tiwari",
+      "features": {
+        "potential_rating": 3.13,
+        "performance_rating": 2.72,
+        "technical_score": 37,
+        "communication_score": 56,
+        "leadership_score": 57,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 7
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_043",
+      "employee_name": "Divya Singh",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.66,
+        "technical_score": 69,
+        "communication_score": 77,
+        "leadership_score": 59,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 3
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_044",
+      "employee_name": "Ajay Khanna",
+      "features": {
+        "potential_rating": 4.12,
+        "performance_rating": 4.37,
+        "technical_score": 77,
+        "communication_score": 65,
+        "leadership_score": 58,
+        "matched_skills_count": 5,
+        "missing_skills_count": 2,
+        "total_skills_required": 7,
+        "experience_years": 12
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_045",
+      "employee_name": "Arjun Iyer",
+      "features": {
+        "potential_rating": 3.18,
+        "performance_rating": 3.98,
+        "technical_score": 79,
+        "communication_score": 65,
+        "leadership_score": 74,
+        "matched_skills_count": 4,
+        "missing_skills_count": 3,
+        "total_skills_required": 7,
+        "experience_years": 7
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_046",
+      "employee_name": "Ajay Sharma",
+      "features": {
+        "potential_rating": 4.15,
+        "performance_rating": 3.64,
+        "technical_score": 52,
+        "communication_score": 68,
+        "leadership_score": 54,
+        "matched_skills_count": 3,
+        "missing_skills_count": 5,
+        "total_skills_required": 8,
+        "experience_years": 5
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_047",
+      "employee_name": "Karan Tiwari",
+      "features": {
+        "potential_rating": 4.13,
+        "performance_rating": 4.76,
+        "technical_score": 72,
+        "communication_score": 68,
+        "leadership_score": 69,
+        "matched_skills_count": 5,
+        "missing_skills_count": 0,
+        "total_skills_required": 5,
+        "experience_years": 9
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_048",
+      "employee_name": "Rohan Verma",
+      "features": {
+        "potential_rating": 3.9,
+        "performance_rating": 3.7,
+        "technical_score": 55,
+        "communication_score": 56,
+        "leadership_score": 50,
+        "matched_skills_count": 4,
+        "missing_skills_count": 4,
+        "total_skills_required": 8,
+        "experience_years": 7
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_049",
+      "employee_name": "Rohan Tiwari",
+      "features": {
+        "potential_rating": 3.82,
+        "performance_rating": 3.23,
+        "technical_score": 41,
+        "communication_score": 49,
+        "leadership_score": 56,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 1
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_050",
+      "employee_name": "Amit Verma",
+      "features": {
+        "potential_rating": 3.9,
+        "performance_rating": 4.18,
+        "technical_score": 65,
+        "communication_score": 63,
+        "leadership_score": 50,
+        "matched_skills_count": 5,
+        "missing_skills_count": 1,
+        "total_skills_required": 6,
+        "experience_years": 9
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_051",
+      "employee_name": "Vikram Sharma",
+      "features": {
+        "potential_rating": 3.13,
+        "performance_rating": 2.83,
+        "technical_score": 50,
+        "communication_score": 48,
+        "leadership_score": 45,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 4
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_052",
+      "employee_name": "Amit Mehta",
+      "features": {
+        "potential_rating": 4.1,
+        "performance_rating": 4.7,
+        "technical_score": 67,
+        "communication_score": 67,
+        "leadership_score": 64,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 2
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_053",
+      "employee_name": "Vikram Kumar",
+      "features": {
+        "potential_rating": 3.43,
+        "performance_rating": 3.84,
+        "technical_score": 65,
+        "communication_score": 72,
+        "leadership_score": 70,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 1
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_054",
+      "employee_name": "Priya Patel",
+      "features": {
+        "potential_rating": 4.46,
+        "performance_rating": 4.05,
+        "technical_score": 56,
+        "communication_score": 62,
+        "leadership_score": 66,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 5
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_055",
+      "employee_name": "Ashish Sharma",
+      "features": {
+        "potential_rating": 4.46,
+        "performance_rating": 4.66,
+        "technical_score": 70,
+        "communication_score": 66,
+        "leadership_score": 71,
+        "matched_skills_count": 4,
+        "missing_skills_count": 1,
+        "total_skills_required": 5,
+        "experience_years": 6
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_056",
+      "employee_name": "Kritika Chopra",
+      "features": {
+        "potential_rating": 2.52,
+        "performance_rating": 3.25,
+        "technical_score": 48,
+        "communication_score": 67,
+        "leadership_score": 55,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 2
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_057",
+      "employee_name": "Abhin Agarwal",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.89,
+        "technical_score": 54,
+        "communication_score": 55,
+        "leadership_score": 37,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 9
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_058",
+      "employee_name": "Nisha Joshi",
+      "features": {
+        "potential_rating": 3.65,
+        "performance_rating": 3.29,
+        "technical_score": 45,
+        "communication_score": 55,
+        "leadership_score": 38,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 1
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_059",
+      "employee_name": "Ravi Kumar",
+      "features": {
+        "potential_rating": 3.04,
+        "performance_rating": 2.61,
+        "technical_score": 42,
+        "communication_score": 57,
+        "leadership_score": 53,
+        "matched_skills_count": 2,
+        "missing_skills_count": 6,
+        "total_skills_required": 8,
+        "experience_years": 6
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_060",
+      "employee_name": "Ravi Sethi",
+      "features": {
+        "potential_rating": 2.8,
+        "performance_rating": 2.63,
+        "technical_score": 60,
+        "communication_score": 40,
+        "leadership_score": 43,
+        "matched_skills_count": 0,
+        "missing_skills_count": 4,
+        "total_skills_required": 4,
+        "experience_years": 4
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_061",
+      "employee_name": "Gaurav Rao",
+      "features": {
+        "potential_rating": 3.92,
+        "performance_rating": 4.02,
+        "technical_score": 62,
+        "communication_score": 70,
+        "leadership_score": 51,
+        "matched_skills_count": 2,
+        "missing_skills_count": 4,
+        "total_skills_required": 6,
+        "experience_years": 1
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_062",
+      "employee_name": "Simran Kumar",
+      "features": {
+        "potential_rating": 2.95,
+        "performance_rating": 2.66,
+        "technical_score": 47,
+        "communication_score": 60,
+        "leadership_score": 32,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 4
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_063",
+      "employee_name": "Pallavi Reddy",
+      "features": {
+        "potential_rating": 3.02,
+        "performance_rating": 3.6,
+        "technical_score": 66,
+        "communication_score": 63,
+        "leadership_score": 55,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 11
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_064",
+      "employee_name": "Ananya Gupta",
+      "features": {
+        "potential_rating": 2.88,
+        "performance_rating": 3.37,
+        "technical_score": 69,
+        "communication_score": 57,
+        "leadership_score": 54,
+        "matched_skills_count": 3,
+        "missing_skills_count": 4,
+        "total_skills_required": 7,
+        "experience_years": 5
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_065",
+      "employee_name": "Swati Malhotra",
+      "features": {
+        "potential_rating": 3.1,
+        "performance_rating": 3.63,
+        "technical_score": 65,
+        "communication_score": 71,
+        "leadership_score": 64,
+        "matched_skills_count": 6,
+        "missing_skills_count": 2,
+        "total_skills_required": 8,
+        "experience_years": 11
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_066",
+      "employee_name": "Pooja Gupta",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.56,
+        "technical_score": 79,
+        "communication_score": 63,
+        "leadership_score": 73,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 3
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_067",
+      "employee_name": "Shweta Iyer",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.72,
+        "technical_score": 35,
+        "communication_score": 51,
+        "leadership_score": 30,
+        "matched_skills_count": 1,
+        "missing_skills_count": 5,
+        "total_skills_required": 6,
+        "experience_years": 7
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_068",
+      "employee_name": "Pallavi Joshi",
+      "features": {
+        "potential_rating": 2.76,
+        "performance_rating": 3.16,
+        "technical_score": 56,
+        "communication_score": 47,
+        "leadership_score": 45,
+        "matched_skills_count": 2,
+        "missing_skills_count": 5,
+        "total_skills_required": 7,
+        "experience_years": 3
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_069",
+      "employee_name": "Divya Tiwari",
+      "features": {
+        "potential_rating": 4.2,
+        "performance_rating": 4.54,
+        "technical_score": 72,
+        "communication_score": 77,
+        "leadership_score": 75,
+        "matched_skills_count": 5,
+        "missing_skills_count": 0,
+        "total_skills_required": 5,
+        "experience_years": 7
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_070",
+      "employee_name": "Kavita Chopra",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.57,
+        "technical_score": 59,
+        "communication_score": 77,
+        "leadership_score": 54,
+        "matched_skills_count": 5,
+        "missing_skills_count": 1,
+        "total_skills_required": 6,
+        "experience_years": 11
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_071",
+      "employee_name": "Vikram Reddy",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.65,
+        "technical_score": 56,
+        "communication_score": 50,
+        "leadership_score": 35,
+        "matched_skills_count": 1,
+        "missing_skills_count": 6,
+        "total_skills_required": 7,
+        "experience_years": 2
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_072",
+      "employee_name": "Amit Kaur",
+      "features": {
+        "potential_rating": 2.61,
+        "performance_rating": 2.64,
+        "technical_score": 49,
+        "communication_score": 50,
+        "leadership_score": 43,
+        "matched_skills_count": 1,
+        "missing_skills_count": 6,
+        "total_skills_required": 7,
+        "experience_years": 4
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_073",
+      "employee_name": "Amit Kaur",
+      "features": {
+        "potential_rating": 2.52,
+        "performance_rating": 3.08,
+        "technical_score": 54,
+        "communication_score": 60,
+        "leadership_score": 58,
+        "matched_skills_count": 4,
+        "missing_skills_count": 3,
+        "total_skills_required": 7,
+        "experience_years": 11
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_074",
+      "employee_name": "Ajay Mishra",
+      "features": {
+        "potential_rating": 4.62,
+        "performance_rating": 3.99,
+        "technical_score": 62,
+        "communication_score": 74,
+        "leadership_score": 68,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 3
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_075",
+      "employee_name": "Gaurav Bhatia",
+      "features": {
+        "potential_rating": 3.05,
+        "performance_rating": 2.82,
+        "technical_score": 60,
+        "communication_score": 45,
+        "leadership_score": 33,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 7
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_076",
+      "employee_name": "Nikhil Sharma",
+      "features": {
+        "potential_rating": 2.66,
+        "performance_rating": 2.65,
+        "technical_score": 48,
+        "communication_score": 45,
+        "leadership_score": 40,
+        "matched_skills_count": 1,
+        "missing_skills_count": 6,
+        "total_skills_required": 7,
+        "experience_years": 5
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_077",
+      "employee_name": "Rahul Reddy",
+      "features": {
+        "potential_rating": 4.09,
+        "performance_rating": 3.33,
+        "technical_score": 51,
+        "communication_score": 61,
+        "leadership_score": 44,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 9
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_078",
+      "employee_name": "Pooja Verma",
+      "features": {
+        "potential_rating": 3.07,
+        "performance_rating": 3.1,
+        "technical_score": 57,
+        "communication_score": 50,
+        "leadership_score": 62,
+        "matched_skills_count": 1,
+        "missing_skills_count": 5,
+        "total_skills_required": 6,
+        "experience_years": 4
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_079",
+      "employee_name": "Rahul Mehta",
+      "features": {
+        "potential_rating": 4.33,
+        "performance_rating": 3.76,
+        "technical_score": 60,
+        "communication_score": 62,
+        "leadership_score": 45,
+        "matched_skills_count": 2,
+        "missing_skills_count": 6,
+        "total_skills_required": 8,
+        "experience_years": 2
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_080",
+      "employee_name": "Rajesh Kaur",
+      "features": {
+        "potential_rating": 2.74,
+        "performance_rating": 2.66,
+        "technical_score": 59,
+        "communication_score": 47,
+        "leadership_score": 56,
+        "matched_skills_count": 2,
+        "missing_skills_count": 6,
+        "total_skills_required": 8,
+        "experience_years": 7
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_081",
+      "employee_name": "Rohit Malhotra",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.57,
+        "technical_score": 83,
+        "communication_score": 81,
+        "leadership_score": 69,
+        "matched_skills_count": 4,
+        "missing_skills_count": 2,
+        "total_skills_required": 6,
+        "experience_years": 1
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_082",
+      "employee_name": "Nikhil Sethi",
+      "features": {
+        "potential_rating": 3.0,
+        "performance_rating": 2.63,
+        "technical_score": 59,
+        "communication_score": 63,
+        "leadership_score": 31,
+        "matched_skills_count": 1,
+        "missing_skills_count": 5,
+        "total_skills_required": 6,
+        "experience_years": 4
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_083",
+      "employee_name": "Pooja Joshi",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.68,
+        "technical_score": 79,
+        "communication_score": 80,
+        "leadership_score": 73,
+        "matched_skills_count": 4,
+        "missing_skills_count": 3,
+        "total_skills_required": 7,
+        "experience_years": 3
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_084",
+      "employee_name": "Simran Sethi",
+      "features": {
+        "potential_rating": 4.45,
+        "performance_rating": 3.72,
+        "technical_score": 50,
+        "communication_score": 57,
+        "leadership_score": 71,
+        "matched_skills_count": 4,
+        "missing_skills_count": 1,
+        "total_skills_required": 5,
+        "experience_years": 12
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_085",
+      "employee_name": "Nisha Iyer",
+      "features": {
+        "potential_rating": 4.19,
+        "performance_rating": 4.01,
+        "technical_score": 72,
+        "communication_score": 76,
+        "leadership_score": 48,
+        "matched_skills_count": 6,
+        "missing_skills_count": 2,
+        "total_skills_required": 8,
+        "experience_years": 10
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_086",
+      "employee_name": "Manisha Goel",
+      "features": {
+        "potential_rating": 2.65,
+        "performance_rating": 3.4,
+        "technical_score": 52,
+        "communication_score": 52,
+        "leadership_score": 63,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 6
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_087",
+      "employee_name": "Ajay Nair",
+      "features": {
+        "potential_rating": 4.72,
+        "performance_rating": 4.3,
+        "technical_score": 64,
+        "communication_score": 66,
+        "leadership_score": 79,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 12
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_088",
+      "employee_name": "Divya Patel",
+      "features": {
+        "potential_rating": 4.31,
+        "performance_rating": 3.91,
+        "technical_score": 58,
+        "communication_score": 73,
+        "leadership_score": 44,
+        "matched_skills_count": 5,
+        "missing_skills_count": 1,
+        "total_skills_required": 6,
+        "experience_years": 9
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_089",
+      "employee_name": "Swati Tiwari",
+      "features": {
+        "potential_rating": 3.65,
+        "performance_rating": 2.9,
+        "technical_score": 62,
+        "communication_score": 64,
+        "leadership_score": 46,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 9
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_090",
+      "employee_name": "Rajesh Mehta",
+      "features": {
+        "potential_rating": 4.49,
+        "performance_rating": 3.89,
+        "technical_score": 62,
+        "communication_score": 75,
+        "leadership_score": 70,
+        "matched_skills_count": 3,
+        "missing_skills_count": 5,
+        "total_skills_required": 8,
+        "experience_years": 4
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_091",
+      "employee_name": "Ria Iyer",
+      "features": {
+        "potential_rating": 3.66,
+        "performance_rating": 3.84,
+        "technical_score": 70,
+        "communication_score": 74,
+        "leadership_score": 59,
+        "matched_skills_count": 2,
+        "missing_skills_count": 6,
+        "total_skills_required": 8,
+        "experience_years": 2
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_092",
+      "employee_name": "Manisha Tiwari",
+      "features": {
+        "potential_rating": 3.4,
+        "performance_rating": 4.17,
+        "technical_score": 57,
+        "communication_score": 63,
+        "leadership_score": 61,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 10
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_093",
+      "employee_name": "Sneha Bhatia",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.68,
+        "technical_score": 43,
+        "communication_score": 62,
+        "leadership_score": 30,
+        "matched_skills_count": 2,
+        "missing_skills_count": 5,
+        "total_skills_required": 7,
+        "experience_years": 9
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_094",
+      "employee_name": "Seema Kumar",
+      "features": {
+        "potential_rating": 3.14,
+        "performance_rating": 3.36,
+        "technical_score": 67,
+        "communication_score": 69,
+        "leadership_score": 43,
+        "matched_skills_count": 1,
+        "missing_skills_count": 5,
+        "total_skills_required": 6,
+        "experience_years": 4
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_095",
+      "employee_name": "Rahul Tiwari",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.59,
+        "technical_score": 40,
+        "communication_score": 42,
+        "leadership_score": 55,
+        "matched_skills_count": 2,
+        "missing_skills_count": 4,
+        "total_skills_required": 6,
+        "experience_years": 8
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_096",
+      "employee_name": "Divya Kumar",
+      "features": {
+        "potential_rating": 4.74,
+        "performance_rating": 4.41,
+        "technical_score": 70,
+        "communication_score": 83,
+        "leadership_score": 78,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 1
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_097",
+      "employee_name": "Varun Patel",
+      "features": {
+        "potential_rating": 3.36,
+        "performance_rating": 3.93,
+        "technical_score": 56,
+        "communication_score": 59,
+        "leadership_score": 58,
+        "matched_skills_count": 4,
+        "missing_skills_count": 3,
+        "total_skills_required": 7,
+        "experience_years": 4
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_098",
+      "employee_name": "Swati Chopra",
+      "features": {
+        "potential_rating": 3.82,
+        "performance_rating": 3.33,
+        "technical_score": 47,
+        "communication_score": 68,
+        "leadership_score": 60,
+        "matched_skills_count": 2,
+        "missing_skills_count": 5,
+        "total_skills_required": 7,
+        "experience_years": 4
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_099",
+      "employee_name": "Kritika Aggarwal",
+      "features": {
+        "potential_rating": 4.47,
+        "performance_rating": 4.12,
+        "technical_score": 67,
+        "communication_score": 74,
+        "leadership_score": 56,
+        "matched_skills_count": 4,
+        "missing_skills_count": 3,
+        "total_skills_required": 7,
+        "experience_years": 7
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_100",
+      "employee_name": "Priya Nair",
+      "features": {
+        "potential_rating": 3.75,
+        "performance_rating": 3.11,
+        "technical_score": 66,
+        "communication_score": 59,
+        "leadership_score": 62,
+        "matched_skills_count": 2,
+        "missing_skills_count": 4,
+        "total_skills_required": 6,
+        "experience_years": 5
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_101",
+      "employee_name": "Siddharth Gupta",
+      "features": {
+        "potential_rating": 3.11,
+        "performance_rating": 2.9,
+        "technical_score": 45,
+        "communication_score": 49,
+        "leadership_score": 36,
+        "matched_skills_count": 0,
+        "missing_skills_count": 7,
+        "total_skills_required": 7,
+        "experience_years": 1
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_102",
+      "employee_name": "Karan Goel",
+      "features": {
+        "potential_rating": 3.6,
+        "performance_rating": 2.83,
+        "technical_score": 52,
+        "communication_score": 43,
+        "leadership_score": 53,
+        "matched_skills_count": 1,
+        "missing_skills_count": 5,
+        "total_skills_required": 6,
+        "experience_years": 4
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_103",
+      "employee_name": "Sangeeta Tiwari",
+      "features": {
+        "potential_rating": 3.71,
+        "performance_rating": 3.95,
+        "technical_score": 66,
+        "communication_score": 60,
+        "leadership_score": 53,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 6
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_104",
+      "employee_name": "Vikram Tiwari",
+      "features": {
+        "potential_rating": 3.05,
+        "performance_rating": 2.85,
+        "technical_score": 45,
+        "communication_score": 43,
+        "leadership_score": 53,
+        "matched_skills_count": 1,
+        "missing_skills_count": 7,
+        "total_skills_required": 8,
+        "experience_years": 2
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_105",
+      "employee_name": "Deepak Aggarwal",
+      "features": {
+        "potential_rating": 4.35,
+        "performance_rating": 4.58,
+        "technical_score": 72,
+        "communication_score": 79,
+        "leadership_score": 72,
+        "matched_skills_count": 6,
+        "missing_skills_count": 0,
+        "total_skills_required": 6,
+        "experience_years": 11
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_106",
+      "employee_name": "Arjun Iyer",
+      "features": {
+        "potential_rating": 3.91,
+        "performance_rating": 4.69,
+        "technical_score": 65,
+        "communication_score": 76,
+        "leadership_score": 69,
+        "matched_skills_count": 5,
+        "missing_skills_count": 1,
+        "total_skills_required": 6,
+        "experience_years": 5
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_107",
+      "employee_name": "Pallavi Khanna",
+      "features": {
+        "potential_rating": 3.94,
+        "performance_rating": 3.48,
+        "technical_score": 57,
+        "communication_score": 63,
+        "leadership_score": 48,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 5
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_108",
+      "employee_name": "Simran Aggarwal",
+      "features": {
+        "potential_rating": 3.36,
+        "performance_rating": 3.36,
+        "technical_score": 69,
+        "communication_score": 54,
+        "leadership_score": 37,
+        "matched_skills_count": 3,
+        "missing_skills_count": 4,
+        "total_skills_required": 7,
+        "experience_years": 11
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_109",
+      "employee_name": "Ananya Aggarwal",
+      "features": {
+        "potential_rating": 3.59,
+        "performance_rating": 3.58,
+        "technical_score": 47,
+        "communication_score": 54,
+        "leadership_score": 69,
+        "matched_skills_count": 5,
+        "missing_skills_count": 2,
+        "total_skills_required": 7,
+        "experience_years": 9
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_110",
+      "employee_name": "Sneha Tiwari",
+      "features": {
+        "potential_rating": 3.61,
+        "performance_rating": 4.04,
+        "technical_score": 55,
+        "communication_score": 70,
+        "leadership_score": 48,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 2
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_111",
+      "employee_name": "Ashish Singh",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.71,
+        "technical_score": 35,
+        "communication_score": 52,
+        "leadership_score": 53,
+        "matched_skills_count": 1,
+        "missing_skills_count": 6,
+        "total_skills_required": 7,
+        "experience_years": 3
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_112",
+      "employee_name": "Rohit Nair",
+      "features": {
+        "potential_rating": 2.92,
+        "performance_rating": 3.2,
+        "technical_score": 65,
+        "communication_score": 66,
+        "leadership_score": 43,
+        "matched_skills_count": 5,
+        "missing_skills_count": 3,
+        "total_skills_required": 8,
+        "experience_years": 9
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_113",
+      "employee_name": "Arjun Srivastava",
+      "features": {
+        "potential_rating": 4.24,
+        "performance_rating": 3.74,
+        "technical_score": 52,
+        "communication_score": 72,
+        "leadership_score": 59,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 1
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_114",
+      "employee_name": "Varun Khanna",
+      "features": {
+        "potential_rating": 3.39,
+        "performance_rating": 4.17,
+        "technical_score": 62,
+        "communication_score": 59,
+        "leadership_score": 72,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 9
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_115",
+      "employee_name": "Gaurav Joshi",
+      "features": {
+        "potential_rating": 3.49,
+        "performance_rating": 2.84,
+        "technical_score": 62,
+        "communication_score": 43,
+        "leadership_score": 39,
+        "matched_skills_count": 1,
+        "missing_skills_count": 5,
+        "total_skills_required": 6,
+        "experience_years": 1
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_116",
+      "employee_name": "Kritika Agarwal",
+      "features": {
+        "potential_rating": 3.2,
+        "performance_rating": 3.58,
+        "technical_score": 50,
+        "communication_score": 51,
+        "leadership_score": 46,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 8
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_117",
+      "employee_name": "Vikram Bhatia",
+      "features": {
+        "potential_rating": 3.38,
+        "performance_rating": 3.33,
+        "technical_score": 69,
+        "communication_score": 57,
+        "leadership_score": 58,
+        "matched_skills_count": 3,
+        "missing_skills_count": 4,
+        "total_skills_required": 7,
+        "experience_years": 11
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_118",
+      "employee_name": "Ravi Gupta",
+      "features": {
+        "potential_rating": 2.71,
+        "performance_rating": 2.68,
+        "technical_score": 35,
+        "communication_score": 47,
+        "leadership_score": 57,
+        "matched_skills_count": 0,
+        "missing_skills_count": 6,
+        "total_skills_required": 6,
+        "experience_years": 1
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_119",
+      "employee_name": "Priya Mehta",
+      "features": {
+        "potential_rating": 3.83,
+        "performance_rating": 3.83,
+        "technical_score": 73,
+        "communication_score": 56,
+        "leadership_score": 44,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 5
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_120",
+      "employee_name": "Kritika Kaur",
+      "features": {
+        "potential_rating": 4.85,
+        "performance_rating": 4.2,
+        "technical_score": 72,
+        "communication_score": 72,
+        "leadership_score": 50,
+        "matched_skills_count": 6,
+        "missing_skills_count": 0,
+        "total_skills_required": 6,
+        "experience_years": 8
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_121",
+      "employee_name": "Amit Tiwari",
+      "features": {
+        "potential_rating": 3.21,
+        "performance_rating": 3.67,
+        "technical_score": 53,
+        "communication_score": 58,
+        "leadership_score": 45,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 8
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_122",
+      "employee_name": "Pooja Kaur",
+      "features": {
+        "potential_rating": 4.25,
+        "performance_rating": 3.99,
+        "technical_score": 53,
+        "communication_score": 60,
+        "leadership_score": 66,
+        "matched_skills_count": 2,
+        "missing_skills_count": 4,
+        "total_skills_required": 6,
+        "experience_years": 3
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_123",
+      "employee_name": "Deepak Bansal",
+      "features": {
+        "potential_rating": 3.24,
+        "performance_rating": 3.2,
+        "technical_score": 51,
+        "communication_score": 61,
+        "leadership_score": 45,
+        "matched_skills_count": 4,
+        "missing_skills_count": 3,
+        "total_skills_required": 7,
+        "experience_years": 6
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_124",
+      "employee_name": "Sneha Aggarwal",
+      "features": {
+        "potential_rating": 4.64,
+        "performance_rating": 4.44,
+        "technical_score": 74,
+        "communication_score": 77,
+        "leadership_score": 81,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 11
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_125",
+      "employee_name": "Divya Das",
+      "features": {
+        "potential_rating": 3.83,
+        "performance_rating": 4.31,
+        "technical_score": 55,
+        "communication_score": 61,
+        "leadership_score": 63,
+        "matched_skills_count": 2,
+        "missing_skills_count": 4,
+        "total_skills_required": 6,
+        "experience_years": 1
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_126",
+      "employee_name": "Pallavi Goel",
+      "features": {
+        "potential_rating": 3.82,
+        "performance_rating": 4.03,
+        "technical_score": 65,
+        "communication_score": 63,
+        "leadership_score": 62,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 5
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_127",
+      "employee_name": "Priya Reddy",
+      "features": {
+        "potential_rating": 4.58,
+        "performance_rating": 4.04,
+        "technical_score": 54,
+        "communication_score": 64,
+        "leadership_score": 52,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 6
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_128",
+      "employee_name": "Seema Sharma",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.71,
+        "technical_score": 63,
+        "communication_score": 68,
+        "leadership_score": 78,
+        "matched_skills_count": 5,
+        "missing_skills_count": 3,
+        "total_skills_required": 8,
+        "experience_years": 2
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_129",
+      "employee_name": "Arjun Nair",
+      "features": {
+        "potential_rating": 4.22,
+        "performance_rating": 4.28,
+        "technical_score": 70,
+        "communication_score": 82,
+        "leadership_score": 53,
+        "matched_skills_count": 5,
+        "missing_skills_count": 1,
+        "total_skills_required": 6,
+        "experience_years": 10
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_130",
+      "employee_name": "Rajesh Mishra",
+      "features": {
+        "potential_rating": 4.42,
+        "performance_rating": 3.85,
+        "technical_score": 62,
+        "communication_score": 71,
+        "leadership_score": 67,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 4
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_131",
+      "employee_name": "Seema Agarwal",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.73,
+        "technical_score": 65,
+        "communication_score": 65,
+        "leadership_score": 63,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 1
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_132",
+      "employee_name": "Simran Srivastava",
+      "features": {
+        "potential_rating": 2.87,
+        "performance_rating": 3.28,
+        "technical_score": 43,
+        "communication_score": 54,
+        "leadership_score": 64,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 9
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_133",
+      "employee_name": "Rohit Singh",
+      "features": {
+        "potential_rating": 3.25,
+        "performance_rating": 3.7,
+        "technical_score": 68,
+        "communication_score": 71,
+        "leadership_score": 60,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 2
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_134",
+      "employee_name": "Pooja Goel",
+      "features": {
+        "potential_rating": 3.93,
+        "performance_rating": 3.77,
+        "technical_score": 76,
+        "communication_score": 71,
+        "leadership_score": 61,
+        "matched_skills_count": 4,
+        "missing_skills_count": 2,
+        "total_skills_required": 6,
+        "experience_years": 12
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_135",
+      "employee_name": "Varun Gupta",
+      "features": {
+        "potential_rating": 3.55,
+        "performance_rating": 3.88,
+        "technical_score": 54,
+        "communication_score": 65,
+        "leadership_score": 61,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 5
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_136",
+      "employee_name": "Rajesh Chopra",
+      "features": {
+        "potential_rating": 3.45,
+        "performance_rating": 2.7,
+        "technical_score": 35,
+        "communication_score": 60,
+        "leadership_score": 31,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 9
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_137",
+      "employee_name": "Shweta Kumar",
+      "features": {
+        "potential_rating": 3.65,
+        "performance_rating": 3.42,
+        "technical_score": 48,
+        "communication_score": 52,
+        "leadership_score": 60,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 2
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_138",
+      "employee_name": "Arjun Aggarwal",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.79,
+        "technical_score": 82,
+        "communication_score": 74,
+        "leadership_score": 70,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 8
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_139",
+      "employee_name": "Rohan Sharma",
+      "features": {
+        "potential_rating": 4.68,
+        "performance_rating": 4.54,
+        "technical_score": 64,
+        "communication_score": 77,
+        "leadership_score": 64,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 4
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_140",
+      "employee_name": "Siddharth Singh",
+      "features": {
+        "potential_rating": 3.57,
+        "performance_rating": 3.01,
+        "technical_score": 60,
+        "communication_score": 52,
+        "leadership_score": 55,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 3
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_141",
+      "employee_name": "Rajesh Goel",
+      "features": {
+        "potential_rating": 3.95,
+        "performance_rating": 3.41,
+        "technical_score": 59,
+        "communication_score": 53,
+        "leadership_score": 60,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 1
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_142",
+      "employee_name": "Abhin Singh",
+      "features": {
+        "potential_rating": 3.98,
+        "performance_rating": 3.25,
+        "technical_score": 59,
+        "communication_score": 70,
+        "leadership_score": 62,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 8
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_143",
+      "employee_name": "Priya Goel",
+      "features": {
+        "potential_rating": 2.81,
+        "performance_rating": 3.51,
+        "technical_score": 57,
+        "communication_score": 69,
+        "leadership_score": 53,
+        "matched_skills_count": 3,
+        "missing_skills_count": 5,
+        "total_skills_required": 8,
+        "experience_years": 2
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_144",
+      "employee_name": "Rajesh Khanna",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.7,
+        "technical_score": 43,
+        "communication_score": 56,
+        "leadership_score": 53,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 7
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_145",
+      "employee_name": "Deepak Das",
+      "features": {
+        "potential_rating": 4.11,
+        "performance_rating": 4.41,
+        "technical_score": 77,
+        "communication_score": 67,
+        "leadership_score": 61,
+        "matched_skills_count": 5,
+        "missing_skills_count": 2,
+        "total_skills_required": 7,
+        "experience_years": 7
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_146",
+      "employee_name": "Abhin Verma",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.6,
+        "technical_score": 45,
+        "communication_score": 61,
+        "leadership_score": 44,
+        "matched_skills_count": 0,
+        "missing_skills_count": 5,
+        "total_skills_required": 5,
+        "experience_years": 2
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_147",
+      "employee_name": "Varun Bhatia",
+      "features": {
+        "potential_rating": 3.65,
+        "performance_rating": 4.0,
+        "technical_score": 77,
+        "communication_score": 76,
+        "leadership_score": 49,
+        "matched_skills_count": 2,
+        "missing_skills_count": 4,
+        "total_skills_required": 6,
+        "experience_years": 1
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_148",
+      "employee_name": "Neha Mishra",
+      "features": {
+        "potential_rating": 4.57,
+        "performance_rating": 4.18,
+        "technical_score": 64,
+        "communication_score": 75,
+        "leadership_score": 65,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 12
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_149",
+      "employee_name": "Kavita Chopra",
+      "features": {
+        "potential_rating": 4.09,
+        "performance_rating": 3.29,
+        "technical_score": 51,
+        "communication_score": 57,
+        "leadership_score": 56,
+        "matched_skills_count": 2,
+        "missing_skills_count": 5,
+        "total_skills_required": 7,
+        "experience_years": 4
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_150",
+      "employee_name": "Manisha Nair",
+      "features": {
+        "potential_rating": 3.29,
+        "performance_rating": 4.03,
+        "technical_score": 72,
+        "communication_score": 57,
+        "leadership_score": 68,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 1
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_151",
+      "employee_name": "Rahul Patel",
+      "features": {
+        "potential_rating": 4.25,
+        "performance_rating": 4.71,
+        "technical_score": 83,
+        "communication_score": 83,
+        "leadership_score": 73,
+        "matched_skills_count": 7,
+        "missing_skills_count": 0,
+        "total_skills_required": 7,
+        "experience_years": 8
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_152",
+      "employee_name": "Rahul Aggarwal",
+      "features": {
+        "potential_rating": 3.34,
+        "performance_rating": 2.65,
+        "technical_score": 55,
+        "communication_score": 63,
+        "leadership_score": 51,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 11
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_153",
+      "employee_name": "Priya Aggarwal",
+      "features": {
+        "potential_rating": 3.34,
+        "performance_rating": 3.75,
+        "technical_score": 70,
+        "communication_score": 68,
+        "leadership_score": 48,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 12
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_154",
+      "employee_name": "Kavita Nair",
+      "features": {
+        "potential_rating": 4.23,
+        "performance_rating": 4.31,
+        "technical_score": 56,
+        "communication_score": 65,
+        "leadership_score": 67,
+        "matched_skills_count": 4,
+        "missing_skills_count": 2,
+        "total_skills_required": 6,
+        "experience_years": 5
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_155",
+      "employee_name": "Arjun Singh",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.92,
+        "technical_score": 57,
+        "communication_score": 52,
+        "leadership_score": 34,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 11
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_156",
+      "employee_name": "Manisha Gupta",
+      "features": {
+        "potential_rating": 3.18,
+        "performance_rating": 2.74,
+        "technical_score": 45,
+        "communication_score": 47,
+        "leadership_score": 35,
+        "matched_skills_count": 2,
+        "missing_skills_count": 6,
+        "total_skills_required": 8,
+        "experience_years": 8
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_157",
+      "employee_name": "Sneha Singh",
+      "features": {
+        "potential_rating": 4.49,
+        "performance_rating": 4.03,
+        "technical_score": 77,
+        "communication_score": 78,
+        "leadership_score": 54,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 4
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_158",
+      "employee_name": "Kavita Das",
+      "features": {
+        "potential_rating": 3.37,
+        "performance_rating": 3.65,
+        "technical_score": 64,
+        "communication_score": 72,
+        "leadership_score": 69,
+        "matched_skills_count": 3,
+        "missing_skills_count": 4,
+        "total_skills_required": 7,
+        "experience_years": 2
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_159",
+      "employee_name": "Seema Patel",
+      "features": {
+        "potential_rating": 3.98,
+        "performance_rating": 4.75,
+        "technical_score": 64,
+        "communication_score": 75,
+        "leadership_score": 76,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 1
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_160",
+      "employee_name": "Rohit Gupta",
+      "features": {
+        "potential_rating": 2.96,
+        "performance_rating": 2.68,
+        "technical_score": 57,
+        "communication_score": 48,
+        "leadership_score": 54,
+        "matched_skills_count": 3,
+        "missing_skills_count": 5,
+        "total_skills_required": 8,
+        "experience_years": 9
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_161",
+      "employee_name": "Rohit Agarwal",
+      "features": {
+        "potential_rating": 3.25,
+        "performance_rating": 3.06,
+        "technical_score": 39,
+        "communication_score": 65,
+        "leadership_score": 43,
+        "matched_skills_count": 2,
+        "missing_skills_count": 5,
+        "total_skills_required": 7,
+        "experience_years": 6
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_162",
+      "employee_name": "Ravi Chopra",
+      "features": {
+        "potential_rating": 4.22,
+        "performance_rating": 4.62,
+        "technical_score": 62,
+        "communication_score": 73,
+        "leadership_score": 60,
+        "matched_skills_count": 7,
+        "missing_skills_count": 1,
+        "total_skills_required": 8,
+        "experience_years": 8
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_163",
+      "employee_name": "Nisha Patel",
+      "features": {
+        "potential_rating": 3.3,
+        "performance_rating": 3.38,
+        "technical_score": 57,
+        "communication_score": 57,
+        "leadership_score": 48,
+        "matched_skills_count": 2,
+        "missing_skills_count": 6,
+        "total_skills_required": 8,
+        "experience_years": 6
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_164",
+      "employee_name": "Manisha Verma",
+      "features": {
+        "potential_rating": 4.38,
+        "performance_rating": 4.29,
+        "technical_score": 66,
+        "communication_score": 61,
+        "leadership_score": 54,
+        "matched_skills_count": 4,
+        "missing_skills_count": 2,
+        "total_skills_required": 6,
+        "experience_years": 11
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_165",
+      "employee_name": "Rajesh Rao",
+      "features": {
+        "potential_rating": 4.28,
+        "performance_rating": 4.32,
+        "technical_score": 69,
+        "communication_score": 64,
+        "leadership_score": 78,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 9
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_166",
+      "employee_name": "Kritika Rao",
+      "features": {
+        "potential_rating": 4.54,
+        "performance_rating": 3.78,
+        "technical_score": 49,
+        "communication_score": 53,
+        "leadership_score": 53,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 10
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_167",
+      "employee_name": "Ashish Agarwal",
+      "features": {
+        "potential_rating": 5.0,
+        "performance_rating": 4.47,
+        "technical_score": 64,
+        "communication_score": 85,
+        "leadership_score": 76,
+        "matched_skills_count": 8,
+        "missing_skills_count": 0,
+        "total_skills_required": 8,
+        "experience_years": 10
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_168",
+      "employee_name": "Ravi Goel",
+      "features": {
+        "potential_rating": 4.38,
+        "performance_rating": 3.87,
+        "technical_score": 65,
+        "communication_score": 63,
+        "leadership_score": 53,
+        "matched_skills_count": 5,
+        "missing_skills_count": 2,
+        "total_skills_required": 7,
+        "experience_years": 6
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_169",
+      "employee_name": "Seema Chopra",
+      "features": {
+        "potential_rating": 4.14,
+        "performance_rating": 3.47,
+        "technical_score": 58,
+        "communication_score": 51,
+        "leadership_score": 50,
+        "matched_skills_count": 3,
+        "missing_skills_count": 4,
+        "total_skills_required": 7,
+        "experience_years": 10
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_170",
+      "employee_name": "Meera Iyer",
+      "features": {
+        "potential_rating": 3.68,
+        "performance_rating": 4.27,
+        "technical_score": 71,
+        "communication_score": 72,
+        "leadership_score": 77,
+        "matched_skills_count": 4,
+        "missing_skills_count": 2,
+        "total_skills_required": 6,
+        "experience_years": 3
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_171",
+      "employee_name": "Priya Sharma",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 3.0,
+        "technical_score": 53,
+        "communication_score": 47,
+        "leadership_score": 50,
+        "matched_skills_count": 0,
+        "missing_skills_count": 4,
+        "total_skills_required": 4,
+        "experience_years": 1
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_172",
+      "employee_name": "Ashish Agarwal",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.87,
+        "technical_score": 38,
+        "communication_score": 61,
+        "leadership_score": 46,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 10
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_173",
+      "employee_name": "Karan Aggarwal",
+      "features": {
+        "potential_rating": 4.13,
+        "performance_rating": 4.66,
+        "technical_score": 61,
+        "communication_score": 69,
+        "leadership_score": 61,
+        "matched_skills_count": 4,
+        "missing_skills_count": 1,
+        "total_skills_required": 5,
+        "experience_years": 7
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_174",
+      "employee_name": "Divya Chopra",
+      "features": {
+        "potential_rating": 2.6,
+        "performance_rating": 3.38,
+        "technical_score": 46,
+        "communication_score": 59,
+        "leadership_score": 66,
+        "matched_skills_count": 4,
+        "missing_skills_count": 3,
+        "total_skills_required": 7,
+        "experience_years": 10
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_175",
+      "employee_name": "Nikhil Gupta",
+      "features": {
+        "potential_rating": 4.53,
+        "performance_rating": 4.19,
+        "technical_score": 59,
+        "communication_score": 75,
+        "leadership_score": 73,
+        "matched_skills_count": 2,
+        "missing_skills_count": 2,
+        "total_skills_required": 4,
+        "experience_years": 8
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_176",
+      "employee_name": "Priya Chopra",
+      "features": {
+        "potential_rating": 3.01,
+        "performance_rating": 2.61,
+        "technical_score": 57,
+        "communication_score": 62,
+        "leadership_score": 34,
+        "matched_skills_count": 2,
+        "missing_skills_count": 4,
+        "total_skills_required": 6,
+        "experience_years": 8
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_177",
+      "employee_name": "Rajesh Sharma",
+      "features": {
+        "potential_rating": 2.7,
+        "performance_rating": 3.15,
+        "technical_score": 58,
+        "communication_score": 57,
+        "leadership_score": 58,
+        "matched_skills_count": 4,
+        "missing_skills_count": 3,
+        "total_skills_required": 7,
+        "experience_years": 12
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_178",
+      "employee_name": "Vikram Bhatia",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.94,
+        "technical_score": 63,
+        "communication_score": 61,
+        "leadership_score": 41,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 4
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_179",
+      "employee_name": "Ashish Srivastava",
+      "features": {
+        "potential_rating": 3.45,
+        "performance_rating": 3.81,
+        "technical_score": 50,
+        "communication_score": 65,
+        "leadership_score": 67,
+        "matched_skills_count": 6,
+        "missing_skills_count": 2,
+        "total_skills_required": 8,
+        "experience_years": 9
+      },
+      "target_role": "Quality Assurance Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_180",
+      "employee_name": "Swati Agarwal",
+      "features": {
+        "potential_rating": 3.32,
+        "performance_rating": 2.82,
+        "technical_score": 59,
+        "communication_score": 51,
+        "leadership_score": 59,
+        "matched_skills_count": 1,
+        "missing_skills_count": 3,
+        "total_skills_required": 4,
+        "experience_years": 4
+      },
+      "target_role": "DevOps Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_181",
+      "employee_name": "Ravi Reddy",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.59,
+        "technical_score": 40,
+        "communication_score": 44,
+        "leadership_score": 47,
+        "matched_skills_count": 1,
+        "missing_skills_count": 5,
+        "total_skills_required": 6,
+        "experience_years": 4
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_182",
+      "employee_name": "Rajesh Rao",
+      "features": {
+        "potential_rating": 3.2,
+        "performance_rating": 3.82,
+        "technical_score": 55,
+        "communication_score": 70,
+        "leadership_score": 59,
+        "matched_skills_count": 6,
+        "missing_skills_count": 2,
+        "total_skills_required": 8,
+        "experience_years": 12
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_183",
+      "employee_name": "Seema Reddy",
+      "features": {
+        "potential_rating": 3.27,
+        "performance_rating": 2.81,
+        "technical_score": 61,
+        "communication_score": 49,
+        "leadership_score": 35,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 4
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_184",
+      "employee_name": "Sneha Tiwari",
+      "features": {
+        "potential_rating": 4.27,
+        "performance_rating": 4.24,
+        "technical_score": 73,
+        "communication_score": 68,
+        "leadership_score": 52,
+        "matched_skills_count": 3,
+        "missing_skills_count": 1,
+        "total_skills_required": 4,
+        "experience_years": 5
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_185",
+      "employee_name": "Ananya Nair",
+      "features": {
+        "potential_rating": 2.75,
+        "performance_rating": 3.18,
+        "technical_score": 60,
+        "communication_score": 66,
+        "leadership_score": 58,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 2
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_186",
+      "employee_name": "Sneha Mehta",
+      "features": {
+        "potential_rating": 3.77,
+        "performance_rating": 3.85,
+        "technical_score": 48,
+        "communication_score": 66,
+        "leadership_score": 70,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 2
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_187",
+      "employee_name": "Neha Malhotra",
+      "features": {
+        "potential_rating": 4.06,
+        "performance_rating": 4.37,
+        "technical_score": 80,
+        "communication_score": 65,
+        "leadership_score": 66,
+        "matched_skills_count": 4,
+        "missing_skills_count": 2,
+        "total_skills_required": 6,
+        "experience_years": 5
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_188",
+      "employee_name": "Pallavi Das",
+      "features": {
+        "potential_rating": 3.04,
+        "performance_rating": 3.32,
+        "technical_score": 53,
+        "communication_score": 60,
+        "leadership_score": 43,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 7
+      },
+      "target_role": "HR Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_189",
+      "employee_name": "Rohit Gupta",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.66,
+        "technical_score": 50,
+        "communication_score": 47,
+        "leadership_score": 53,
+        "matched_skills_count": 4,
+        "missing_skills_count": 4,
+        "total_skills_required": 8,
+        "experience_years": 10
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_190",
+      "employee_name": "Hardik Joshi",
+      "features": {
+        "potential_rating": 4.41,
+        "performance_rating": 4.51,
+        "technical_score": 74,
+        "communication_score": 86,
+        "leadership_score": 62,
+        "matched_skills_count": 4,
+        "missing_skills_count": 1,
+        "total_skills_required": 5,
+        "experience_years": 4
+      },
+      "target_role": "Marketing Manager",
+      "readiness_status": "Ready"
+    },
+    {
+      "employee_id": "EMP_191",
+      "employee_name": "Manisha Goel",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.62,
+        "technical_score": 45,
+        "communication_score": 59,
+        "leadership_score": 30,
+        "matched_skills_count": 0,
+        "missing_skills_count": 7,
+        "total_skills_required": 7,
+        "experience_years": 2
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_192",
+      "employee_name": "Kavita Reddy",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.67,
+        "technical_score": 46,
+        "communication_score": 48,
+        "leadership_score": 54,
+        "matched_skills_count": 2,
+        "missing_skills_count": 5,
+        "total_skills_required": 7,
+        "experience_years": 6
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_193",
+      "employee_name": "Karan Khanna",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.84,
+        "technical_score": 40,
+        "communication_score": 62,
+        "leadership_score": 40,
+        "matched_skills_count": 1,
+        "missing_skills_count": 4,
+        "total_skills_required": 5,
+        "experience_years": 3
+      },
+      "target_role": "Product Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_194",
+      "employee_name": "Divya Bansal",
+      "features": {
+        "potential_rating": 3.94,
+        "performance_rating": 3.25,
+        "technical_score": 40,
+        "communication_score": 59,
+        "leadership_score": 64,
+        "matched_skills_count": 2,
+        "missing_skills_count": 3,
+        "total_skills_required": 5,
+        "experience_years": 12
+      },
+      "target_role": "Technical Lead",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_195",
+      "employee_name": "Priya Patel",
+      "features": {
+        "potential_rating": 4.5,
+        "performance_rating": 4.38,
+        "technical_score": 62,
+        "communication_score": 62,
+        "leadership_score": 73,
+        "matched_skills_count": 3,
+        "missing_skills_count": 4,
+        "total_skills_required": 7,
+        "experience_years": 3
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_196",
+      "employee_name": "Pooja Das",
+      "features": {
+        "potential_rating": 4.35,
+        "performance_rating": 4.64,
+        "technical_score": 71,
+        "communication_score": 81,
+        "leadership_score": 76,
+        "matched_skills_count": 3,
+        "missing_skills_count": 2,
+        "total_skills_required": 5,
+        "experience_years": 3
+      },
+      "target_role": "Business Analyst Lead",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_197",
+      "employee_name": "Ananya Patel",
+      "features": {
+        "potential_rating": 2.5,
+        "performance_rating": 2.69,
+        "technical_score": 62,
+        "communication_score": 47,
+        "leadership_score": 36,
+        "matched_skills_count": 0,
+        "missing_skills_count": 7,
+        "total_skills_required": 7,
+        "experience_years": 1
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_198",
+      "employee_name": "Kritika Kaur",
+      "features": {
+        "potential_rating": 3.17,
+        "performance_rating": 3.32,
+        "technical_score": 65,
+        "communication_score": 52,
+        "leadership_score": 50,
+        "matched_skills_count": 3,
+        "missing_skills_count": 3,
+        "total_skills_required": 6,
+        "experience_years": 8
+      },
+      "target_role": "Senior Developer",
+      "readiness_status": "Developing"
+    },
+    {
+      "employee_id": "EMP_199",
+      "employee_name": "Nikhil Khanna",
+      "features": {
+        "potential_rating": 3.05,
+        "performance_rating": 3.71,
+        "technical_score": 55,
+        "communication_score": 54,
+        "leadership_score": 70,
+        "matched_skills_count": 2,
+        "missing_skills_count": 5,
+        "total_skills_required": 7,
+        "experience_years": 5
+      },
+      "target_role": "Data Science Manager",
+      "readiness_status": "Not Ready"
+    },
+    {
+      "employee_id": "EMP_200",
+      "employee_name": "Rahul Sharma",
+      "features": {
+        "potential_rating": 3.49,
+        "performance_rating": 4.26,
+        "technical_score": 55,
+        "communication_score": 60,
+        "leadership_score": 74,
+        "matched_skills_count": 4,
+        "missing_skills_count": 1,
+        "total_skills_required": 5,
+        "experience_years": 8
+      },
+      "target_role": "Operations Supervisor",
+      "readiness_status": "Developing"
+    }
+  ]
+}

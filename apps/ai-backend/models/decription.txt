@@ -1,0 +1,84 @@
+1. Model Version 1:
+Training data shape: (200, 10)
+Class distribution: (array(['Developing', 'Not Ready', 'Ready'], dtype='<U10'), array([ 77, 110,  13]))
+Training Random Forest model with hyperparameter tuning...
+Best parameters: {'classifier__class_weight': 'balanced', 'classifier__max_depth': 10, 'classifier__min_samples_leaf': 2, 'classifier__min_samples_split': 2, 'classifier__n_estimators': 100}
+Best cross-validation score: 0.9062
+Test accuracy: 1.0000
+
+Classification Report:
+              precision    recall  f1-score   support
+
+  Developing       1.00      1.00      1.00        15
+   Not Ready       1.00      1.00      1.00        22
+       Ready       1.00      1.00      1.00         3
+
+    accuracy                           1.00        40
+   macro avg       1.00      1.00      1.00        40
+weighted avg       1.00      1.00      1.00        40
+
+
+Feature Importance:
+  avg_assessment_score: 0.2781
+  skill_completion_rate: 0.2060
+  performance_rating: 0.1605
+  potential_rating: 0.1143
+  leadership_score: 0.0640
+  missing_skills_count: 0.0594
+  technical_score: 0.0406
+  communication_score: 0.0347
+  experience_years: 0.0227
+Model saved to: models/employee_readiness_model.pkl
+
+==================================================
+MODEL TRAINING COMPLETE
+==================================================
+
+Sample Prediction:
+  Employee ID: TEST_001
+  Predicted Readiness: Developing
+  Confidence: 0.52
+  Probabilities: {'Developing': np.float64(0.5196816194200278), 'Not Ready': np.float64(0.02188423042790446), 'Ready': np.float64(0.45843415015206773)}                                   88423042790446), 'Ready': np.float64(0.458
+  Risk Factors: []
+  Recommendations: ['Continue skill development in weak areas', 'Seek mentoring opportunities']     
+
+
+2. Model version 2:
+Training data shape: (200, 7)
+Class distribution: (array(['Developing', 'Not Ready', 'Ready'], dtype='<U10'), array([ 77, 110,  13]))
+Training Random Forest model with hyperparameter tuning...
+Best parameters: {'classifier__class_weight': None, 'classifier__max_depth': 10, 'classifier__min_samples_leaf': 2, 'classifier__min_samples_split': 2, 'classifier__n_estimators': 100}
+Best cross-validation score: 0.8500
+Test accuracy: 0.8750
+
+Classification Report:
+              precision    recall  f1-score   support
+
+  Developing       0.86      0.80      0.83        15
+   Not Ready       0.91      0.95      0.93        22
+       Ready       0.67      0.67      0.67         3
+
+    accuracy                           0.88        40
+   macro avg       0.81      0.81      0.81        40
+weighted avg       0.87      0.88      0.87        40
+
+
+Feature Importance:
+  performance_rating: 0.2792
+  potential_rating: 0.2360
+  leadership_score: 0.1281
+  missing_skills_count: 0.1152
+  communication_score: 0.0916
+  technical_score: 0.0904
+  experience_years: 0.0595
+Model saved to: models/employee_readiness_model_v2.pkl
+
+==================================================
+MODEL TRAINING COMPLETE
+==================================================
+
+Sample Prediction:
+  Employee ID: TEST_001
+  Predicted Readiness: Developing
+  Confidence: 0.73
+  Probabilities: {'Developing': np.float64(0.7286904761904762), 'Not Ready': np.float64(0.036333333333333336), 'Ready': np.float64(0.2349761904761905)}                           
