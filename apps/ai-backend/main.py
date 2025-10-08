@@ -3,6 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from pydantic import BaseModel
 import uvicorn
+import ngrok
+import logging
+from logging.handlers import TimedRotatingFileHandler
+import os
+
 
 from nine_box_matrix import NineBoxMatrix
 from nine_box_visualizer import NineBoxVisualizer
@@ -19,11 +24,44 @@ app = FastAPI(title="SuccessionAI API", version="1.0.0", description="Employee S
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:3000", "*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ===== Logging Setup =====
+LOG_DIR = "logs"
+LOG_FILE = os.path.join(LOG_DIR, "app-ai-backend.log")
+
+
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# Configure rotating file handler (rotate every midnight, keep 5 days)
+handler = TimedRotatingFileHandler(
+    LOG_FILE, when="midnight", interval=1, backupCount=5, encoding="utf-8"
+)
+
+formatter = logging.Formatter(
+    "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+handler.setFormatter(formatter)
+
+logging.basicConfig(
+    level=logging.INFO,
+    handlers=[handler, logging.StreamHandler()]  # Log to file + console
+)
+
+logger = logging.getLogger("succession_ai")
+logger.info("Logging initialized...")
+
+uvicorn_logger = logging.getLogger("uvicorn.access")
+uvicorn_logger.addHandler(handler)
+
+uvicorn_error_logger = logging.getLogger("uvicorn.error")
+uvicorn_error_logger.addHandler(handler)
+
 
 matrix = NineBoxMatrix()
 gap_agent = GapAnalysisAgent()
@@ -280,4 +318,8 @@ async def health_check():
     return {"status": "healthy", "message": "SuccessionAI API is running"}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    authtoken = os.getenv("NGROK_AUTHTOKEN")
+    listener = ngrok.forward(addr=8000, domain="mole-model-drake.ngrok-free.app", authtoken = authtoken)
+    print(listener.url())
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    ngrok.disconnect()
