@@ -41,9 +41,9 @@ class SegmentLabel(str, Enum):
 
 class NineBoxConfig(BaseModel):
     """Configuration for 9-box matrix thresholds."""
-    performance_low_threshold: float = Field(default=3.3, description="Below this is Low Performance")
+    performance_low_threshold: float = Field(default=2.5, description="Below this is Low Performance")
     performance_high_threshold: float = Field(default=4.0, description="Above this is High Performance")
-    potential_low_threshold: float = Field(default=3.3, description="Below this is Low Potential")
+    potential_low_threshold: float = Field(default=2.5, description="Below this is Low Potential")
     potential_high_threshold: float = Field(default=4.0, description="Above this is High Potential")
 
 
