@@ -1,0 +1,11 @@
+{
+  "name": "ai-backend",
+  "version": "1.0.0",
+  "description": "Python AI services for SuccessionAI using FastAPI",
+  "scripts": {
+    "dev": "python main.py",
+    "start": "python main.py",
+    "install": "pip install -r requirements.txt"
+  },
+  "private": true
+}

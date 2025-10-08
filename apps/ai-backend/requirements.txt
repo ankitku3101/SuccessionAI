@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-multipart
+matplotlib
+seaborn
+numpy
+plotly
+langchain-groq
+langchain-core
+pymongo
