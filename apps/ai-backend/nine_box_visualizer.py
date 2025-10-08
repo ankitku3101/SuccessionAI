@@ -1,14 +1,12 @@
 """
-Nine-Box Matrix Visualization Module
+Enhanced Nine-Box Matrix Visualization Module
 
-This module creates visual representations of the 9-box matrix with employee data
-using matplotlib and plotly for both static and interactive charts.
+This module creates clean, consistent, and attractive visual representations 
+of the nine-box matrix with fixed grid layout and improved styling.
 """
-
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import numpy as np
-import json
 from typing import List, Dict, Any, Optional, Tuple, TYPE_CHECKING
 from dataclasses import dataclass
 import seaborn as sns
@@ -20,9 +18,8 @@ try:
     PLOTLY_AVAILABLE = True
 except ImportError:
     PLOTLY_AVAILABLE = False
-    # Create dummy classes for type hints when plotly is not available
     if TYPE_CHECKING:
-        import plotly.graph_objects as go
+        pass
 
 from nine_box_matrix import NineBoxMatrix, NineBoxConfig, load_employee_data
 
@@ -30,19 +27,19 @@ from nine_box_matrix import NineBoxMatrix, NineBoxConfig, load_employee_data
 @dataclass
 class PlotConfig:
     """Configuration for plot styling."""
-    figure_size: Tuple[int, int] = (12, 10)
+    figure_size: Tuple[int, int] = (14, 10)
     dpi: int = 300
-    grid_color: str = '#cccccc'
-    grid_linewidth: float = 1.5
+    grid_color: str = '#2c3e50'
+    grid_linewidth: float = 3.0
     background_color: str = '#f8f9fa'
     title_size: int = 16
-    label_size: int = 12
-    point_size: int = 100
-    alpha: float = 0.7
+    label_size: int = 14
+    point_size: int = 120
+    alpha: float = 0.8
 
 
 class NineBoxVisualizer:
-    """Creates visual representations of the nine-box matrix."""
+    """Creates enhanced visual representations of the nine-box matrix."""
     
     def __init__(self, config: NineBoxConfig = None, plot_config: PlotConfig = None):
         self.matrix = NineBoxMatrix(config)
@@ -53,385 +50,454 @@ class NineBoxVisualizer:
         """Define colors for each segment in the 9-box matrix."""
         return {
             # High Potential Row (Green tones)
-            "Star (High Potential, High Performance)": "#2E8B57",  # Sea Green
-            "Emerging Talent (High Potential, Medium Performance)": "#90EE90",  # Light Green
-            "Enigma (High Potential, Low Performance)": "#FFD700",  # Gold
+            "Star (High Potential, High Performance)": "#27ae60",
+            "Emerging Talent (High Potential, Medium Performance)": "#58d68d", 
+            "Enigma (High Potential, Low Performance)": "#f39c12",
             
             # Medium Potential Row (Blue tones)
-            "Consistent Performer (Medium Potential, High Performance)": "#4169E1",  # Royal Blue
-            "Core Contributor (Medium Potential, Medium Performance)": "#87CEEB",  # Sky Blue
-            "Inconsistent Player (Medium Potential, Low Performance)": "#FFA500",  # Orange
+            "Consistent Performer (Medium Potential, High Performance)": "#3498db",
+            "Core Contributor (Medium Potential, Medium Performance)": "#85c1e9",
+            "Inconsistent Player (Medium Potential, Low Performance)": "#f39c12",
             
-            # Low Potential Row (Red/Gray tones)
-            "Solid Performer (Low Potential, High Performance)": "#9370DB",  # Medium Purple
-            "Diligent Worker (Low Potential, Medium Performance)": "#D3D3D3",  # Light Gray
-            "Risk Zone (Low Potential, Low Performance)": "#DC143C",  # Crimson
+            # Low Potential Row (Red/Purple tones)
+            "Solid Performer (Low Potential, High Performance)": "#9b59b6",
+            "Diligent Worker (Low Potential, Medium Performance)": "#bdc3c7",
+            "Risk Zone (Low Potential, Low Performance)": "#e74c3c",
         }
     
     def create_matplotlib_chart(self, employees_data: List[Dict[str, Any]], 
                               save_path: Optional[str] = None,
                               show_names: bool = True) -> plt.Figure:
-        """Create a static 9-box matrix chart using matplotlib."""
+        """Create a clean, consistent 9-box matrix chart."""
         
         # Segment employees
         segmentations = self.matrix.segment_employees(employees_data)
         
-        # Create figure and axis
-        fig, ax = plt.subplots(figsize=self.plot_config.figure_size, 
-                              dpi=self.plot_config.dpi)
-        fig.patch.set_facecolor(self.plot_config.background_color)
-        ax.set_facecolor('white')
+        # Create figure with fixed size and styling
+        plt.style.use('default')  # Reset style
+        fig, ax = plt.subplots(figsize=(14, 10), dpi=300)
+        fig.patch.set_facecolor('#ffffff')
         
-        # Plot grid lines for 9-box matrix
+        # Set consistent axis limits (0-5 for both axes to show full range)
+        ax.set_xlim(0, 5)
+        ax.set_ylim(0, 5)
+        
+        # Add background grid and segments
+        self._add_background_segments(ax)
         self._add_grid_lines(ax)
+        self._add_segment_labels(ax)
         
-        # Plot employees
+        # Plot employees with improved styling
         plotted_segments = set()
         for seg in segmentations:
             color = self.segment_colors.get(seg.segment_label.value, '#666666')
-            segment_name = seg.segment_label.value
+            segment_name = self._get_short_segment_name(seg.segment_label.value)
             
             # Only add to legend if not already plotted
             label = segment_name if segment_name not in plotted_segments else ""
             if label:
                 plotted_segments.add(segment_name)
             
-            # Plot point
+            # Plot point with enhanced styling
             ax.scatter(seg.performance_rating, seg.potential_rating,
-                      c=color, s=self.plot_config.point_size, 
-                      alpha=self.plot_config.alpha, 
-                      edgecolors='black', linewidth=1,
-                      label=label)
+                      c=color, s=120, alpha=0.85, 
+                      edgecolors='white', linewidth=2.5,
+                      label=label, zorder=10)
             
-            # Add employee name if requested
+            # Add employee name with better styling
             if show_names:
-                ax.annotate(seg.employee_name, 
+                ax.annotate(seg.employee_name.split('_')[0],  # Remove suffix if present
                            (seg.performance_rating, seg.potential_rating),
-                           xytext=(5, 5), textcoords='offset points',
-                           fontsize=9, alpha=0.8)
+                           xytext=(10, 10), textcoords='offset points',
+                           fontsize=8, fontweight='bold', 
+                           bbox=dict(boxstyle="round,pad=0.3", facecolor='white', 
+                                   edgecolor='gray', alpha=0.9),
+                           zorder=11)
         
-        # Customize axes
-        ax.set_xlabel('Performance Rating', fontsize=self.plot_config.label_size, fontweight='bold')
-        ax.set_ylabel('Potential Rating', fontsize=self.plot_config.label_size, fontweight='bold')
-        ax.set_title('Nine-Box Matrix: Employee Performance vs Potential', 
-                    fontsize=self.plot_config.title_size, fontweight='bold', pad=20)
-        
-        # Set axis limits with some padding
-        perf_ratings = [seg.performance_rating for seg in segmentations]
-        pot_ratings = [seg.potential_rating for seg in segmentations]
-        
-        ax.set_xlim(min(perf_ratings) - 0.2, max(perf_ratings) + 0.2)
-        ax.set_ylim(min(pot_ratings) - 0.2, max(pot_ratings) + 0.2)
-        
-        # Add grid labels
-        self._add_grid_labels(ax)
+        # Style the chart
+        self._style_chart(ax)
         
         # Add legend
-        handles, labels = ax.get_legend_handles_labels()
-        if handles:
-            # Remove duplicate labels
-            by_label = dict(zip(labels, handles))
-            ax.legend(by_label.values(), by_label.keys(), 
-                     loc='center left', bbox_to_anchor=(1, 0.5),
-                     fontsize=10)
+        self._add_legend(ax)
         
+        # Final layout adjustments
         plt.tight_layout()
         
         if save_path:
-            plt.savefig(save_path, dpi=self.plot_config.dpi, bbox_inches='tight')
-            print(f"Chart saved to: {save_path}")
+            plt.savefig(save_path, dpi=300, bbox_inches='tight', 
+                       facecolor='white', edgecolor='none',
+                       pad_inches=0.2)
+            print(f"Enhanced chart saved to: {save_path}")
         
         return fig
     
-    def create_plotly_chart(self, employees_data: List[Dict[str, Any]], 
-                           save_path: Optional[str] = None) -> "go.Figure":
-        """Create an interactive 9-box matrix chart using plotly."""
-        
-        if not PLOTLY_AVAILABLE:
-            raise ImportError("Plotly is not installed. Install with: pip install plotly")
-        
-        # Segment employees
-        segmentations = self.matrix.segment_employees(employees_data)
-        
-        # Prepare data for plotly
-        data = []
-        for seg in segmentations:
-            data.append({
-                'name': seg.employee_name,
-                'performance': seg.performance_rating,
-                'potential': seg.potential_rating,
-                'segment': seg.segment_label.value,
-                'description': seg.segment_description,
-                'performance_level': seg.performance_level.value,
-                'potential_level': seg.potential_level.value
-            })
-        
-        # Create scatter plot
-        fig = go.Figure()
-        
-        # Group by segments for better legend
-        segments = {}
-        for item in data:
-            segment = item['segment']
-            if segment not in segments:
-                segments[segment] = []
-            segments[segment].append(item)
-        
-        # Add traces for each segment
-        for segment, items in segments.items():
-            color = self.segment_colors.get(segment, '#666666')
-            
-            fig.add_trace(go.Scatter(
-                x=[item['performance'] for item in items],
-                y=[item['potential'] for item in items],
-                mode='markers+text',
-                text=[item['name'] for item in items],
-                textposition='top center',
-                name=segment,
-                marker=dict(
-                    color=color,
-                    size=12,
-                    opacity=0.8,
-                    line=dict(width=2, color='black')
-                ),
-                hovertemplate='<b>%{text}</b><br>' +
-                            'Performance: %{x:.1f}<br>' +
-                            'Potential: %{y:.1f}<br>' +
-                            'Segment: ' + segment + '<extra></extra>'
-            ))
-        
-        # Add grid lines
-        self._add_plotly_grid_lines(fig)
-        
-        # Update layout
-        fig.update_layout(
-            title={
-                'text': 'Nine-Box Matrix: Employee Performance vs Potential',
-                'x': 0.5,
-                'xanchor': 'center',
-                'font': {'size': 18}
-            },
-            xaxis_title='Performance Rating',
-            yaxis_title='Potential Rating',
-            width=900,
-            height=700,
-            showlegend=True,
-            legend=dict(
-                orientation="v",
-                yanchor="middle",
-                y=0.5,
-                xanchor="left",
-                x=1.02
-            ),
-            margin=dict(r=200)
-        )
-        
-        # Add annotations for grid sections
-        self._add_plotly_annotations(fig)
-        
-        if save_path:
-            if save_path.endswith('.html'):
-                fig.write_html(save_path)
-            else:
-                fig.write_image(save_path)
-            print(f"Interactive chart saved to: {save_path}")
-        
-        return fig
-    
-    def _add_grid_lines(self, ax):
-        """Add grid lines to matplotlib chart."""
+    def _add_background_segments(self, ax):
+        """Add subtle background colors for each 9-box segment."""
         # Get thresholds
         perf_low = self.matrix.config.performance_low_threshold
         perf_high = self.matrix.config.performance_high_threshold
         pot_low = self.matrix.config.potential_low_threshold
         pot_high = self.matrix.config.potential_high_threshold
         
-        # Add vertical lines (performance thresholds)
-        ax.axvline(x=perf_low, color=self.plot_config.grid_color, 
-                  linewidth=self.plot_config.grid_linewidth, linestyle='--')
-        ax.axvline(x=perf_high, color=self.plot_config.grid_color, 
-                  linewidth=self.plot_config.grid_linewidth, linestyle='--')
-        
-        # Add horizontal lines (potential thresholds)
-        ax.axhline(y=pot_low, color=self.plot_config.grid_color, 
-                  linewidth=self.plot_config.grid_linewidth, linestyle='--')
-        ax.axhline(y=pot_high, color=self.plot_config.grid_color, 
-                  linewidth=self.plot_config.grid_linewidth, linestyle='--')
-    
-    def _add_grid_labels(self, ax):
-        """Add labels to grid sections."""
+        # Get thresholds for meaningful segmentation
         perf_low = self.matrix.config.performance_low_threshold
         perf_high = self.matrix.config.performance_high_threshold
         pot_low = self.matrix.config.potential_low_threshold
         pot_high = self.matrix.config.potential_high_threshold
         
-        # Calculate positions for labels
-        xlim = ax.get_xlim()
-        ylim = ax.get_ylim()
+        # Define segment areas using actual thresholds
+        segments = [
+            # Bottom row (Low Potential: 0 to pot_low)
+            (0, 0, perf_low, pot_low, '#ffebee'),        # Risk Zone
+            (perf_low, 0, perf_high-perf_low, pot_low, '#f3e5f5'),   # Diligent Worker
+            (perf_high, 0, 5-perf_high, pot_low, '#e8f5e8'),      # Solid Performer
+            
+            # Middle row (Medium Potential: pot_low to pot_high)  
+            (0, pot_low, perf_low, pot_high-pot_low, '#fff3e0'),           # Inconsistent
+            (perf_low, pot_low, perf_high-perf_low, pot_high-pot_low, '#e3f2fd'),  # Core
+            (perf_high, pot_low, 5-perf_high, pot_high-pot_low, '#e8f5e8'),     # Consistent
+            
+            # Top row (High Potential: pot_high to 5)
+            (0, pot_high, perf_low, 5-pot_high, '#fff8e1'),            # Enigma
+            (perf_low, pot_high, perf_high-perf_low, 5-pot_high, '#e8f5e8'),   # Emerging
+            (perf_high, pot_high, 5-perf_high, 5-pot_high, '#e8f5e8'),      # Star
+        ]
         
+        for x, y, width, height, color in segments:
+            rect = patches.Rectangle((x, y), width, height, 
+                                   facecolor=color, alpha=0.15, zorder=1)
+            ax.add_patch(rect)
+    
+    def _add_grid_lines(self, ax):
+        """Add clean, consistent grid lines with equal visual divisions."""
+        # Get actual thresholds from matrix config for meaningful segmentation
+        perf_low = self.matrix.config.performance_low_threshold
+        perf_high = self.matrix.config.performance_high_threshold
+        pot_low = self.matrix.config.potential_low_threshold
+        pot_high = self.matrix.config.potential_high_threshold
+        
+        # Add thick division lines using actual thresholds
+        ax.axvline(x=perf_low, color='#2c3e50', linewidth=3, alpha=0.8, zorder=5)
+        ax.axvline(x=perf_high, color='#2c3e50', linewidth=3, alpha=0.8, zorder=5)
+        ax.axhline(y=pot_low, color='#2c3e50', linewidth=3, alpha=0.8, zorder=5)
+        ax.axhline(y=pot_high, color='#2c3e50', linewidth=3, alpha=0.8, zorder=5)
+        
+        # Add subtle grid
+        ax.grid(True, alpha=0.3, linestyle='-', linewidth=0.8, color='#95a5a6', zorder=2)
+    
+    def _add_segment_labels(self, ax):
+        """Add clean segment labels to each box."""
+        # Get thresholds for meaningful segmentation
+        perf_low = self.matrix.config.performance_low_threshold
+        perf_high = self.matrix.config.performance_high_threshold
+        pot_low = self.matrix.config.potential_low_threshold
+        pot_high = self.matrix.config.potential_high_threshold
+        
+        # Calculate center positions based on actual thresholds
         x_positions = [
-            (xlim[0] + perf_low) / 2,  # Low performance
-            (perf_low + perf_high) / 2,  # Medium performance
-            (perf_high + xlim[1]) / 2   # High performance
+            perf_low / 2,                    # Low performance center
+            (perf_low + perf_high) / 2,      # Medium performance center
+            (perf_high + 5) / 2              # High performance center
         ]
         
         y_positions = [
-            (ylim[0] + pot_low) / 2,  # Low potential
-            (pot_low + pot_high) / 2,  # Medium potential
-            (pot_high + ylim[1]) / 2   # High potential
+            pot_low / 2,                     # Low potential center
+            (pot_low + pot_high) / 2,        # Medium potential center
+            (pot_high + 5) / 2               # High potential center
         ]
         
-        # Add background rectangles and labels
+        # Clean, short labels
         labels = [
-            ['Risk Zone', 'Diligent Worker', 'Solid Performer'],
-            ['Inconsistent Player', 'Core Contributor', 'Consistent Performer'],
-            ['Enigma', 'Emerging Talent', 'Star']
+            ['Risk\nZone', 'Diligent\nWorker', 'Solid\nPerformer'],
+            ['Inconsistent\nPlayer', 'Core\nContributor', 'Consistent\nPerformer'],
+            ['Enigma', 'Emerging\nTalent', 'Star']
         ]
         
+        # Add labels
         for i, y_pos in enumerate(y_positions):
             for j, x_pos in enumerate(x_positions):
-                # Add subtle background
-                if i == 0:  # Low potential row
-                    bg_color = '#ffebee' if j == 0 else '#f3e5f5' if j == 2 else '#f5f5f5'
-                elif i == 1:  # Medium potential row
-                    bg_color = '#fff3e0' if j == 0 else '#e3f2fd' if j == 2 else '#e8f5e8'
-                else:  # High potential row
-                    bg_color = '#fff9c4' if j == 0 else '#e8f5e8' if j == 1 else '#e8f5e8'
-                
-                # Add label
-                ax.text(x_pos, y_pos, labels[i][j], 
-                       ha='center', va='center', fontsize=9, 
-                       alpha=0.6, weight='bold',
-                       bbox=dict(boxstyle='round,pad=0.3', facecolor=bg_color, alpha=0.5))
+                ax.text(x_pos, y_pos, labels[i][j],
+                       ha='center', va='center', fontsize=11, fontweight='bold',
+                       alpha=0.5, zorder=3,
+                       bbox=dict(boxstyle="round,pad=0.4", facecolor='white', 
+                               edgecolor='none', alpha=0.8))
     
-    def _add_plotly_grid_lines(self, fig):
-        """Add grid lines to plotly chart."""
-        perf_low = self.matrix.config.performance_low_threshold
-        perf_high = self.matrix.config.performance_high_threshold
-        pot_low = self.matrix.config.potential_low_threshold
-        pot_high = self.matrix.config.potential_high_threshold
+    def _style_chart(self, ax):
+        """Apply consistent styling to the chart."""
+        # Axis labels and title
+        ax.set_xlabel('Performance Rating →', fontsize=14, fontweight='bold', 
+                     color='#2c3e50')
+        ax.set_ylabel('Potential Rating →', fontsize=14, fontweight='bold', 
+                     color='#2c3e50')
+        ax.set_title('Nine-Box Matrix: Employee Performance vs Potential', 
+                    fontsize=18, fontweight='bold', color='#2c3e50', pad=25)
         
-        # Add vertical lines
-        fig.add_vline(x=perf_low, line_dash="dash", line_color="gray", opacity=0.5)
-        fig.add_vline(x=perf_high, line_dash="dash", line_color="gray", opacity=0.5)
+        # Set clean ticks
+        ax.set_xticks([0, 1, 2, 3, 4, 5])
+        ax.set_yticks([0, 1, 2, 3, 4, 5])
+        ax.tick_params(axis='both', labelsize=12, colors='#2c3e50')
         
-        # Add horizontal lines
-        fig.add_hline(y=pot_low, line_dash="dash", line_color="gray", opacity=0.5)
-        fig.add_hline(y=pot_high, line_dash="dash", line_color="gray", opacity=0.5)
+        # Style spines
+        for spine in ax.spines.values():
+            spine.set_linewidth(1.5)
+            spine.set_color('#2c3e50')
+        
+        ax.set_facecolor('#ffffff')
+        
+        # Add some spacing around the plot
+        plt.subplots_adjust(left=0.1, bottom=0.1, right=0.85, top=0.9)
     
-    def _add_plotly_annotations(self, fig):
-        """Add section labels to plotly chart."""
-        perf_low = self.matrix.config.performance_low_threshold
-        perf_high = self.matrix.config.performance_high_threshold
-        pot_low = self.matrix.config.potential_low_threshold
-        pot_high = self.matrix.config.potential_high_threshold
-        
-        # Calculate positions (approximate)
-        x_positions = [perf_low - 0.3, (perf_low + perf_high) / 2, perf_high + 0.3]
-        y_positions = [pot_low - 0.3, (pot_low + pot_high) / 2, pot_high + 0.3]
-        
-        labels = [
-            ['Risk Zone', 'Diligent Worker', 'Solid Performer'],
-            ['Inconsistent Player', 'Core Contributor', 'Consistent Performer'],
-            ['Enigma', 'Emerging Talent', 'Star']
-        ]
-        
-        for i, y_pos in enumerate(y_positions):
-            for j, x_pos in enumerate(x_positions):
-                fig.add_annotation(
-                    x=x_pos, y=y_pos,
-                    text=labels[i][j],
-                    showarrow=False,
-                    font=dict(size=10, color="gray"),
-                    opacity=0.6
-                )
+    def _add_legend(self, ax):
+        """Add a clean legend."""
+        handles, labels = ax.get_legend_handles_labels()
+        if handles:
+            # Remove duplicates and sort
+            by_label = dict(zip(labels, handles))
+            sorted_items = sorted(by_label.items())
+            
+            legend = ax.legend([item[1] for item in sorted_items], 
+                             [item[0] for item in sorted_items],
+                             bbox_to_anchor=(1.02, 1), loc='upper left',
+                             frameon=True, fancybox=True, shadow=True,
+                             fontsize=10, title="Employee Segments",
+                             title_fontsize=12)
+            
+            # Style legend
+            legend.get_frame().set_facecolor('#ffffff')
+            legend.get_frame().set_edgecolor('#bdc3c7')
+            legend.get_frame().set_alpha(0.95)
+            legend.get_title().set_color('#2c3e50')
     
-    def generate_summary_chart(self, employees_data: List[Dict[str, Any]], 
-                             save_path: Optional[str] = None) -> plt.Figure:
-        """Generate a summary chart showing distribution of employees across segments."""
-        
+    def _get_short_segment_name(self, full_name: str) -> str:
+        """Extract short name from full segment label."""
+        return full_name.split('(')[0].strip()
+    
+    def get_visualization_data(self, employees_data: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """
+        Generate structured data for frontend visualization instead of static charts.
+        Returns JSON-serializable data for Chart.js, Plotly.js, or D3.js.
+        """
+        # Segment employees
         segmentations = self.matrix.segment_employees(employees_data)
-        summary = self.matrix.get_segment_summary(segmentations)
         
-        # Create figure
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
-        fig.patch.set_facecolor(self.plot_config.background_color)
+        # Prepare employee data for plotting
+        employees_plot_data = []
+        for seg in segmentations:
+            color = self.segment_colors.get(seg.segment_label.value, '#666666')
+            short_name = self._get_short_segment_name(seg.segment_label.value)
+            
+            employees_plot_data.append({
+                "id": seg.employee_id,
+                "name": seg.employee_name,
+                "x": seg.performance_rating,  # X-axis: Performance
+                "y": seg.potential_rating,    # Y-axis: Potential
+                "segment": short_name,
+                "segment_full": seg.segment_label.value,
+                "color": color,
+                "performance_level": seg.performance_level.value,
+                "potential_level": seg.potential_level.value,
+                "description": seg.segment_description
+            })
         
-        # Pie chart
-        segments = list(summary.keys())
-        counts = list(summary.values())
-        colors = [self.segment_colors.get(seg, '#666666') for seg in segments]
+        # Get configuration for grid and thresholds
+        config = self.matrix.config
         
-        wedges, texts, autotexts = ax1.pie(counts, labels=None, autopct='%1.1f%%', 
-                                          colors=colors, startangle=90)
-        ax1.set_title('Employee Distribution by Segment', fontweight='bold', fontsize=14)
+        # Prepare grid configuration
+        grid_config = {
+            "axis_limits": {
+                "x_min": 0,
+                "x_max": 5,
+                "y_min": 0,
+                "y_max": 5
+            },
+            "thresholds": {
+                "performance_low": config.performance_low_threshold,
+                "performance_high": config.performance_high_threshold,
+                "potential_low": config.potential_low_threshold,
+                "potential_high": config.potential_high_threshold
+            },
+            "grid_lines": [
+                {"type": "vertical", "value": config.performance_low_threshold, "style": "major"},
+                {"type": "vertical", "value": config.performance_high_threshold, "style": "major"},
+                {"type": "horizontal", "value": config.potential_low_threshold, "style": "major"},
+                {"type": "horizontal", "value": config.potential_high_threshold, "style": "major"}
+            ]
+        }
         
-        # Bar chart
-        bars = ax2.bar(range(len(segments)), counts, color=colors, alpha=0.8)
-        ax2.set_xlabel('Segments', fontweight='bold')
-        ax2.set_ylabel('Number of Employees', fontweight='bold')
-        ax2.set_title('Employee Count by Segment', fontweight='bold', fontsize=14)
-        ax2.set_xticks(range(len(segments)))
-        ax2.set_xticklabels([seg.split('(')[0].strip() for seg in segments], rotation=45, ha='right')
+        # Define segment areas for background coloring
+        segments_config = [
+            # Bottom row (Low Potential)
+            {
+                "name": "Risk Zone",
+                "full_name": "Risk Zone (Low Potential, Low Performance)",
+                "bounds": {
+                    "x_min": 0,
+                    "x_max": config.performance_low_threshold,
+                    "y_min": 0,
+                    "y_max": config.potential_low_threshold
+                },
+                "background_color": "#ffebee",
+                "color": "#e74c3c",
+                "position": {"x": "low", "y": "low"}
+            },
+            {
+                "name": "Diligent Worker",
+                "full_name": "Diligent Worker (Low Potential, Medium Performance)",
+                "bounds": {
+                    "x_min": config.performance_low_threshold,
+                    "x_max": config.performance_high_threshold,
+                    "y_min": 0,
+                    "y_max": config.potential_low_threshold
+                },
+                "background_color": "#f3e5f5",
+                "color": "#bdc3c7",
+                "position": {"x": "medium", "y": "low"}
+            },
+            {
+                "name": "Solid Performer",
+                "full_name": "Solid Performer (Low Potential, High Performance)",
+                "bounds": {
+                    "x_min": config.performance_high_threshold,
+                    "x_max": 5,
+                    "y_min": 0,
+                    "y_max": config.potential_low_threshold
+                },
+                "background_color": "#e8f5e8",
+                "color": "#9b59b6",
+                "position": {"x": "high", "y": "low"}
+            },
+            # Middle row (Medium Potential)
+            {
+                "name": "Inconsistent Player",
+                "full_name": "Inconsistent Player (Medium Potential, Low Performance)",
+                "bounds": {
+                    "x_min": 0,
+                    "x_max": config.performance_low_threshold,
+                    "y_min": config.potential_low_threshold,
+                    "y_max": config.potential_high_threshold
+                },
+                "background_color": "#fff3e0",
+                "color": "#f39c12",
+                "position": {"x": "low", "y": "medium"}
+            },
+            {
+                "name": "Core Contributor",
+                "full_name": "Core Contributor (Medium Potential, Medium Performance)",
+                "bounds": {
+                    "x_min": config.performance_low_threshold,
+                    "x_max": config.performance_high_threshold,
+                    "y_min": config.potential_low_threshold,
+                    "y_max": config.potential_high_threshold
+                },
+                "background_color": "#e3f2fd",
+                "color": "#85c1e9",
+                "position": {"x": "medium", "y": "medium"}
+            },
+            {
+                "name": "Consistent Performer",
+                "full_name": "Consistent Performer (Medium Potential, High Performance)",
+                "bounds": {
+                    "x_min": config.performance_high_threshold,
+                    "x_max": 5,
+                    "y_min": config.potential_low_threshold,
+                    "y_max": config.potential_high_threshold
+                },
+                "background_color": "#e8f5e8",
+                "color": "#3498db",
+                "position": {"x": "high", "y": "medium"}
+            },
+            # Top row (High Potential)
+            {
+                "name": "Enigma",
+                "full_name": "Enigma (High Potential, Low Performance)",
+                "bounds": {
+                    "x_min": 0,
+                    "x_max": config.performance_low_threshold,
+                    "y_min": config.potential_high_threshold,
+                    "y_max": 5
+                },
+                "background_color": "#fff8e1",
+                "color": "#f39c12",
+                "position": {"x": "low", "y": "high"}
+            },
+            {
+                "name": "Emerging Talent",
+                "full_name": "Emerging Talent (High Potential, Medium Performance)",
+                "bounds": {
+                    "x_min": config.performance_low_threshold,
+                    "x_max": config.performance_high_threshold,
+                    "y_min": config.potential_high_threshold,
+                    "y_max": 5
+                },
+                "background_color": "#e8f5e8",
+                "color": "#58d68d",
+                "position": {"x": "medium", "y": "high"}
+            },
+            {
+                "name": "Star",
+                "full_name": "Star (High Potential, High Performance)",
+                "bounds": {
+                    "x_min": config.performance_high_threshold,
+                    "x_max": 5,
+                    "y_min": config.potential_high_threshold,
+                    "y_max": 5
+                },
+                "background_color": "#e8f5e8",
+                "color": "#27ae60",
+                "position": {"x": "high", "y": "high"}
+            }
+        ]
         
-        # Add value labels on bars
-        for bar, count in zip(bars, counts):
-            height = bar.get_height()
-            ax2.text(bar.get_x() + bar.get_width()/2., height + 0.05,
-                    f'{count}', ha='center', va='bottom', fontweight='bold')
+        # Generate segment summary
+        segment_summary = self.matrix.get_segment_summary(segmentations)
         
-        # Add legend for pie chart
-        ax1.legend(wedges, [seg.split('(')[0].strip() for seg in segments],
-                  title="Segments", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
+        # Chart styling configuration
+        chart_styling = {
+            "title": "Nine-Box Matrix: Employee Performance vs Potential",
+            "x_axis_label": "Performance Rating →",
+            "y_axis_label": "Potential Rating →",
+            "colors": self.segment_colors,
+            "point_size": 120,
+            "grid_color": "#95a5a6",
+            "grid_alpha": 0.3,
+            "major_grid_color": "#2c3e50",
+            "major_grid_width": 3
+        }
         
-        plt.tight_layout()
-        
-        if save_path:
-            plt.savefig(save_path, dpi=self.plot_config.dpi, bbox_inches='tight')
-            print(f"Summary chart saved to: {save_path}")
-        
-        return fig
+        return {
+            "employees": employees_plot_data,
+            "grid_config": grid_config,
+            "segments": segments_config,
+            "segment_summary": segment_summary,
+            "chart_styling": chart_styling,
+            "metadata": {
+                "total_employees": len(employees_plot_data),
+                "chart_type": "scatter",
+                "data_source": "mongodb",
+                "timestamp": "auto-generated"
+            }
+        }
 
 
 def main():
-    """Demo function to create visualizations."""
-    # Load sample data
+    """Demo the enhanced visualizer."""
+    # Load sample data (you can modify this to use your MongoDB data)
     employees = load_employee_data("data/sample_employee_data.json")
     
-    # Create visualizer
+    # Create enhanced visualizer
     visualizer = NineBoxVisualizer()
     
-    print("Creating nine-box matrix visualizations...")
+    print("Creating enhanced nine-box matrix visualization...")
     
-    # Create matplotlib chart
-    print("\n1. Creating static chart with matplotlib...")
-    fig_static = visualizer.create_matplotlib_chart(
+    # Create the enhanced chart
+    fig = visualizer.create_matplotlib_chart(
         employees, 
-        save_path="nine_box_matrix_static.png",
+        save_path="visuals/enhanced_nine_box_matrix.png",
         show_names=True
     )
+    
     plt.show()
-    
-    # Create plotly chart if available
-    if PLOTLY_AVAILABLE:
-        print("\n2. Creating interactive chart with plotly...")
-        fig_interactive = visualizer.create_plotly_chart(
-            employees,
-            save_path="nine_box_matrix_interactive.html"
-        )
-        fig_interactive.show()
-    else:
-        print("\n2. Plotly not available. Install with: pip install plotly")
-    
-    # Create summary chart
-    print("\n3. Creating summary distribution chart...")
-    fig_summary = visualizer.generate_summary_chart(
-        employees,
-        save_path="nine_box_summary.png"
-    )
-    plt.show()
-    
-    print("\nVisualization complete!")
+    print("Enhanced visualization complete!")
 
 
 if __name__ == "__main__":
