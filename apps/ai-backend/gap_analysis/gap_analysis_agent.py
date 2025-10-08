@@ -3,9 +3,9 @@ from dotenv import load_dotenv
 load_dotenv()
 from typing import List, Dict
 from pydantic import BaseModel, Field
-from langchain_groq import ChatGroq
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import JsonOutputParser
+from langchain_groq import ChatGroq # type: ignore
+from langchain_core.prompts import PromptTemplate # type: ignore
+from langchain_core.output_parsers import JsonOutputParser # type: ignore
 
 
 # Define structured output
@@ -54,12 +54,7 @@ class GapAnalysisAgent:
         - (Matched skills ÷ Required skills) × 100.
         - Round to nearest 5%.
 
-        4. Readiness Level:
-        - Ready: >80% skills match AND no critical score gaps.
-        - Developing: 40–80% skills match OR minor gaps.
-        - Not Ready: <40% skills match OR major critical gaps.
-
-        5. Recommendations:
+        4. Recommendations:
         - Suggest ONLY gaps (missing skills or score deficits).
         - Do not suggest improvements for areas where employee already meets/exceeds requirements.
 
@@ -69,7 +64,6 @@ class GapAnalysisAgent:
         "target_role": "string",
         "segment": "Star/Core/Risk/etc.",
         "overall_skill_match": "XX%",
-        "readiness_level": "Ready/Developing/Not Ready",
         "matched_skills": ["skill1", "skill2"],
         "missing_skills": ["skill3", "skill4"],
         "score_gaps": {{
@@ -130,17 +124,13 @@ class GapAnalysisAgent:
         if employee.get("experience_years", 0) < role.get("required_experience", 0):
             recs.append("Gain more relevant experience")
         
-        # Readiness level
-        match_num = float(match_pct.rstrip('%'))
-        readiness = "Ready" if match_num > 80 else "Developing" if match_num >= 40 else "Not Ready"
         
         return GapAnalysisResult(
             matched_skills=matched,
             missing_skills=missing,
             score_gaps=gaps,
             overall_skill_match=match_pct,
-            recommendations=recs or ["Continue current development"],
-            readiness_level=readiness
+            recommendations=recs or ["Continue current development"]
         )
 
 

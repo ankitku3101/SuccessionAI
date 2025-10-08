@@ -4,11 +4,10 @@ This module handles all MongoDB operations for fetching employee and role data.
 Integrates with existing nine-box matrix, gap analysis, and visualization modules.
 """
 
-from pymongo import MongoClient
-from bson import ObjectId
+from pymongo import MongoClient # type: ignore
+from bson import ObjectId # type: ignore
 from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -231,6 +230,57 @@ def get_all_employees_for_visualization() -> List[Dict[str, Any]]:
     fetcher = MongoDataFetcher()
     try:
         return fetcher.fetch_all_employees()
+    finally:
+        fetcher.close_connection()
+
+
+def get_employee_for_readiness_prediction(employee_id: str) -> Optional[Dict[str, Any]]:
+    """Get employee data specifically formatted for readiness classification."""
+    fetcher = MongoDataFetcher()
+    try:
+        employee = fetcher.fetch_employee_by_id(employee_id)
+        if not employee:
+            return None
+        
+        # Calculate missing skills count based on target role
+        missing_skills_count = 0
+        if employee.get("target_success_role"):
+            role = fetcher.fetch_role_by_name(employee["target_success_role"])
+            if role and role.get("required_skills"):
+                employee_skills = set(employee.get("skills", []))
+                required_skills = set(role["required_skills"])
+                missing_skills_count = len(required_skills - employee_skills)
+        
+        # Return employee data with calculated missing skills
+        employee["missing_skills_count"] = missing_skills_count
+        return employee
+        
+    finally:
+        fetcher.close_connection()
+
+
+def get_employees_for_batch_readiness_prediction(employee_ids: List[str]) -> List[Dict[str, Any]]:
+    """Get multiple employees for batch readiness prediction."""
+    fetcher = MongoDataFetcher()
+    try:
+        employees = []
+        for emp_id in employee_ids:
+            employee = fetcher.fetch_employee_by_id(emp_id)
+            if employee:
+                # Calculate missing skills count
+                missing_skills_count = 0
+                if employee.get("target_success_role"):
+                    role = fetcher.fetch_role_by_name(employee["target_success_role"])
+                    if role and role.get("required_skills"):
+                        employee_skills = set(employee.get("skills", []))
+                        required_skills = set(role["required_skills"])
+                        missing_skills_count = len(required_skills - employee_skills)
+                
+                employee["missing_skills_count"] = missing_skills_count
+                employees.append(employee)
+        
+        return employees
+        
     finally:
         fetcher.close_connection()
 
