@@ -6,18 +6,17 @@ import { AppSidebar } from "@/components/app-sidebar"
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { getToken, getUser } from "@/lib/auth"
-import { apiGet } from "@/lib/api"
 import DashboardView from "./sections/DashboardView"
 import EmployeesSection from "./sections/EmployeeSection"
 import SuccessProfilesSection from "./sections/SuccessProfilesSection"
 import CommitteeReports from "./sections/CommitteeReports"
+import { apiGet } from "@/lib/api"
 
 export default function CommitteeDashboard() {
   const router = useRouter()
   const [activeView, setActiveView] = useState("dashboard")
 
   const [ready, setReady] = useState(false)
-  const [employees, setEmployees] = useState<any[]>([])
   const [filters, setFilters] = useState({ q: "", department: "", role: "" })
   const [departments, setDepartments] = useState<string[]>([])
   const [roles, setRoles] = useState<string[]>([])
@@ -32,35 +31,19 @@ export default function CommitteeDashboard() {
     const user = getUser()
     if (!token) return router.replace("/login")
     if (user?.user_role !== "committee") return router.replace("/dashboard/employee")
+    setReady(true)
   }, [router])
 
-  // Load data depending on the current view
+  // Load Success Profiles only
   useEffect(() => {
     async function load() {
-      if (activeView === "employees") {
-        const query = new URLSearchParams({ limit: "10", page: "1", ...filters }).toString()
-        const res = await apiGet(`/api/committee/employees?${query}`)
-        if (res.ok) {
-          const j = await res.json()
-          setEmployees(j.items || [])
-          const deps = Array.from(
-            new Set((j.items || []).map((x: any) => x.department).filter(Boolean))
-          ) as string[]
-
-          const rls = Array.from(
-            new Set((j.items || []).map((x: any) => x.role).filter(Boolean))
-          ) as string[]
-          setDepartments(deps)
-          setRoles(rls)
-        }
-      } else if (activeView === "profiles") {
+      if (activeView === "profiles") {
         const res = await apiGet("/api/committee/success-profiles")
         if (res.ok) setSuccessProfiles(await res.json())
       }
-      setReady(true)
     }
     load()
-  }, [activeView, filters])
+  }, [activeView])
 
   if (!ready) return null
 
@@ -82,11 +65,12 @@ export default function CommitteeDashboard() {
               {activeView === "dashboard" && <DashboardView />}
               {activeView === "employees" && (
                 <EmployeesSection
-                  employees={employees}
                   filters={filters}
                   setFilters={setFilters}
                   departments={departments}
                   roles={roles}
+                  setDepartments={setDepartments}
+                  setRoles={setRoles}
                   selected={selected}
                   setSelected={setSelected}
                   goals={goals}
