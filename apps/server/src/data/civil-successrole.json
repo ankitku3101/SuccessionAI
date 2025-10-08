@@ -1,0 +1,171 @@
+[
+  {
+    "role": "Structural Engineer",
+    "role_description": "Design and analyze structural systems for buildings and infrastructure",
+    "required_experience": 4,
+    "required_skills": ["Structural Analysis", "STAAD Pro", "ETABS", "Concrete Design", "Steel Design", "Building Codes"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.3,
+    "required_scores": {
+      "technical": 85,
+      "communication": 70,
+      "leadership": 60
+    }
+  },
+  {
+    "role": "Site Engineer",
+    "role_description": "Supervise construction activities and ensure quality standards on site",
+    "required_experience": 3,
+    "required_skills": ["Site Supervision", "Quality Control", "Construction Management", "Safety Management", "Reading Drawings"],
+    "min_performance_rating": 3.3,
+    "min_potential_rating": 3.0,
+    "required_scores": {
+      "technical": 76,
+      "communication": 75,
+      "leadership": 65
+    }
+  },
+  {
+    "role": "Transportation Engineer",
+    "role_description": "Design and plan transportation systems including roads, highways, and traffic management",
+    "required_experience": 5,
+    "required_skills": ["Highway Design", "Traffic Engineering", "AutoCAD Civil 3D", "Pavement Design", "Transportation Planning"],
+    "min_performance_rating": 3.8,
+    "min_potential_rating": 3.5,
+    "required_scores": {
+      "technical": 83,
+      "communication": 72,
+      "leadership": 68
+    }
+  },
+  {
+    "role": "Geotechnical Engineer",
+    "role_description": "Analyze soil and rock mechanics for foundation design and earth structures",
+    "required_experience": 4,
+    "required_skills": ["Soil Mechanics", "Foundation Design", "Site Investigation", "Slope Stability", "Geotechnical Testing"],
+    "min_performance_rating": 3.7,
+    "min_potential_rating": 3.4,
+    "required_scores": {
+      "technical": 87,
+      "communication": 68,
+      "leadership": 62
+    }
+  },
+  {
+    "role": "Water Resources Engineer",
+    "role_description": "Design and manage water supply, drainage, and irrigation systems",
+    "required_experience": 4,
+    "required_skills": ["Hydraulics", "Hydrology", "Water Treatment", "Drainage Design", "HEC-RAS", "Stormwater Management"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.3,
+    "required_scores": {
+      "technical": 84,
+      "communication": 71,
+      "leadership": 63
+    }
+  },
+  {
+    "role": "Construction Manager",
+    "role_description": "Oversee construction projects from planning to completion",
+    "required_experience": 7,
+    "required_skills": ["Project Management", "Contract Management", "Cost Estimation", "Scheduling", "MS Project", "Risk Management"],
+    "min_performance_rating": 4.2,
+    "min_potential_rating": 4.0,
+    "required_scores": {
+      "technical": 78,
+      "communication": 86,
+      "leadership": 85
+    }
+  },
+  {
+    "role": "Bridge Engineer",
+    "role_description": "Design and analyze bridge structures and rehabilitation projects",
+    "required_experience": 6,
+    "required_skills": ["Bridge Design", "Structural Dynamics", "Load Analysis", "CSI Bridge", "Seismic Design", "IRC Codes"],
+    "min_performance_rating": 4.0,
+    "min_potential_rating": 3.8,
+    "required_scores": {
+      "technical": 89,
+      "communication": 73,
+      "leadership": 70
+    }
+  },
+  {
+    "role": "Quantity Surveyor",
+    "role_description": "Manage construction costs and prepare bills of quantities",
+    "required_experience": 3,
+    "required_skills": ["Cost Estimation", "Bill of Quantities", "Contract Administration", "Valuation", "Rate Analysis"],
+    "min_performance_rating": 3.4,
+    "min_potential_rating": 3.1,
+    "required_scores": {
+      "technical": 74,
+      "communication": 80,
+      "leadership": 58
+    }
+  },
+  {
+    "role": "Environmental Engineer",
+    "role_description": "Design solutions for environmental protection and waste management",
+    "required_experience": 4,
+    "required_skills": ["Environmental Impact Assessment", "Waste Management", "Water Quality Analysis", "Air Pollution Control", "Sustainability"],
+    "min_performance_rating": 3.5,
+    "min_potential_rating": 3.4,
+    "required_scores": {
+      "technical": 81,
+      "communication": 76,
+      "leadership": 64
+    }
+  },
+  {
+    "role": "Urban Planner",
+    "role_description": "Plan and design urban development projects and land use strategies",
+    "required_experience": 5,
+    "required_skills": ["Urban Planning", "GIS", "Land Use Planning", "Zoning Regulations", "Master Planning", "Community Engagement"],
+    "min_performance_rating": 3.8,
+    "min_potential_rating": 3.7,
+    "required_scores": {
+      "technical": 77,
+      "communication": 84,
+      "leadership": 72
+    }
+  },
+  {
+    "role": "Senior Civil Engineer",
+    "role_description": "Lead civil engineering projects and provide technical guidance to teams",
+    "required_experience": 8,
+    "required_skills": ["Design Review", "Technical Leadership", "Multi-disciplinary Coordination", "Client Management", "Mentoring"],
+    "min_performance_rating": 4.3,
+    "min_potential_rating": 4.1,
+    "required_scores": {
+      "technical": 88,
+      "communication": 82,
+      "leadership": 80
+    }
+  },
+  {
+    "role": "Infrastructure Project Manager",
+    "role_description": "Manage large-scale infrastructure development projects",
+    "required_experience": 10,
+    "required_skills": ["Mega Project Management", "Stakeholder Management", "Budget Control", "Procurement", "Risk Mitigation"],
+    "min_performance_rating": 4.5,
+    "min_potential_rating": 4.3,
+    "required_scores": {
+      "technical": 82,
+      "communication": 90,
+      "leadership": 88
+    }
+  },
+  {
+    "role": "Chief Civil Engineer",
+    "role_description": "Lead civil engineering department and establish technical standards",
+    "required_experience": 15,
+    "required_skills": ["Strategic Leadership", "Design Standards", "Business Development", "Technical Excellence", "Innovation"],
+    "min_performance_rating": 4.8,
+    "min_potential_rating": 4.6,
+    "required_scores": {
+      "technical": 91,
+      "communication": 94,
+      "leadership": 96
+    }
+  }
+]

@@ -1,0 +1,171 @@
+[
+  {
+    "role": "Mechanical Design Engineer",
+    "role_description": "Design and develop mechanical components and systems using CAD software",
+    "required_experience": 3,
+    "required_skills": ["AutoCAD", "SolidWorks", "CAD Design", "GD&T", "Material Selection", "Technical Drawing"],
+    "min_performance_rating": 3.4,
+    "min_potential_rating": 3.1,
+    "required_scores": {
+      "technical": 82,
+      "communication": 68,
+      "leadership": 55
+    }
+  },
+  {
+    "role": "Senior Mechanical Engineer",
+    "role_description": "Lead mechanical design projects and mentor junior engineers",
+    "required_experience": 6,
+    "required_skills": ["ANSYS", "FEA Analysis", "Project Management", "Design Validation", "Prototype Testing", "CREO"],
+    "min_performance_rating": 4.1,
+    "min_potential_rating": 3.8,
+    "required_scores": {
+      "technical": 87,
+      "communication": 76,
+      "leadership": 72
+    }
+  },
+  {
+    "role": "Manufacturing Engineer",
+    "role_description": "Optimize manufacturing processes and improve production efficiency",
+    "required_experience": 4,
+    "required_skills": ["Lean Manufacturing", "Six Sigma", "Process Optimization", "Quality Control", "CNC Programming"],
+    "min_performance_rating": 3.7,
+    "min_potential_rating": 3.4,
+    "required_scores": {
+      "technical": 80,
+      "communication": 72,
+      "leadership": 65
+    }
+  },
+  {
+    "role": "HVAC Engineer",
+    "role_description": "Design heating, ventilation, and air conditioning systems for buildings",
+    "required_experience": 4,
+    "required_skills": ["HVAC Design", "Thermodynamics", "Energy Analysis", "Load Calculations", "AutoCAD MEP"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.3,
+    "required_scores": {
+      "technical": 84,
+      "communication": 70,
+      "leadership": 60
+    }
+  },
+  {
+    "role": "Automotive Engineer",
+    "role_description": "Design and develop automotive components and vehicle systems",
+    "required_experience": 5,
+    "required_skills": ["Vehicle Dynamics", "Powertrain Design", "CATIA", "Crash Analysis", "Automotive Standards"],
+    "min_performance_rating": 3.9,
+    "min_potential_rating": 3.6,
+    "required_scores": {
+      "technical": 86,
+      "communication": 71,
+      "leadership": 68
+    }
+  },
+  {
+    "role": "Robotics Engineer",
+    "role_description": "Design and program robotic systems for automation",
+    "required_experience": 4,
+    "required_skills": ["Robotics", "Control Systems", "PLC Programming", "Kinematics", "ROS", "Python"],
+    "min_performance_rating": 3.8,
+    "min_potential_rating": 3.7,
+    "required_scores": {
+      "technical": 88,
+      "communication": 67,
+      "leadership": 63
+    }
+  },
+  {
+    "role": "Quality Assurance Engineer",
+    "role_description": "Ensure product quality through testing and inspection protocols",
+    "required_experience": 3,
+    "required_skills": ["Quality Management", "ISO Standards", "Inspection Methods", "Statistical Analysis", "Root Cause Analysis"],
+    "min_performance_rating": 3.3,
+    "min_potential_rating": 3.0,
+    "required_scores": {
+      "technical": 75,
+      "communication": 78,
+      "leadership": 58
+    }
+  },
+  {
+    "role": "Product Development Engineer",
+    "role_description": "Lead new product development from concept to market launch",
+    "required_experience": 5,
+    "required_skills": ["Product Design", "Prototyping", "Design for Manufacturing", "Testing Protocols", "Cost Analysis"],
+    "min_performance_rating": 4.0,
+    "min_potential_rating": 3.9,
+    "required_scores": {
+      "technical": 83,
+      "communication": 80,
+      "leadership": 75
+    }
+  },
+  {
+    "role": "Maintenance Engineer",
+    "role_description": "Develop and implement preventive maintenance strategies for industrial equipment",
+    "required_experience": 4,
+    "required_skills": ["Predictive Maintenance", "Equipment Troubleshooting", "CMMS", "Reliability Engineering", "TPM"],
+    "min_performance_rating": 3.5,
+    "min_potential_rating": 3.2,
+    "required_scores": {
+      "technical": 78,
+      "communication": 70,
+      "leadership": 62
+    }
+  },
+  {
+    "role": "Aerospace Engineer",
+    "role_description": "Design and analyze aircraft and spacecraft components and systems",
+    "required_experience": 6,
+    "required_skills": ["Aerodynamics", "Structural Analysis", "CFD", "NASTRAN", "Composite Materials", "Flight Mechanics"],
+    "min_performance_rating": 4.2,
+    "min_potential_rating": 4.0,
+    "required_scores": {
+      "technical": 91,
+      "communication": 74,
+      "leadership": 70
+    }
+  },
+  {
+    "role": "Project Engineer",
+    "role_description": "Manage engineering projects from planning through execution",
+    "required_experience": 5,
+    "required_skills": ["Project Management", "Budgeting", "Scheduling", "Vendor Coordination", "Risk Management"],
+    "min_performance_rating": 3.9,
+    "min_potential_rating": 3.7,
+    "required_scores": {
+      "technical": 76,
+      "communication": 82,
+      "leadership": 78
+    }
+  },
+  {
+    "role": "Chief Mechanical Engineer",
+    "role_description": "Lead mechanical engineering department and set technical direction",
+    "required_experience": 12,
+    "required_skills": ["Strategic Planning", "Team Leadership", "Technical Direction", "Budget Management", "Innovation Strategy"],
+    "min_performance_rating": 4.7,
+    "min_potential_rating": 4.5,
+    "required_scores": {
+      "technical": 90,
+      "communication": 92,
+      "leadership": 95
+    }
+  },
+  {
+    "role": "R&D Mechanical Engineer",
+    "role_description": "Conduct research and develop innovative mechanical solutions",
+    "required_experience": 5,
+    "required_skills": ["Research Methodology", "Innovation", "Advanced Materials", "Simulation", "Patent Development", "Technical Writing"],
+    "min_performance_rating": 4.0,
+    "min_potential_rating": 4.1,
+    "required_scores": {
+      "technical": 89,
+      "communication": 75,
+      "leadership": 66
+    }
+  }
+]

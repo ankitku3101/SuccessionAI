@@ -1,0 +1,584 @@
+[
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c86",
+      "role": "Research Associate",
+      "experience_years": 6
+    },
+    "target_role_info": {
+      "role": "Product Manager",
+      "required_experience": 5
+    },
+    "gap_analysis": {
+      "overall_skill_match": "75%",
+      "matched_skills": ["Project Management", "Networking", "Communication"],
+      "missing_skills": ["Leadership"],
+      "score_gaps": {
+        "technical": { "employee": 57, "required": 70, "status": "Gap (-13)" },
+        "communication": { "employee": 77, "required": 85, "status": "Gap (-8)" },
+        "leadership": { "employee": 84, "required": 80, "status": "Eligible" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 3.4, "required": 4, "status": "Gap (-0.6)" },
+        "potential": { "employee": 4.83, "required": 3.8, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Develop Leadership skills",
+        "Improve technical assessment score by 13 points",
+        "Improve performance rating by 0.6 points"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c87",
+      "role": "Software Engineer",
+      "experience_years": 3
+    },
+    "target_role_info": {
+      "role": "Senior Software Engineer",
+      "required_experience": 5
+    },
+    "gap_analysis": {
+      "overall_skill_match": "60%",
+      "matched_skills": ["JavaScript", "React", "Node.js"],
+      "missing_skills": ["System Design", "Mentorship"],
+      "score_gaps": {
+        "technical": { "employee": 80, "required": 90, "status": "Gap (-10)" },
+        "communication": { "employee": 70, "required": 75, "status": "Gap (-5)" },
+        "leadership": { "employee": 60, "required": 70, "status": "Gap (-10)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.1, "required": 4.5, "status": "Gap (-0.4)" },
+        "potential": { "employee": 4.5, "required": 4.2, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Gain experience in System Design",
+        "Mentor a junior developer",
+        "Take advanced technical training"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c88",
+      "role": "Marketing Analyst",
+      "experience_years": 2
+    },
+    "target_role_info": {
+      "role": "Marketing Manager",
+      "required_experience": 4
+    },
+    "gap_analysis": {
+      "overall_skill_match": "80%",
+      "matched_skills": ["SEO", "Content Creation", "Data Analysis"],
+      "missing_skills": ["Team Management", "Budgeting"],
+      "score_gaps": {
+        "technical": { "employee": 85, "required": 80, "status": "Eligible" },
+        "communication": { "employee": 90, "required": 90, "status": "Eligible" },
+        "leadership": { "employee": 65, "required": 85, "status": "Gap (-20)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.0, "required": 4.2, "status": "Gap (-0.2)" },
+        "potential": { "employee": 4.6, "required": 4.0, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Lead a small marketing campaign",
+        "Take a course on financial planning for marketers"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c89",
+      "role": "HR Coordinator",
+      "experience_years": 4
+    },
+    "target_role_info": {
+      "role": "HR Business Partner",
+      "required_experience": 6
+    },
+    "gap_analysis": {
+      "overall_skill_match": "90%",
+      "matched_skills": ["Recruiting", "Onboarding", "Employee Relations"],
+      "missing_skills": ["Strategic Planning"],
+      "score_gaps": {
+        "technical": { "employee": 78, "required": 80, "status": "Gap (-2)" },
+        "communication": { "employee": 92, "required": 90, "status": "Eligible" },
+        "leadership": { "employee": 85, "required": 88, "status": "Gap (-3)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.4, "required": 4.3, "status": "Eligible" },
+        "potential": { "employee": 4.7, "required": 4.5, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Participate in strategic HR projects",
+        "Shadow a senior HR Business Partner"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c90",
+      "role": "Data Analyst",
+      "experience_years": 5
+    },
+    "target_role_info": {
+      "role": "Data Scientist",
+      "required_experience": 5
+    },
+    "gap_analysis": {
+      "overall_skill_match": "70%",
+      "matched_skills": ["SQL", "Python", "Tableau"],
+      "missing_skills": ["Machine Learning", "Statistical Modeling"],
+      "score_gaps": {
+        "technical": { "employee": 75, "required": 90, "status": "Gap (-15)" },
+        "communication": { "employee": 80, "required": 80, "status": "Eligible" },
+        "leadership": { "employee": 70, "required": 70, "status": "Eligible" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.2, "required": 4.0, "status": "Eligible" },
+        "potential": { "employee": 4.8, "required": 4.5, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Complete a Machine Learning certification",
+        "Work on a project involving predictive analytics"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c91",
+      "role": "Junior Accountant",
+      "experience_years": 1
+    },
+    "target_role_info": {
+      "role": "Senior Accountant",
+      "required_experience": 4
+    },
+    "gap_analysis": {
+      "overall_skill_match": "50%",
+      "matched_skills": ["Bookkeeping", "Excel"],
+      "missing_skills": ["Financial Reporting", "Taxation", "Auditing"],
+      "score_gaps": {
+        "technical": { "employee": 60, "required": 85, "status": "Gap (-25)" },
+        "communication": { "employee": 75, "required": 80, "status": "Gap (-5)" },
+        "leadership": { "employee": 50, "required": 60, "status": "Gap (-10)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 3.8, "required": 4.2, "status": "Gap (-0.4)" },
+        "potential": { "employee": 4.0, "required": 4.0, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Get CPA certification",
+        "Assist in preparing financial statements",
+        "Take a course on corporate tax"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c92",
+      "role": "Graphic Designer",
+      "experience_years": 7
+    },
+    "target_role_info": {
+      "role": "Art Director",
+      "required_experience": 8
+    },
+    "gap_analysis": {
+      "overall_skill_match": "85%",
+      "matched_skills": ["Adobe Creative Suite", "Typography", "Branding"],
+      "missing_skills": ["Team Leadership", "Client Presentation"],
+      "score_gaps": {
+        "technical": { "employee": 95, "required": 90, "status": "Eligible" },
+        "communication": { "employee": 80, "required": 90, "status": "Gap (-10)" },
+        "leadership": { "employee": 75, "required": 90, "status": "Gap (-15)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.6, "required": 4.5, "status": "Eligible" },
+        "potential": { "employee": 4.9, "required": 4.5, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Lead a design project from concept to completion",
+        "Present design concepts to key stakeholders"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c93",
+      "role": "Customer Support Rep",
+      "experience_years": 3
+    },
+    "target_role_info": {
+      "role": "Customer Success Manager",
+      "required_experience": 5
+    },
+    "gap_analysis": {
+      "overall_skill_match": "78%",
+      "matched_skills": ["Problem Solving", "Communication", "CRM Software"],
+      "missing_skills": ["Account Management", "Sales"],
+      "score_gaps": {
+        "technical": { "employee": 70, "required": 75, "status": "Gap (-5)" },
+        "communication": { "employee": 95, "required": 95, "status": "Eligible" },
+        "leadership": { "employee": 65, "required": 80, "status": "Gap (-15)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.3, "required": 4.0, "status": "Eligible" },
+        "potential": { "employee": 4.2, "required": 4.2, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Learn about upselling and cross-selling techniques",
+        "Manage a portfolio of key customer accounts"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c94",
+      "role": "IT Support Specialist",
+      "experience_years": 4
+    },
+    "target_role_info": {
+      "role": "System Administrator",
+      "required_experience": 5
+    },
+    "gap_analysis": {
+      "overall_skill_match": "82%",
+      "matched_skills": ["Troubleshooting", "Networking", "Hardware"],
+      "missing_skills": ["Server Management", "Cloud Infrastructure"],
+      "score_gaps": {
+        "technical": { "employee": 80, "required": 90, "status": "Gap (-10)" },
+        "communication": { "employee": 85, "required": 80, "status": "Eligible" },
+        "leadership": { "employee": 70, "required": 75, "status": "Gap (-5)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.1, "required": 4.0, "status": "Eligible" },
+        "potential": { "employee": 4.3, "required": 4.0, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Get certified in AWS or Azure",
+        "Manage a local server environment"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c95",
+      "role": "Content Writer",
+      "experience_years": 2
+    },
+    "target_role_info": {
+      "role": "Content Strategist",
+      "required_experience": 5
+    },
+    "gap_analysis": {
+      "overall_skill_match": "65%",
+      "matched_skills": ["Writing", "Editing", "SEO"],
+      "missing_skills": ["Content Auditing", "Analytics", "Management"],
+      "score_gaps": {
+        "technical": { "employee": 88, "required": 85, "status": "Eligible" },
+        "communication": { "employee": 90, "required": 92, "status": "Gap (-2)" },
+        "leadership": { "employee": 60, "required": 80, "status": "Gap (-20)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.0, "required": 4.3, "status": "Gap (-0.3)" },
+        "potential": { "employee": 4.5, "required": 4.2, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Learn to use Google Analytics for content performance",
+        "Develop a content calendar for a product line"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c96",
+      "role": "Sales Development Rep",
+      "experience_years": 3
+    },
+    "target_role_info": {
+      "role": "Account Executive",
+      "required_experience": 5
+    },
+    "gap_analysis": {
+      "overall_skill_match": "77%",
+      "matched_skills": ["Prospecting", "Cold Calling", "CRM"],
+      "missing_skills": ["Closing Deals", "Negotiation"],
+      "score_gaps": {
+        "technical": { "employee": 75, "required": 80, "status": "Gap (-5)" },
+        "communication": { "employee": 90, "required": 95, "status": "Gap (-5)" },
+        "leadership": { "employee": 70, "required": 75, "status": "Gap (-5)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.5, "required": 4.5, "status": "Eligible" },
+        "potential": { "employee": 4.6, "required": 4.4, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Shadow an Account Executive on sales calls",
+        "Take a course on negotiation tactics"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c97",
+      "role": "QA Tester",
+      "experience_years": 4
+    },
+    "target_role_info": {
+      "role": "QA Lead",
+      "required_experience": 6
+    },
+    "gap_analysis": {
+      "overall_skill_match": "88%",
+      "matched_skills": ["Manual Testing", "Bug Tracking", "Test Cases"],
+      "missing_skills": ["Automation Testing", "Team Leadership"],
+      "score_gaps": {
+        "technical": { "employee": 85, "required": 90, "status": "Gap (-5)" },
+        "communication": { "employee": 82, "required": 85, "status": "Gap (-3)" },
+        "leadership": { "employee": 70, "required": 85, "status": "Gap (-15)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.2, "required": 4.4, "status": "Gap (-0.2)" },
+        "potential": { "employee": 4.1, "required": 4.0, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Learn Selenium or Cypress for test automation",
+        "Mentor junior QA testers"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c98",
+      "role": "UX Designer",
+      "experience_years": 5
+    },
+    "target_role_info": {
+      "role": "UX Lead",
+      "required_experience": 7
+    },
+    "gap_analysis": {
+      "overall_skill_match": "92%",
+      "matched_skills": ["Wireframing", "Prototyping", "User Research"],
+      "missing_skills": ["Project Leadership"],
+      "score_gaps": {
+        "technical": { "employee": 92, "required": 90, "status": "Eligible" },
+        "communication": { "employee": 88, "required": 90, "status": "Gap (-2)" },
+        "leadership": { "employee": 80, "required": 90, "status": "Gap (-10)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.7, "required": 4.5, "status": "Eligible" },
+        "potential": { "employee": 4.8, "required": 4.6, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Lead the UX design for a major feature",
+        "Present research findings to executive leadership"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c99",
+      "role": "DevOps Engineer",
+      "experience_years": 6
+    },
+    "target_role_info": {
+      "role": "DevOps Architect",
+      "required_experience": 8
+    },
+    "gap_analysis": {
+      "overall_skill_match": "80%",
+      "matched_skills": ["CI/CD", "Docker", "Kubernetes"],
+      "missing_skills": ["Cloud Architecture", "Security Strategy"],
+      "score_gaps": {
+        "technical": { "employee": 88, "required": 95, "status": "Gap (-7)" },
+        "communication": { "employee": 85, "required": 85, "status": "Eligible" },
+        "leadership": { "employee": 80, "required": 90, "status": "Gap (-10)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.5, "required": 4.6, "status": "Gap (-0.1)" },
+        "potential": { "employee": 4.7, "required": 4.5, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Design a multi-cloud deployment strategy",
+        "Implement a comprehensive security plan for infrastructure"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c9a",
+      "role": "Financial Analyst",
+      "experience_years": 4
+    },
+    "target_role_info": {
+      "role": "Finance Manager",
+      "required_experience": 7
+    },
+    "gap_analysis": {
+      "overall_skill_match": "70%",
+      "matched_skills": ["Financial Modeling", "Excel", "Forecasting"],
+      "missing_skills": ["Team Management", "Budgetary Control"],
+      "score_gaps": {
+        "technical": { "employee": 85, "required": 88, "status": "Gap (-3)" },
+        "communication": { "employee": 80, "required": 85, "status": "Gap (-5)" },
+        "leadership": { "employee": 65, "required": 90, "status": "Gap (-25)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.1, "required": 4.4, "status": "Gap (-0.3)" },
+        "potential": { "employee": 4.3, "required": 4.2, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Supervise a junior analyst",
+        "Manage the budget for a small department"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c9b",
+      "role": "Project Coordinator",
+      "experience_years": 3
+    },
+    "target_role_info": {
+      "role": "Project Manager",
+      "required_experience": 5
+    },
+    "gap_analysis": {
+      "overall_skill_match": "85%",
+      "matched_skills": ["Scheduling", "Coordination", "Reporting"],
+      "missing_skills": ["Risk Management", "Stakeholder Management"],
+      "score_gaps": {
+        "technical": { "employee": 80, "required": 85, "status": "Gap (-5)" },
+        "communication": { "employee": 90, "required": 92, "status": "Gap (-2)" },
+        "leadership": { "employee": 75, "required": 88, "status": "Gap (-13)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.2, "required": 4.2, "status": "Eligible" },
+        "potential": { "employee": 4.4, "required": 4.1, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Create a risk mitigation plan for a project",
+        "Lead communication with project stakeholders"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c9c",
+      "role": "Network Engineer",
+      "experience_years": 8
+    },
+    "target_role_info": {
+      "role": "Network Architect",
+      "required_experience": 10
+    },
+    "gap_analysis": {
+      "overall_skill_match": "90%",
+      "matched_skills": ["Cisco", "Juniper", "Firewalls"],
+      "missing_skills": ["Network Design", "Strategic Planning"],
+      "score_gaps": {
+        "technical": { "employee": 92, "required": 95, "status": "Gap (-3)" },
+        "communication": { "employee": 85, "required": 88, "status": "Gap (-3)" },
+        "leadership": { "employee": 80, "required": 90, "status": "Gap (-10)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.8, "required": 4.6, "status": "Eligible" },
+        "potential": { "employee": 4.9, "required": 4.7, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Design a new network topology for a branch office",
+        "Get certified in network architecture"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c9d",
+      "role": "Business Analyst",
+      "experience_years": 5
+    },
+    "target_role_info": {
+      "role": "Senior Business Analyst",
+      "required_experience": 7
+    },
+    "gap_analysis": {
+      "overall_skill_match": "88%",
+      "matched_skills": ["Requirement Gathering", "Process Modeling", "SQL"],
+      "missing_skills": ["Mentorship", "Complex Stakeholder Management"],
+      "score_gaps": {
+        "technical": { "employee": 85, "required": 88, "status": "Gap (-3)" },
+        "communication": { "employee": 90, "required": 92, "status": "Gap (-2)" },
+        "leadership": { "employee": 78, "required": 85, "status": "Gap (-7)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.4, "required": 4.5, "status": "Gap (-0.1)" },
+        "potential": { "employee": 4.5, "required": 4.3, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Mentor a junior business analyst",
+        "Lead requirement gathering for a cross-functional project"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c9e",
+      "role": "Legal Counsel",
+      "experience_years": 6
+    },
+    "target_role_info": {
+      "role": "Senior Legal Counsel",
+      "required_experience": 8
+    },
+    "gap_analysis": {
+      "overall_skill_match": "95%",
+      "matched_skills": ["Contract Law", "Litigation", "Compliance"],
+      "missing_skills": ["Managing Junior Counsel"],
+      "score_gaps": {
+        "technical": { "employee": 95, "required": 95, "status": "Eligible" },
+        "communication": { "employee": 92, "required": 94, "status": "Gap (-2)" },
+        "leadership": { "employee": 85, "required": 90, "status": "Gap (-5)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.9, "required": 4.7, "status": "Eligible" },
+        "potential": { "employee": 4.8, "required": 4.6, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Supervise the work of a paralegal or junior counsel on a case"
+      ]
+    }
+  },
+  {
+    "employee_info": {
+      "mongo_id": "68e3e1bf2bb7abbf2c5b9c9f",
+      "role": "Operations Analyst",
+      "experience_years": 4
+    },
+    "target_role_info": {
+      "role": "Operations Manager",
+      "required_experience": 6
+    },
+    "gap_analysis": {
+      "overall_skill_match": "75%",
+      "matched_skills": ["Process Improvement", "Data Analysis", "Logistics"],
+      "missing_skills": ["People Management", "Budgeting"],
+      "score_gaps": {
+        "technical": { "employee": 82, "required": 85, "status": "Gap (-3)" },
+        "communication": { "employee": 85, "required": 88, "status": "Gap (-3)" },
+        "leadership": { "employee": 70, "required": 90, "status": "Gap (-20)" }
+      },
+      "rating_gaps": {
+        "performance": { "employee": 4.0, "required": 4.3, "status": "Gap (-0.3)" },
+        "potential": { "employee": 4.2, "required": 4.1, "status": "Eligible" }
+      },
+      "recommendations": [
+        "Lead a team in an operational improvement project",
+        "Take responsibility for a team's budget"
+      ]
+    }
+  }
+]

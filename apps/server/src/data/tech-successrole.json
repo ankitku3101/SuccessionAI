@@ -1,0 +1,197 @@
+[
+  {
+    "role": "Senior Software Engineer",
+    "role_description": "Lead development of complex software systems and mentor junior engineers",
+    "required_experience": 5,
+    "required_skills": ["JavaScript", "TypeScript", "React", "Node.js", "System Design", "Code Review"],
+    "min_performance_rating": 4.2,
+    "min_potential_rating": 3.8,
+    "required_scores": {
+      "technical": 85,
+      "communication": 75,
+      "leadership": 70
+    }
+  },
+  {
+    "role": "Engineering Manager",
+    "role_description": "Manage engineering teams and drive technical strategy",
+    "required_experience": 8,
+    "required_skills": ["Team Management", "Agile", "Strategic Planning", "Budget Management", "Stakeholder Communication"],
+    "min_performance_rating": 4.5,
+    "min_potential_rating": 4.2,
+    "required_scores": {
+      "technical": 75,
+      "communication": 90,
+      "leadership": 88
+    }
+  },
+  {
+    "role": "Data Scientist",
+    "role_description": "Analyze complex data sets and build predictive models",
+    "required_experience": 4,
+    "required_skills": ["Python", "Machine Learning", "Statistics", "SQL", "Data Visualization", "TensorFlow"],
+    "min_performance_rating": 3.8,
+    "min_potential_rating": 3.5,
+    "required_scores": {
+      "technical": 88,
+      "communication": 70,
+      "leadership": 60
+    }
+  },
+  {
+    "role": "Product Manager",
+    "role_description": "Define product strategy and roadmap, work with cross-functional teams",
+    "required_experience": 6,
+    "required_skills": ["Product Strategy", "Market Analysis", "User Research", "Roadmap Planning", "Stakeholder Management"],
+    "min_performance_rating": 4.0,
+    "min_potential_rating": 4.0,
+    "required_scores": {
+      "technical": 65,
+      "communication": 85,
+      "leadership": 80
+    }
+  },
+  {
+    "role": "DevOps Engineer",
+    "role_description": "Build and maintain CI/CD pipelines and infrastructure automation",
+    "required_experience": 4,
+    "required_skills": ["Docker", "Kubernetes", "AWS", "CI/CD", "Terraform", "Monitoring"],
+    "min_performance_rating": 3.7,
+    "min_potential_rating": 3.4,
+    "required_scores": {
+      "technical": 82,
+      "communication": 68,
+      "leadership": 65
+    }
+  },
+  {
+    "role": "UX Designer",
+    "role_description": "Design user-centered interfaces and conduct usability research",
+    "required_experience": 3,
+    "required_skills": ["Figma", "User Research", "Wireframing", "Prototyping", "Design Systems", "Usability Testing"],
+    "min_performance_rating": 3.5,
+    "min_potential_rating": 3.2,
+    "required_scores": {
+      "technical": 78,
+      "communication": 80,
+      "leadership": 55
+    }
+  },
+  {
+    "role": "Security Architect",
+    "role_description": "Design and implement security solutions across the organization",
+    "required_experience": 7,
+    "required_skills": ["Security Architecture", "Penetration Testing", "Compliance", "Encryption", "Incident Response"],
+    "min_performance_rating": 4.3,
+    "min_potential_rating": 3.9,
+    "required_scores": {
+      "technical": 92,
+      "communication": 72,
+      "leadership": 75
+    }
+  },
+  {
+    "role": "Business Analyst",
+    "role_description": "Bridge business needs with technical solutions",
+    "required_experience": 3,
+    "required_skills": ["Requirements Gathering", "Process Mapping", "SQL", "Data Analysis", "Documentation"],
+    "min_performance_rating": 3.3,
+    "min_potential_rating": 3.0,
+    "required_scores": {
+      "technical": 70,
+      "communication": 82,
+      "leadership": 58
+    }
+  },
+  {
+    "role": "Frontend Developer",
+    "role_description": "Build responsive and performant user interfaces",
+    "required_experience": 3,
+    "required_skills": ["HTML", "CSS", "JavaScript", "React", "Vue.js", "Responsive Design"],
+    "min_performance_rating": 3.4,
+    "min_potential_rating": 3.1,
+    "required_scores": {
+      "technical": 80,
+      "communication": 65,
+      "leadership": 50
+    }
+  },
+  {
+    "role": "Solutions Architect",
+    "role_description": "Design scalable and efficient system architectures",
+    "required_experience": 9,
+    "required_skills": ["System Architecture", "Cloud Computing", "Microservices", "API Design", "Scalability"],
+    "min_performance_rating": 4.6,
+    "min_potential_rating": 4.3,
+    "required_scores": {
+      "technical": 94,
+      "communication": 80,
+      "leadership": 82
+    }
+  },
+  {
+    "role": "QA Engineer",
+    "role_description": "Ensure software quality through comprehensive testing strategies",
+    "required_experience": 3,
+    "required_skills": ["Test Automation", "Selenium", "Jest", "Test Planning", "Bug Tracking", "Performance Testing"],
+    "min_performance_rating": 3.2,
+    "min_potential_rating": 2.9,
+    "required_scores": {
+      "technical": 75,
+      "communication": 70,
+      "leadership": 52
+    }
+  },
+  {
+    "role": "Technical Writer",
+    "role_description": "Create clear technical documentation for users and developers",
+    "required_experience": 2,
+    "required_skills": ["Technical Writing", "API Documentation", "Markdown", "Content Management", "Editing"],
+    "min_performance_rating": 3.0,
+    "min_potential_rating": 2.8,
+    "required_scores": {
+      "technical": 60,
+      "communication": 88,
+      "leadership": 45
+    }
+  },
+  {
+    "role": "Scrum Master",
+    "role_description": "Facilitate agile ceremonies and remove team impediments",
+    "required_experience": 4,
+    "required_skills": ["Scrum", "Agile Coaching", "Facilitation", "Conflict Resolution", "Jira"],
+    "min_performance_rating": 3.8,
+    "min_potential_rating": 3.6,
+    "required_scores": {
+      "technical": 55,
+      "communication": 85,
+      "leadership": 80
+    }
+  },
+  {
+    "role": "Mobile Developer",
+    "role_description": "Develop native and cross-platform mobile applications",
+    "required_experience": 4,
+    "required_skills": ["React Native", "iOS", "Android", "Swift", "Kotlin", "Mobile UI/UX"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.3,
+    "required_scores": {
+      "technical": 83,
+      "communication": 68,
+      "leadership": 60
+    }
+  },
+  {
+    "role": "Chief Technology Officer",
+    "role_description": "Lead technology vision and strategy for the organization",
+    "required_experience": 15,
+    "required_skills": ["Strategic Leadership", "Technology Vision", "Budget Management", "Vendor Management", "Innovation"],
+    "min_performance_rating": 4.8,
+    "min_potential_rating": 4.7,
+    "required_scores": {
+      "technical": 88,
+      "communication": 95,
+      "leadership": 98
+    }
+  }
+]
