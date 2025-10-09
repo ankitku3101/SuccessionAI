@@ -2,6 +2,29 @@ import { Response } from 'express';
 import Employee from '../models/Employee';
 import { AuthRequest } from '../middlewares/auth.middleware';
 
+
+// GET /employee/me
+export async function me(req: AuthRequest, res: Response) {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+
+    // Fetch employee profile by user ID (omit password)
+    const employee = await Employee.findById(req.user.id).select('-password');
+
+    if (!employee) {
+      return res.status(404).json({ message: 'Employee not found' });
+    }
+
+    return res.status(200).json(employee);
+  } catch (error) {
+    console.error('Error fetching employee profile:', error);
+    return res.status(500).json({ message: 'Server error', error });
+  }
+}
+
+
 // GET /employee/mentor-candidates
 export async function getMentorCandidates(req: AuthRequest, res: Response) {
   if (!req.user || req.user.user_role !== 'employee') {

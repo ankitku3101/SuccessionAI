@@ -5,7 +5,7 @@ import { me } from '../controllers/auth.contoller';
 
 const router = Router();
 
-router.get('/me', authenticateJWT, me);
+router.get('/me', authenticateJWT, me);//fetching prof
 router.patch('/me', authenticateJWT, authorizeRoles('employee'), updateMe);
 router.get('/mentor-candidates', authenticateJWT, authorizeRoles('employee'), getMentorCandidates);
 router.post('/mentorship-request', authenticateJWT, authorizeRoles('employee'), requestMentorship);
