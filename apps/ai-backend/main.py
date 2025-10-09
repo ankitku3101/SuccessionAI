@@ -8,6 +8,7 @@ from segmentation.nine_box_matrix import NineBoxMatrix
 from segmentation.nine_box_visualizer import NineBoxDataProvider
 from gap_analysis.gap_analysis_agent import GapAnalysisAgent
 from readiness.employee_readiness_model import EmployeeReadinessModel, EmployeeFeatures
+from idp_generation.idp_generator import generate_employee_idp
 from db_services.mongo_data_service import (
     get_employee_for_nine_box,
     get_employees_for_batch_analysis,
@@ -38,7 +39,7 @@ class EmployeeIdRequest(BaseModel):
     employee_id: str
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "employee_id": "68e2c736457c490e4e901139"
             }
@@ -49,7 +50,7 @@ class EmployeeBatchRequest(BaseModel):
     employee_ids: List[str]
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "employee_ids": [
                     "68e2c736457c490e4e901139",
@@ -65,7 +66,7 @@ class GapAnalysisRequest(BaseModel):
     role_name: str = None  # Optional, will use employee's target_success_role if not provided
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "employee_id": "68e2c736457c490e4e901139",
                 "role_name": "Technical Lead"
@@ -83,7 +84,7 @@ class ReadinessFeatures(BaseModel):
     experience_years: int
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "performance_rating": 4.2,
                 "potential_rating": 3.8,
@@ -233,13 +234,21 @@ async def perform_gap_analysis(request: GapAnalysisRequest):
         return {
             "employee_info": {
                 "mongo_id": request.employee_id,
-                "name": employee_data["name"],
                 "role": employee_data["role"],
-                "performance_rating": employee_data["performance_rating"],
-                "potential_rating": employee_data["potential_rating"]
+                "experience_years": employee_data["experience_years"],
             },
-            "target_role": role_data["role"],
-            "gap_analysis": output
+            "target_role_info": {
+                "role": role_data["role"],
+                "required_experience": role_data["required_experience"],
+            },
+            "gap_analysis": {
+                "overall_skill_match": output.get("overall_skill_match", "N/A"),
+                "matched_skills": output.get("matched_skills", []),
+                "missing_skills": output.get("missing_skills", []),
+                "score_gaps": output.get("score_gaps", {}),
+                "rating_gaps": output.get("rating_gaps", {}),
+                "recommendations": output.get("recommendations", []),
+            }
         }
         
     except HTTPException:
@@ -405,10 +414,34 @@ async def database_status():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database check failed: {str(e)}")
 
+@app.post("/idp/generate/enhanced", summary="Generate Enhanced Individual Development Plan", description="Generate comprehensive IDP with LLM integration, web search, and mentor matching")
+async def generate_enhanced_idp_endpoint(request: EmployeeIdRequest):
+    """Generate Enhanced Individual Development Plan for an employee using multi-agent workflow."""
+    try:
+        # Generate IDP using the DB-driven orchestrator
+        result = generate_employee_idp(request.employee_id)
+
+        if result and result.get("success"):
+            return {
+                "success": True,
+                "message": f"Enhanced IDP generated successfully for employee {request.employee_id}",
+                "idp": result.get("idp"),
+                "warning": result.get("warning")  # In case storage failed
+            }
+
+        # If generation failed, propagate error
+        error_msg = result.get("error") if isinstance(result, dict) else "Unknown error"
+        raise HTTPException(status_code=500, detail=f"Enhanced IDP generation failed: {error_msg}")
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Enhanced IDP generation failed: {str(e)}")
+
 @app.get("/health", summary="Health Check", description="Check if the API is running")
 async def health_check():
     """Health check endpoint."""
     return {"status": "healthy", "message": "SuccessionAI API is running"}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True) 

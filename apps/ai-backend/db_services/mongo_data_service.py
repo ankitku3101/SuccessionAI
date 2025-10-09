@@ -9,6 +9,8 @@ from bson import ObjectId # type: ignore
 from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
 from dotenv import load_dotenv
+import os
+import requests
 
 load_dotenv()
 
@@ -37,6 +39,8 @@ class MongoDataFetcher:
         self.db = self.client[self.config.database_name]
         self.employees_collection = self.db[self.config.employees_collection]
         self.roles_collection = self.db[self.config.roles_collection]
+        self.gap_collection = self.db["gap_analysis"]
+        self.idp_collection = self.db["idp"]
     
     def fetch_employee_by_id(self, employee_id: str) -> Optional[Dict[str, Any]]:
         """Fetch a single employee by MongoDB ObjectId."""
@@ -172,6 +176,225 @@ class MongoDataFetcher:
         if self.client:
             self.client.close()
 
+    # IDP Generation Support Functions
+    def fetch_gap_analysis(self, employee_id: str) -> Optional[Dict[str, Any]]:
+        """Fetch gap analysis data for an employee."""
+        try:
+            gap_data = self.gap_collection.find_one({
+                "employee_info.mongo_id": employee_id
+            })
+            if gap_data:
+                gap_data["_id"] = str(gap_data["_id"])
+                return gap_data
+            return None
+        except Exception as e:
+            print(f"Error fetching gap analysis for {employee_id}: {e}")
+            return None
+
+    def store_gap_analysis(self, gap_data: Dict[str, Any]) -> bool:
+        """Store gap analysis result in database."""
+        try:
+            # Remove existing gap analysis for this employee
+            employee_id = gap_data.get("employee_info", {}).get("mongo_id")
+            if employee_id:
+                self.gap_collection.delete_many({
+                    "employee_info.mongo_id": employee_id
+                })
+            
+            # Insert new gap analysis
+            result = self.gap_collection.insert_one(gap_data)
+            return bool(result.inserted_id)
+        except Exception as e:
+            print(f"Error storing gap analysis: {e}")
+            return False
+
+    def fetch_idp(self, employee_id: str) -> Optional[Dict[str, Any]]:
+        """Fetch existing IDP for an employee."""
+        try:
+            idp_data = self.idp_collection.find_one({
+                "employee_id": employee_id
+            })
+            if idp_data:
+                idp_data["_id"] = str(idp_data["_id"])
+                return idp_data
+            return None
+        except Exception as e:
+            print(f"Error fetching IDP for {employee_id}: {e}")
+            return None
+
+    def store_idp(self, idp_data: Dict[str, Any]) -> bool:
+        """Store IDP in database."""
+        try:
+            # Remove existing IDP for this employee
+            employee_id = idp_data.get("employee_id")
+            if employee_id:
+                self.idp_collection.delete_many({
+                    "employee_id": employee_id
+                })
+            
+            # Insert new IDP
+            result = self.idp_collection.insert_one(idp_data)
+            return bool(result.inserted_id)
+        except Exception as e:
+            print(f"Error storing IDP: {e}")
+            return False
+
+    def get_comprehensive_employee_data(self, employee_id: str) -> Dict[str, Any]:
+        """
+        Get comprehensive employee data for IDP generation including:
+        - Employee profile with segment and readiness
+        - Gap analysis data
+        - Target role information
+        """
+        try:
+            # 1. Fetch employee data
+            employee = self.fetch_employee_by_id(employee_id)
+            if not employee:
+                return {"error": "Employee not found", "missing": ["employee"]}
+
+            # 2. Fetch gap analysis
+            gap_analysis = self.fetch_gap_analysis(employee_id)
+
+            # 3. Fetch target role data
+            target_role = None
+            target_role_name = employee.get("target_success_role", "").strip()
+            if target_role_name:
+                target_role = self.fetch_role_by_name(target_role_name)
+
+            # 4. If gap analysis is missing, try to call local gap-analysis endpoint to generate and store it
+            missing_data = []
+            api_base = os.getenv("API_BASE_URL", "http://localhost:8000")
+
+            if not gap_analysis:
+                # First try to run gap analysis in-process to avoid HTTP calls to the same server
+                try:
+                    from gap_analysis.gap_analysis_agent import GapAnalysisAgent
+
+                    gap_agent = GapAnalysisAgent()
+
+                    # Build role payload (if target_role exists use it, otherwise try to suggest)
+                    role_payload = target_role
+                    if not role_payload and target_role_name:
+                        role_payload = self.fetch_role_by_name(target_role_name)
+
+                    # If still no role payload, make a minimal role object using target_role_name
+                    if not role_payload:
+                        role_payload = {
+                            "role": target_role_name or "TBD",
+                            "required_skills": [],
+                            "required_experience": 0,
+                            "min_performance_rating": 0,
+                            "min_potential_rating": 0,
+                            "required_scores": {}
+                        }
+
+                    result = gap_agent.analyze(employee, role_payload)
+
+                    # Normalize result to dict
+                    if hasattr(result, "dict"):
+                        gap_analysis_content = result.dict()
+                    else:
+                        gap_analysis_content = result
+
+                    gap_doc = {
+                        "employee_info": {
+                            "mongo_id": employee_id,
+                            "role": employee.get("role"),
+                            "experience_years": employee.get("experience_years")
+                        },
+                        "target_role_info": {
+                            "role": role_payload.get("role"),
+                            "required_experience": role_payload.get("required_experience")
+                        },
+                        "gap_analysis": gap_analysis_content
+                    }
+
+                    stored = self.store_gap_analysis(gap_doc)
+                    if stored:
+                        gap_analysis = gap_doc
+                    else:
+                        print(f"Warning: gap analysis generated but failed to store for {employee_id}")
+
+                    # If target_role was not a full DB doc, try to fetch DB role by name
+                    if not target_role and role_payload and role_payload.get("role"):
+                        target_role = self.fetch_role_by_name(role_payload.get("role"))
+
+                except Exception as e:
+                    print(f"In-process gap analysis failed: {e}")
+                    # Fallback to HTTP endpoint (existing behavior)
+                    try:
+                        resp = requests.post(f"{api_base}/gap-analysis", json={
+                            "employee_id": employee_id,
+                            "role_name": target_role_name or None
+                        }, timeout=10)
+
+                        if resp.status_code == 200:
+                            data = resp.json()
+                            gap_doc = {
+                                "employee_info": data.get("employee_info", {}),
+                                "target_role_info": data.get("target_role_info", {}),
+                                "gap_analysis": data.get("gap_analysis", {})
+                            }
+                            stored = self.store_gap_analysis(gap_doc)
+                            if stored:
+                                gap_analysis = gap_doc
+                            else:
+                                print(f"Warning: gap analysis generated but failed to store for {employee_id}")
+
+                            if not target_role and data.get("target_role_info"):
+                                tr = data["target_role_info"]
+                                role_name = tr.get("role")
+                                if role_name:
+                                    target_role = self.fetch_role_by_name(role_name)
+                        else:
+                            print(f"Gap-analysis endpoint returned status {resp.status_code}: {resp.text}")
+                    except Exception as e2:
+                        print(f"Error calling gap-analysis endpoint: {e2}")
+
+            # 5. Check what data is missing after attempts
+            if not gap_analysis:
+                missing_data.append("gap_analysis")
+            if not target_role and target_role_name:
+                missing_data.append("target_role")
+
+            # 6. Extract segment and readiness from employee data (already expected in employee record)
+            segment = employee.get("segment", "")
+            readiness = employee.get("readiness", "")
+
+            return {
+                "employee": employee,
+                "gap_analysis": gap_analysis,
+                "target_role": target_role,
+                "segment": segment,
+                "readiness": readiness,
+                "missing_data": missing_data,
+                "has_all_data": len(missing_data) == 0
+            }
+
+        except Exception as e:
+            print(f"Error getting comprehensive employee data: {e}")
+            return {"error": str(e), "missing": ["all"]}
+
+    def update_employee_segment_readiness(self, employee_id: str, segment: str = None, readiness: str = None) -> bool:
+        """Update employee's segment and readiness in the database."""
+        try:
+            update_data = {}
+            if segment:
+                update_data["segment"] = segment
+            if readiness:
+                update_data["readiness"] = readiness
+            
+            if update_data:
+                result = self.employees_collection.update_one(
+                    {"_id": ObjectId(employee_id)},
+                    {"$set": update_data}
+                )
+                return result.modified_count > 0
+            return False
+        except Exception as e:
+            print(f"Error updating employee segment/readiness: {e}")
+            return False
+
 
 # Integration functions for existing modules
 def get_employee_for_nine_box(employee_id: str) -> Optional[Dict[str, Any]]:
@@ -281,6 +504,54 @@ def get_employees_for_batch_readiness_prediction(employee_ids: List[str]) -> Lis
         
         return employees
         
+    finally:
+        fetcher.close_connection()
+
+
+def get_comprehensive_data_for_idp(employee_id: str) -> Dict[str, Any]:
+    """
+    Get comprehensive data for IDP generation from MongoDB.
+    This function implements the retrieval logic from the flow diagram.
+    """
+    fetcher = MongoDataFetcher()
+    try:
+        return fetcher.get_comprehensive_employee_data(employee_id)
+    finally:
+        fetcher.close_connection()
+
+
+def store_gap_analysis_result(gap_data: Dict[str, Any]) -> bool:
+    """Store gap analysis result in MongoDB."""
+    fetcher = MongoDataFetcher()
+    try:
+        return fetcher.store_gap_analysis(gap_data)
+    finally:
+        fetcher.close_connection()
+
+
+def store_idp_result(idp_data: Dict[str, Any]) -> bool:
+    """Store IDP result in MongoDB."""
+    fetcher = MongoDataFetcher()
+    try:
+        return fetcher.store_idp(idp_data)
+    finally:
+        fetcher.close_connection()
+
+
+def fetch_idp_result(employee_id: str) -> Optional[Dict[str, Any]]:
+    """Fetch existing IDP from MongoDB."""
+    fetcher = MongoDataFetcher()
+    try:
+        return fetcher.fetch_idp(employee_id)
+    finally:
+        fetcher.close_connection()
+
+
+def update_employee_analytics(employee_id: str, segment: str = None, readiness: str = None) -> bool:
+    """Update employee's computed analytics (segment, readiness) in MongoDB."""
+    fetcher = MongoDataFetcher()
+    try:
+        return fetcher.update_employee_segment_readiness(employee_id, segment, readiness)
     finally:
         fetcher.close_connection()
 
