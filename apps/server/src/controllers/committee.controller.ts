@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Employee from '../models/Employee';
 import SuccessRole from '../models/SuccessRole';
 import { AuthRequest } from '../middlewares/auth.middleware';
+import SuccessRoleModel from '../models/SuccessRole';
 
 function requireCommittee(req: AuthRequest, res: Response): boolean {
   if (!req.user || req.user.user_role !== 'committee') {
@@ -119,12 +120,28 @@ export async function createSuccessProfile(req: AuthRequest, res: Response) {
 
 
 
-// GET /success-profiles
 export async function successProfiles(req: AuthRequest, res: Response) {
-  if (!requireCommittee(req, res)) return;
-  const profiles = await SuccessRole.find({});
-  res.json(profiles);
+  try {
+    if (!requireCommittee(req, res)) return
+
+    const profiles = await SuccessRoleModel.find({})
+      .select(
+        "role role_description required_experience required_skills min_performance_rating min_potential_rating required_scores"
+      )
+      .sort({ required_experience: 1 })
+      .lean()
+
+    if (!profiles.length) {
+      return res.status(404).json({ message: "No success profiles found" })
+    }
+
+    res.status(200).json(profiles)
+  } catch (error) {
+    console.error("Error fetching success profiles:", error)
+    res.status(500).json({ message: "Server error", error })
+  }
 }
+
 
 // POST /employee/:id/development-plan
 export async function upsertDevelopmentPlan(req: AuthRequest, res: Response) {
