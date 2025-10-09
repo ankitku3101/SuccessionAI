@@ -1,0 +1,327 @@
+[
+  {
+    "role": "Embedded Systems Engineer",
+    "role_description": "Design and develop embedded systems for electronic devices",
+    "required_experience": 3,
+    "required_skills": ["C/C++", "Microcontrollers", "ARM Cortex", "RTOS", "Embedded Linux", "Hardware Interfacing"],
+    "min_performance_rating": 3.5,
+    "min_potential_rating": 3.2,
+    "required_scores": {
+      "technical": 84,
+      "communication": 68,
+      "leadership": 58
+    }
+  },
+  {
+    "role": "VLSI Design Engineer",
+    "role_description": "Design and verify integrated circuits and VLSI systems",
+    "required_experience": 4,
+    "required_skills": ["Verilog", "VHDL", "RTL Design", "Synthesis", "Cadence Tools", "Physical Design"],
+    "min_performance_rating": 3.7,
+    "min_potential_rating": 3.5,
+    "required_scores": {
+      "technical": 88,
+      "communication": 65,
+      "leadership": 60
+    }
+  },
+  {
+    "role": "RF Engineer",
+    "role_description": "Design and optimize radio frequency circuits and antenna systems",
+    "required_experience": 4,
+    "required_skills": ["RF Circuit Design", "Antenna Design", "Network Analyzer", "ADS", "CST Studio", "Impedance Matching"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.4,
+    "required_scores": {
+      "technical": 86,
+      "communication": 67,
+      "leadership": 62
+    }
+  },
+  {
+    "role": "Signal Processing Engineer",
+    "role_description": "Develop algorithms for digital signal processing applications",
+    "required_experience": 4,
+    "required_skills": ["DSP", "MATLAB", "Python", "Filter Design", "Image Processing", "Audio Processing"],
+    "min_performance_rating": 3.7,
+    "min_potential_rating": 3.6,
+    "required_scores": {
+      "technical": 87,
+      "communication": 70,
+      "leadership": 63
+    }
+  },
+  {
+    "role": "Telecommunications Engineer",
+    "role_description": "Design and maintain telecommunication networks and systems",
+    "required_experience": 5,
+    "required_skills": ["Wireless Networks", "5G Technology", "Network Protocols", "Fiber Optics", "LTE", "Network Planning"],
+    "min_performance_rating": 3.9,
+    "min_potential_rating": 3.7,
+    "required_scores": {
+      "technical": 85,
+      "communication": 74,
+      "leadership": 68
+    }
+  },
+  {
+    "role": "PCB Design Engineer",
+    "role_description": "Design printed circuit boards for electronic systems",
+    "required_experience": 3,
+    "required_skills": ["Altium Designer", "Eagle CAD", "PCB Layout", "Signal Integrity", "EMI/EMC", "Gerber Files"],
+    "min_performance_rating": 3.4,
+    "min_potential_rating": 3.1,
+    "required_scores": {
+      "technical": 82,
+      "communication": 66,
+      "leadership": 55
+    }
+  },
+  {
+    "role": "Power Electronics Engineer",
+    "role_description": "Design power conversion and control systems",
+    "required_experience": 4,
+    "required_skills": ["Power Converters", "IGBT", "MOSFET", "PWM Control", "PSIM", "Inverter Design"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.4,
+    "required_scores": {
+      "technical": 85,
+      "communication": 68,
+      "leadership": 61
+    }
+  },
+  {
+    "role": "Control Systems Engineer",
+    "role_description": "Design and implement control systems for automation",
+    "required_experience": 4,
+    "required_skills": ["PID Control", "PLC Programming", "SCADA", "Control Theory", "Simulink", "Industrial Automation"],
+    "min_performance_rating": 3.7,
+    "min_potential_rating": 3.5,
+    "required_scores": {
+      "technical": 84,
+      "communication": 70,
+      "leadership": 65
+    }
+  },
+  {
+    "role": "Hardware Engineer",
+    "role_description": "Design and test electronic hardware components and systems",
+    "required_experience": 3,
+    "required_skills": ["Circuit Design", "Schematic Capture", "Prototyping", "Oscilloscope", "Testing", "Debugging"],
+    "min_performance_rating": 3.4,
+    "min_potential_rating": 3.2,
+    "required_scores": {
+      "technical": 81,
+      "communication": 67,
+      "leadership": 57
+    }
+  },
+  {
+    "role": "Firmware Engineer",
+    "role_description": "Develop firmware for embedded devices and IoT systems",
+    "required_experience": 4,
+    "required_skills": ["C Programming", "Firmware Development", "Device Drivers", "Bootloaders", "Debugging Tools", "IoT Protocols"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.4,
+    "required_scores": {
+      "technical": 86,
+      "communication": 68,
+      "leadership": 60
+    }
+  },
+  {
+    "role": "Electrical Design Engineer",
+    "role_description": "Design electrical systems for buildings and industrial facilities",
+    "required_experience": 4,
+    "required_skills": ["AutoCAD Electrical", "Electrical Design", "Load Calculations", "Panel Design", "NEC Standards", "Lighting Design"],
+    "min_performance_rating": 3.5,
+    "min_potential_rating": 3.3,
+    "required_scores": {
+      "technical": 83,
+      "communication": 71,
+      "leadership": 62
+    }
+  },
+  {
+    "role": "Power Systems Engineer",
+    "role_description": "Analyze and design electrical power generation and distribution systems",
+    "required_experience": 5,
+    "required_skills": ["Power System Analysis", "ETAP", "Protection Relaying", "MATLAB", "Grid Integration", "Fault Analysis"],
+    "min_performance_rating": 3.8,
+    "min_potential_rating": 3.6,
+    "required_scores": {
+      "technical": 87,
+      "communication": 72,
+      "leadership": 67
+    }
+  },
+  {
+    "role": "Test Engineer",
+    "role_description": "Develop and execute test plans for electronic systems",
+    "required_experience": 3,
+    "required_skills": ["Test Automation", "LabVIEW", "Test Equipment", "Validation", "Debugging", "Documentation"],
+    "min_performance_rating": 3.3,
+    "min_potential_rating": 3.0,
+    "required_scores": {
+      "technical": 78,
+      "communication": 72,
+      "leadership": 56
+    }
+  },
+  {
+    "role": "IoT Engineer",
+    "role_description": "Design and implement Internet of Things solutions",
+    "required_experience": 4,
+    "required_skills": ["IoT Platforms", "Sensors", "MQTT", "Cloud Integration", "Edge Computing", "Python"],
+    "min_performance_rating": 3.7,
+    "min_potential_rating": 3.8,
+    "required_scores": {
+      "technical": 85,
+      "communication": 71,
+      "leadership": 66
+    }
+  },
+  {
+    "role": "Renewable Energy Engineer",
+    "role_description": "Design solar and wind energy systems for power generation",
+    "required_experience": 4,
+    "required_skills": ["Solar PV Design", "Wind Energy", "Energy Storage", "Grid Integration", "PVsyst", "Renewable Systems"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.5,
+    "required_scores": {
+      "technical": 84,
+      "communication": 73,
+      "leadership": 64
+    }
+  },
+  {
+    "role": "Automation Engineer",
+    "role_description": "Design and implement industrial automation solutions",
+    "required_experience": 5,
+    "required_skills": ["PLC", "HMI", "SCADA", "Industrial Networks", "Robotics", "Process Automation"],
+    "min_performance_rating": 3.8,
+    "min_potential_rating": 3.6,
+    "required_scores": {
+      "technical": 83,
+      "communication": 74,
+      "leadership": 69
+    }
+  },
+  {
+    "role": "Instrumentation Engineer",
+    "role_description": "Design and maintain measurement and control instrumentation",
+    "required_experience": 4,
+    "required_skills": ["Instrumentation", "Calibration", "Transmitters", "Process Control", "P&ID", "Field Instruments"],
+    "min_performance_rating": 3.5,
+    "min_potential_rating": 3.3,
+    "required_scores": {
+      "technical": 82,
+      "communication": 70,
+      "leadership": 63
+    }
+  },
+  {
+    "role": "Network Engineer",
+    "role_description": "Design and manage communication networks and infrastructure",
+    "required_experience": 4,
+    "required_skills": ["Network Design", "Routing Protocols", "Cisco", "Network Security", "LAN/WAN", "Troubleshooting"],
+    "min_performance_rating": 3.6,
+    "min_potential_rating": 3.4,
+    "required_scores": {
+      "technical": 83,
+      "communication": 75,
+      "leadership": 64
+    }
+  },
+  {
+    "role": "Senior Electronics Engineer",
+    "role_description": "Lead electronics design projects and mentor engineering teams",
+    "required_experience": 7,
+    "required_skills": ["Advanced Circuit Design", "Project Leadership", "Design Review", "Technical Mentoring", "Innovation"],
+    "min_performance_rating": 4.2,
+    "min_potential_rating": 4.0,
+    "required_scores": {
+      "technical": 89,
+      "communication": 80,
+      "leadership": 78
+    }
+  },
+  {
+    "role": "Field Application Engineer",
+    "role_description": "Provide technical support and solutions to customers",
+    "required_experience": 4,
+    "required_skills": ["Customer Support", "Technical Presentations", "Troubleshooting", "Product Knowledge", "Training"],
+    "min_performance_rating": 3.7,
+    "min_potential_rating": 3.5,
+    "required_scores": {
+      "technical": 80,
+      "communication": 86,
+      "leadership": 70
+    }
+  },
+  {
+    "role": "Electrical Project Engineer",
+    "role_description": "Manage electrical engineering projects from design to commissioning",
+    "required_experience": 6,
+    "required_skills": ["Project Management", "Electrical Systems", "Commissioning", "Contract Management", "Coordination"],
+    "min_performance_rating": 4.0,
+    "min_potential_rating": 3.8,
+    "required_scores": {
+      "technical": 81,
+      "communication": 84,
+      "leadership": 80
+    }
+  },
+  {
+    "role": "Analog Design Engineer",
+    "role_description": "Design analog circuits and mixed-signal systems",
+    "required_experience": 5,
+    "required_skills": ["Analog Circuit Design", "Op-Amps", "ADC/DAC", "SPICE Simulation", "Mixed-Signal Design", "Layout"],
+    "min_performance_rating": 3.9,
+    "min_potential_rating": 3.7,
+    "required_scores": {
+      "technical": 90,
+      "communication": 69,
+      "leadership": 65
+    }
+  },
+  {
+    "role": "Optical Communication Engineer",
+    "role_description": "Design fiber optic communication systems and networks",
+    "required_experience": 5,
+    "required_skills": ["Fiber Optics", "DWDM", "Optical Networks", "Link Budget", "OTDR", "Network Design"],
+    "min_performance_rating": 3.8,
+    "min_potential_rating": 3.6,
+    "required_scores": {
+      "technical": 88,
+      "communication": 72,
+      "leadership": 66
+    }
+  },
+  {
+    "role": "Senior Electrical Engineer",
+    "role_description": "Lead electrical engineering design and provide technical expertise",
+    "required_experience": 8,
+    "required_skills": ["Technical Leadership", "System Design", "Standards Compliance", "Team Management", "Client Interaction"],
+    "min_performance_rating": 4.3,
+    "min_potential_rating": 4.1,
+    "required_scores": {
+      "technical": 90,
+      "communication": 82,
+      "leadership": 81
+    }
+  },
+  {
+    "role": "Chief Electrical Engineer",
+    "role_description": "Lead electrical engineering department and establish technical vision",
+    "required_experience": 15,
+    "required_skills": ["Strategic Leadership", "Technology Roadmap", "Business Development", "Team Building", "Innovation Strategy"],
+    "min_performance_rating": 4.8,
+    "min_potential_rating": 4.7,
+    "required_scores": {
+      "technical": 92,
+      "communication": 95,
+      "leadership": 97
+    }
+  }
+]
