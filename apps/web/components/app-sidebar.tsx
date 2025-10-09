@@ -100,6 +100,13 @@ export function AppSidebar({
             icon: IconUserCircle,
             onClick: () => setActiveView?.("profile"),
           },
+          {
+            id: "successProfiles",
+            title: "Success Role",
+            url: "#",
+            icon: IconUserCircle,
+            onClick: () => setActiveView?.("successProfiles"),
+          },
         ]
 
   return (
