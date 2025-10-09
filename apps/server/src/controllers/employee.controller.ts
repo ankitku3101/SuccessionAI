@@ -200,3 +200,40 @@ export async function getMentorshipStatus(req: AuthRequest, res: Response) {
     return res.status(500).json({ message: "Server error", error });
   }
 }
+
+//****************-------------------************************//
+
+
+// GET /employee/development-plan
+export async function getDevelopmentPlan(req: AuthRequest, res: Response) {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+
+    const employee = await Employee.findById(req.user.id)
+      .select("name role department development_plan target_success_role")
+      .populate("target_success_role", "role role_description required_skills required_experience");
+
+    if (!employee) {
+      return res.status(404).json({ message: "Employee not found" });
+    }
+
+    // Check if the development plan exists
+    if (!employee.development_plan || Object.keys(employee.development_plan).length === 0) {
+      return res.status(404).json({ message: "No development plan found for this employee" });
+    }
+
+    return res.status(200).json({
+      name: employee.name,
+      role: employee.role,
+      department: employee.department,
+      target_success_role: employee.target_success_role || null,
+      development_plan: employee.development_plan,
+    });
+  } catch (error) {
+    console.error("Error fetching development plan:", error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+}
+
