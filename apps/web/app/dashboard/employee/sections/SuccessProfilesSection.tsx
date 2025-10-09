@@ -12,7 +12,7 @@ export default function SuccessProfilesSection() {
 
     async function load() {
       setLoading(true)
-      const res = await apiGet("/api/employee/success-profile") 
+      const res = await apiGet("/api/employee/success-profile")
       if (!mounted) return
 
       if (res.ok) {
@@ -39,19 +39,19 @@ export default function SuccessProfilesSection() {
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left border-b">
-              <th className="py-2 pr-4">Role Name</th>
-              <th className="py-2 pr-4">Department</th>
+              <th className="py-2 pr-4">Role</th>
+              <th className="py-2 pr-4">Description</th>
               <th className="py-2 pr-4">Required Experience</th>
-              <th className="py-2 pr-4">Skills</th>
+              <th className="py-2 pr-4">Required Skills</th>
             </tr>
           </thead>
           <tbody>
-            {profiles.map((p) => (
-              <tr key={p._id} className="border-b">
-                <td className="py-2 pr-4">{p.name}</td>
-                <td className="py-2 pr-4">{p.department || "—"}</td>
+            {profiles.map((p, idx) => (
+              <tr key={idx} className="border-b">
+                <td className="py-2 pr-4">{p.role || "—"}</td>
+                <td className="py-2 pr-4">{p.role_description || "—"}</td>
                 <td className="py-2 pr-4">{p.required_experience ?? "—"} yrs</td>
-                <td className="py-2 pr-4">{(p.skills || []).join(", ") || "—"}</td>
+                <td className="py-2 pr-4">{(p.required_skills || []).join(", ") || "—"}</td>
               </tr>
             ))}
           </tbody>
