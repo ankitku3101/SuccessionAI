@@ -318,8 +318,9 @@ async def health_check():
     return {"status": "healthy", "message": "SuccessionAI API is running"}
 
 if __name__ == "__main__":
-    authtoken = os.getenv("NGROK_AUTHTOKEN")
-    listener = ngrok.forward(addr=8000, domain="mole-model-drake.ngrok-free.app", authtoken = authtoken)
-    print(listener.url())
+    # Disabling Grok for Development
+    # authtoken = os.getenv("NGROK_AUTHTOKEN")
+    # listener = ngrok.forward(addr=8000, domain="mole-model-drake.ngrok-free.app", authtoken = authtoken)
+    # print(listener.url())
     uvicorn.run("main:app", host="0.0.0.0", port=8000)
-    ngrok.disconnect()
+    # ngrok.disconnect()
