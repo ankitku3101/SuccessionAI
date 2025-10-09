@@ -1,4 +1,3 @@
-// sections/ProfileSection.tsx
 "use client"
 import React from "react"
 import { apiGet, apiPatch } from "@/lib/api"
@@ -7,6 +6,10 @@ export default function ProfileSection() {
   const [profile, setProfile] = React.useState<any>(null)
   const [skillsInput, setSkillsInput] = React.useState("")
   const [targetRole, setTargetRole] = React.useState("")
+  const [numTrainings, setNumTrainings] = React.useState<number>(0)
+  const [assessmentScores, setAssessmentScores] = React.useState<string>("")
+  const [performanceRating, setPerformanceRating] = React.useState<string>("")
+  const [potentialRating, setPotentialRating] = React.useState<string>("")
   const [saving, setSaving] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
 
@@ -21,6 +24,10 @@ export default function ProfileSection() {
         setProfile(j)
         setSkillsInput((j?.skills || []).join(", "))
         setTargetRole(j?.target_success_role || "")
+        setNumTrainings(j?.num_trainings || 0)
+        setAssessmentScores(j?.assessment_scores || "")
+        setPerformanceRating(j?.performance_rating || "")
+        setPotentialRating(j?.potential_rating || "")
       }
       setLoading(false)
     }
@@ -33,6 +40,10 @@ export default function ProfileSection() {
     const payload: any = {
       skills: skillsInput.split(",").map((s) => s.trim()).filter(Boolean),
       target_success_role: targetRole,
+      num_trainings: numTrainings,
+      assessment_scores: assessmentScores,
+      performance_rating: performanceRating,
+      potential_rating: potentialRating,
     }
     const res = await apiPatch("/api/employee/me", payload)
     if (res.ok) {
@@ -40,8 +51,11 @@ export default function ProfileSection() {
       setProfile(j)
       setSkillsInput((j?.skills || []).join(", "))
       setTargetRole(j?.target_success_role || "")
+      setNumTrainings(j?.num_trainings || 0)
+      setAssessmentScores(j?.assessment_scores || "")
+      setPerformanceRating(j?.performance_rating || "")
+      setPotentialRating(j?.potential_rating || "")
     } else {
-      // optionally handle error
       console.error("Failed to save profile")
     }
     setSaving(false)
@@ -59,6 +73,10 @@ export default function ProfileSection() {
         <div><span className="font-medium">Department:</span> {profile?.department || "—"}</div>
         <div><span className="font-medium">Target Success Role:</span> {profile?.target_success_role || "—"}</div>
         <div><span className="font-medium">Skills:</span> {(profile?.skills || []).join(", ") || "—"}</div>
+        <div><span className="font-medium">Number of Trainings:</span> {profile?.num_trainings || 0}</div>
+        <div><span className="font-medium">Assessment Scores:</span> {profile?.assessment_scores || "—"}</div>
+        <div><span className="font-medium">Performance Rating:</span> {profile?.performance_rating || "—"}</div>
+        <div><span className="font-medium">Potential Rating:</span> {profile?.potential_rating || "—"}</div>
       </div>
 
       <div className="space-y-2">
@@ -73,6 +91,35 @@ export default function ProfileSection() {
         <input
           value={targetRole}
           onChange={(e) => setTargetRole(e.target.value)}
+          className="w-full border rounded px-2 py-1"
+        />
+
+        <label className="block text-sm font-medium">Number of Trainings</label>
+        <input
+          type="number"
+          value={numTrainings}
+          onChange={(e) => setNumTrainings(Number(e.target.value))}
+          className="w-full border rounded px-2 py-1"
+        />
+
+        <label className="block text-sm font-medium">Assessment Scores</label>
+        <input
+          value={assessmentScores}
+          onChange={(e) => setAssessmentScores(e.target.value)}
+          className="w-full border rounded px-2 py-1"
+        />
+
+        <label className="block text-sm font-medium">Performance Rating</label>
+        <input
+          value={performanceRating}
+          onChange={(e) => setPerformanceRating(e.target.value)}
+          className="w-full border rounded px-2 py-1"
+        />
+
+        <label className="block text-sm font-medium">Potential Rating</label>
+        <input
+          value={potentialRating}
+          onChange={(e) => setPotentialRating(e.target.value)}
           className="w-full border rounded px-2 py-1"
         />
 
