@@ -3,9 +3,9 @@ from dotenv import load_dotenv
 load_dotenv()
 from typing import List, Dict
 from pydantic import BaseModel, Field
-from langchain_groq import ChatGroq
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import JsonOutputParser
+from langchain_groq import ChatGroq # type: ignore
+from langchain_core.prompts import PromptTemplate # type: ignore
+from langchain_core.output_parsers import JsonOutputParser # type: ignore
 
 
 # Define structured output
@@ -13,6 +13,7 @@ class GapAnalysisResult(BaseModel):
     matched_skills: List[str] = Field(description="Skills matching between employee and role")
     missing_skills: List[str] = Field(description="Skills required but missing in employee")
     score_gaps: Dict[str, Dict[str, float]] = Field(description="Assessment score gaps (employee vs required)")
+    rating_gaps: Dict[str, Dict[str, float]] = Field(description="Performance/Potential rating gaps")
     overall_skill_match: str = Field(description="Skill match percentage")
     recommendations: List[str] = Field(description="Development recommendations")
     readiness_level: str = Field(description="Ready/Developing/Not Ready")
@@ -50,17 +51,18 @@ class GapAnalysisAgent:
         - If employee score < required → show "Gap" with difference (required - employee).
         - Do not list gaps where requirement is already met.
 
-        3. Overall Match %:
+        3. Performance & Potential Ratings:
+        - Compare employee's performance_rating vs role's min_performance_rating
+        - Compare employee's potential_rating vs role's min_potential_rating
+        - If employee rating >= required → mark as "Eligible"
+        - If employee rating < required → show "Gap" with difference
+
+        4. Overall Match %:
         - (Matched skills ÷ Required skills) × 100.
         - Round to nearest 5%.
 
-        4. Readiness Level:
-        - Ready: >80% skills match AND no critical score gaps.
-        - Developing: 40–80% skills match OR minor gaps.
-        - Not Ready: <40% skills match OR major critical gaps.
-
         5. Recommendations:
-        - Suggest ONLY gaps (missing skills or score deficits).
+        - Suggest ONLY gaps (missing skills, score deficits, rating gaps).
         - Do not suggest improvements for areas where employee already meets/exceeds requirements.
 
         --- RETURN JSON FORMAT ---
@@ -69,7 +71,6 @@ class GapAnalysisAgent:
         "target_role": "string",
         "segment": "Star/Core/Risk/etc.",
         "overall_skill_match": "XX%",
-        "readiness_level": "Ready/Developing/Not Ready",
         "matched_skills": ["skill1", "skill2"],
         "missing_skills": ["skill3", "skill4"],
         "score_gaps": {{
@@ -77,6 +78,18 @@ class GapAnalysisAgent:
                 "employee": score,
                 "required": score,
                 "status": "Eligible/Gap (-X)"
+            }}
+        }},
+        "rating_gaps": {{
+            "performance": {{
+                "employee": rating,
+                "required": rating,
+                "status": "Eligible/Gap (-X.X)"
+            }},
+            "potential": {{
+                "employee": rating,
+                "required": rating,
+                "status": "Eligible/Gap (-X.X)"
             }}
         }},
         "recommendations": ["rec1", "rec2", "rec3"]
@@ -112,45 +125,101 @@ class GapAnalysisAgent:
         match_pct = f"{(len(matched) / len(req_skills) * 100):.0f}%" if req_skills else "100%"
         
         # Score gaps
-        gaps = {}
+        score_gaps = {}
         emp_scores = employee.get("assessment_scores", {})
         req_scores = role.get("required_scores", {})
         
         for score_type, required in req_scores.items():
             emp_score = emp_scores.get(score_type, 0)
             if emp_score < required:
-                gaps[score_type] = {"employee": emp_score, "required": required}
+                score_gaps[score_type] = {
+                    "employee": emp_score, 
+                    "required": required,
+                    "status": f"Gap (-{required - emp_score})"
+                }
+            else:
+                score_gaps[score_type] = {
+                    "employee": emp_score,
+                    "required": required,
+                    "status": "Eligible"
+                }
+        
+        # Rating gaps (Performance & Potential)
+        rating_gaps = {}
+        
+        # Performance rating comparison
+        emp_performance = employee.get("performance_rating", 0)
+        req_performance = role.get("min_performance_rating", 0)
+        if emp_performance < req_performance:
+            rating_gaps["performance"] = {
+                "employee": emp_performance,
+                "required": req_performance,
+                "status": f"Gap (-{req_performance - emp_performance:.1f})"
+            }
+        else:
+            rating_gaps["performance"] = {
+                "employee": emp_performance,
+                "required": req_performance,
+                "status": "Eligible"
+            }
+        
+        # Potential rating comparison
+        emp_potential = employee.get("potential_rating", 0)
+        req_potential = role.get("min_potential_rating", 0)
+        if emp_potential < req_potential:
+            rating_gaps["potential"] = {
+                "employee": emp_potential,
+                "required": req_potential,
+                "status": f"Gap (-{req_potential - emp_potential:.1f})"
+            }
+        else:
+            rating_gaps["potential"] = {
+                "employee": emp_potential,
+                "required": req_potential,
+                "status": "Eligible"
+            }
         
         # Recommendations
         recs = []
         if missing:
             recs.append(f"Develop skills: {', '.join(missing[:3])}")
-        if gaps:
-            recs.append("Improve assessment scores through training")
-        if employee.get("experience_years", 0) < role.get("required_experience", 0):
-            recs.append("Gain more relevant experience")
         
-        # Readiness level
-        match_num = float(match_pct.rstrip('%'))
-        readiness = "Ready" if match_num > 80 else "Developing" if match_num >= 40 else "Not Ready"
+        # Add recommendations for score gaps
+        for score_type, gap_info in score_gaps.items():
+            if "Gap" in gap_info["status"]:
+                gap_points = gap_info["required"] - gap_info["employee"]
+                recs.append(f"Improve {score_type} assessment score by {gap_points} points")
+        
+        # Add recommendations for rating gaps
+        for rating_type, gap_info in rating_gaps.items():
+            if "Gap" in gap_info["status"]:
+                gap_points = gap_info["required"] - gap_info["employee"]
+                recs.append(f"Improve {rating_type} rating by {gap_points:.1f} points")
+        
+        if employee.get("experience_years", 0) < role.get("required_experience", 0):
+            exp_gap = role.get("required_experience", 0) - employee.get("experience_years", 0)
+            recs.append(f"Gain {exp_gap} more years of relevant experience")
         
         return GapAnalysisResult(
             matched_skills=matched,
             missing_skills=missing,
-            score_gaps=gaps,
+            score_gaps=score_gaps,
+            rating_gaps=rating_gaps,
             overall_skill_match=match_pct,
             recommendations=recs or ["Continue current development"],
-            readiness_level=readiness
+            readiness_level="Ready" if not recs else ("Developing" if len(recs) <= 2 else "Not Ready")
         )
 
 
 if __name__ == "__main__":
     import json
     
-    # Load actual employee data from JSON file
-
-    with open("apps/ai-backend/data/sample_employee_data.json", "r") as f:
-        data = json.load(f)
+    # Load actual employee data from JSON files
+    with open("data/sample_employee_data.json", "r") as f:
+        employee_data = json.load(f)
+    
+    with open("data/sample_success_role.json", "r") as f:
+        role_data = json.load(f)
     
     # Based on nine-box matrix: Low/Medium/High Performance × Low/Medium/High Potential
     representative_employees = [
@@ -188,24 +257,24 @@ if __name__ == "__main__":
     
     for i, rep_emp in enumerate(representative_employees, 1):
         # Find employee by ID
-        employee_data = None
-        for emp in data["employees"]:
+        employee_found = None
+        for emp in employee_data["employees"]:
             if emp["id"] == rep_emp["id"]:
-                employee_data = emp
+                employee_found = emp
                 break
         
-        if not employee_data:
+        if not employee_found:
             continue
             
         # Find target role
-        target_role_name = employee_data["target_success_role"]
-        role_data = None
-        for role in data["success_roles"]:
+        target_role_name = employee_found["target_success_role"]
+        role_found = None
+        for role in role_data["success_roles"]:
             if role["role"] == target_role_name:
-                role_data = role
+                role_found = role
                 break
         
-        if not role_data:
+        if not role_found:
             continue
         
         print(f"🧪 ANALYSIS {i}: {rep_emp['description']}")
@@ -214,23 +283,23 @@ if __name__ == "__main__":
         
         # Prepare employee profile
         employee_profile = {
-            "name": employee_data["name"],
-            "role": employee_data["role"],
-            "skills": employee_data["skills"],
-            "assessment_scores": employee_data["assessment_scores"],
-            "performance_rating": employee_data["performance_rating"],
-            "potential_rating": employee_data["potential_rating"],
-            "experience_years": employee_data["experience_years"]
+            "name": employee_found["name"],
+            "role": employee_found["role"],
+            "skills": employee_found["skills"],
+            "assessment_scores": employee_found["assessment_scores"],
+            "performance_rating": employee_found["performance_rating"],
+            "potential_rating": employee_found["potential_rating"],
+            "experience_years": employee_found["experience_years"]
         }
         
         # Prepare role requirements using data from JSON
         role_requirements = {
-            "role": role_data["role"],
-            "required_skills": role_data["required_skills"],
-            "required_experience": role_data["required_experience"],
-            "min_performance_rating": role_data["min_performance_rating"],
-            "min_potential_rating": role_data["min_potential_rating"],
-            "required_scores": role_data.get("required_scores", {"technical": 75, "communication": 75, "leadership": 70})
+            "role": role_found["role"],
+            "required_skills": role_found["required_skills"],
+            "required_experience": role_found["required_experience"],
+            "min_performance_rating": role_found["min_performance_rating"],
+            "min_potential_rating": role_found["min_potential_rating"],
+            "required_scores": role_found.get("required_scores", {"technical": 75, "communication": 75, "leadership": 70})
         }
         
         print(f"Employee: {employee_profile['name']} ({employee_profile['role']})")
@@ -250,14 +319,20 @@ if __name__ == "__main__":
         
         print("📊 GAP ANALYSIS RESULTS:")
         print(f"  Overall Skill Match: {output['overall_skill_match']}")
-        print(f"  Readiness Level: {output['readiness_level']}")
+        if 'readiness_level' in output:
+            print(f"  Readiness Level: {output['readiness_level']}")
         print(f"  Matched Skills: {output['matched_skills']}")
         print(f"  Missing Skills: {output['missing_skills']}")
         
         if output['score_gaps']:
-            print("  Score Gaps:")
+            print("  Assessment Score Gaps:")
             for score_type, gap in output['score_gaps'].items():
-                print(f"    • {score_type}: {gap['employee']} → {gap['required']} (gap: {gap['required'] - gap['employee']})")
+                print(f"    • {score_type}: {gap['employee']} → {gap['required']} ({gap['status']})")
+        
+        if output.get('rating_gaps'):
+            print("  Performance/Potential Rating Gaps:")
+            for rating_type, gap in output['rating_gaps'].items():
+                print(f"    • {rating_type}: {gap['employee']} → {gap['required']} ({gap['status']})")
         
         print("  Development Recommendations:")
         for j, rec in enumerate(output['recommendations'], 1):

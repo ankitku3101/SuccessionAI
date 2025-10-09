@@ -1,5 +1,5 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException # type: ignore
+from fastapi.middleware.cors import CORSMiddleware # type: ignore
 from typing import List
 from pydantic import BaseModel
 import uvicorn
@@ -9,14 +9,18 @@ from logging.handlers import TimedRotatingFileHandler
 import os
 
 
-from nine_box_matrix import NineBoxMatrix
-from nine_box_visualizer import NineBoxVisualizer
-from gap_analysis_agent import GapAnalysisAgent
-from mongo_data_service import (
+from segmentation.nine_box_matrix import NineBoxMatrix
+from segmentation.nine_box_visualizer import NineBoxDataProvider
+from gap_analysis.gap_analysis_agent import GapAnalysisAgent
+from readiness.employee_readiness_model import EmployeeReadinessModel, EmployeeFeatures
+from idp_generation.idp_generator import generate_employee_idp
+from db_services.mongo_data_service import (
     get_employee_for_nine_box,
     get_employees_for_batch_analysis,
     get_employee_and_role_for_gap_analysis,
     get_all_employees_for_visualization,
+    get_employee_for_readiness_prediction,
+    get_employees_for_batch_readiness_prediction,
     MongoDataFetcher
 )
 
@@ -65,6 +69,7 @@ uvicorn_error_logger.addHandler(handler)
 
 matrix = NineBoxMatrix()
 gap_agent = GapAnalysisAgent()
+readiness_model = EmployeeReadinessModel()
 
 # Pydantic Models for API
 class EmployeeIdRequest(BaseModel):
@@ -72,7 +77,7 @@ class EmployeeIdRequest(BaseModel):
     employee_id: str
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "employee_id": "68e2c736457c490e4e901139"
             }
@@ -83,7 +88,7 @@ class EmployeeBatchRequest(BaseModel):
     employee_ids: List[str]
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "employee_ids": [
                     "68e2c736457c490e4e901139",
@@ -99,10 +104,33 @@ class GapAnalysisRequest(BaseModel):
     role_name: str = None  # Optional, will use employee's target_success_role if not provided
     
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "employee_id": "68e2c736457c490e4e901139",
                 "role_name": "Technical Lead"
+            }
+        }
+
+class ReadinessFeatures(BaseModel):
+    """Manual features input for readiness prediction."""
+    performance_rating: float
+    potential_rating: float
+    leadership_score: int
+    missing_skills_count: int
+    technical_score: int
+    communication_score: int
+    experience_years: int
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "performance_rating": 4.2,
+                "potential_rating": 3.8,
+                "leadership_score": 75,
+                "missing_skills_count": 2,
+                "technical_score": 85,
+                "communication_score": 78,
+                "experience_years": 4
             }
         }
 
@@ -168,40 +196,6 @@ async def segment_batch_employees(request: EmployeeBatchRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Batch segmentation failed: {str(e)}")
 
-# @app.get("/visualize", summary="Generate Nine-Box Matrix Visual from MongoDB", description="Fetch all employees from MongoDB and create nine-box matrix visualization")
-# async def create_visualization():
-#     """Generate visual chart using all employees from MongoDB."""
-#     try:
-#         # Fetch all employees from MongoDB
-#         employees_data = get_all_employees_for_visualization()
-#         if not employees_data:
-#             raise HTTPException(status_code=404, detail="No employees found in database")
-        
-#         # Create enhanced visualization
-#         visualizer = NineBoxVisualizer()
-        
-#         # Ensure visuals directory exists
-#         os.makedirs("visuals", exist_ok=True)
-        
-#         visualizer.create_matplotlib_chart(
-#             employees_data, 
-#             save_path="visuals/latest_nine_box_matrix.png",
-#             show_names=True
-#         )
-        
-#         # Get segmentation results for response
-#         results = matrix.segment_employees(employees_data)
-#         summary = matrix.get_segment_summary(results)
-        
-#         return {
-#             "message": "Enhanced visualization created successfully from MongoDB data",
-#             "chart_path": "visuals/enhanced_mongo_nine_box_matrix.png",
-#             "total_employees": len(employees_data),
-#             "segment_distribution": summary,
-#             "chart_url": "/download/chart"
-#         }
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"Visualization failed: {str(e)}")
 
 @app.get("/visualize/data", summary="Get Nine-Box Matrix Data for Frontend", description="Fetch all employees from MongoDB and return structured data for frontend visualization")
 async def get_visualization_data():
@@ -212,9 +206,9 @@ async def get_visualization_data():
         if not employees_data:
             raise HTTPException(status_code=404, detail="No employees found in database")
         
-        # Create visualizer and get structured data
-        visualizer = NineBoxVisualizer()
-        visualization_data = visualizer.get_visualization_data(employees_data)
+        # Create data provider and get structured data
+        data_provider = NineBoxDataProvider()
+        visualization_data = data_provider.get_visualization_data(employees_data)
         
         return {
             "success": True,
@@ -234,9 +228,9 @@ async def get_filtered_visualization_data(request: EmployeeBatchRequest):
         if not employees_data:
             raise HTTPException(status_code=404, detail="No employees found with provided IDs")
         
-        # Create visualizer and get structured data
-        visualizer = NineBoxVisualizer()
-        visualization_data = visualizer.get_visualization_data(employees_data)
+        # Create data provider and get structured data
+        data_provider = NineBoxDataProvider()
+        visualization_data = data_provider.get_visualization_data(employees_data)
         
         return {
             "success": True,
@@ -278,19 +272,174 @@ async def perform_gap_analysis(request: GapAnalysisRequest):
         return {
             "employee_info": {
                 "mongo_id": request.employee_id,
-                "name": employee_data["name"],
                 "role": employee_data["role"],
-                "performance_rating": employee_data["performance_rating"],
-                "potential_rating": employee_data["potential_rating"]
+                "experience_years": employee_data["experience_years"],
             },
-            "target_role": role_data["role"],
-            "gap_analysis": output
+            "target_role_info": {
+                "role": role_data["role"],
+                "required_experience": role_data["required_experience"],
+            },
+            "gap_analysis": {
+                "overall_skill_match": output.get("overall_skill_match", "N/A"),
+                "matched_skills": output.get("matched_skills", []),
+                "missing_skills": output.get("missing_skills", []),
+                "score_gaps": output.get("score_gaps", {}),
+                "rating_gaps": output.get("rating_gaps", {}),
+                "recommendations": output.get("recommendations", []),
+            }
         }
         
     except HTTPException:
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Gap analysis failed: {str(e)}")
+
+@app.post("/readiness/predict", summary="Predict Employee Readiness from MongoDB", description="Fetch employee from MongoDB and predict readiness status using ML model")
+async def predict_employee_readiness(request: EmployeeIdRequest):
+    """Predict employee readiness status using MongoDB data."""
+    try:
+        # Fetch employee from MongoDB with calculated missing skills
+        employee_data = get_employee_for_readiness_prediction(request.employee_id)
+        if not employee_data:
+            raise HTTPException(status_code=404, detail=f"Employee with ID {request.employee_id} not found")
+        
+        # Extract features for ML model
+        features = EmployeeFeatures(
+            performance_rating=employee_data["performance_rating"],
+            potential_rating=employee_data["potential_rating"],
+            leadership_score=employee_data["assessment_scores"]["leadership"],
+            missing_skills_count=employee_data["missing_skills_count"],
+            technical_score=employee_data["assessment_scores"]["technical"],
+            communication_score=employee_data["assessment_scores"]["communication"],
+            experience_years=employee_data["experience_years"]
+        )
+        
+        # Make prediction
+        prediction = readiness_model.predict_readiness(features, request.employee_id)
+        
+        return {
+            "employee_info": {
+                "mongo_id": request.employee_id,
+                "name": employee_data["name"],
+                "role": employee_data["role"],
+                "target_role": employee_data["target_success_role"],
+                "performance_rating": employee_data["performance_rating"],
+                "potential_rating": employee_data["potential_rating"]
+            },
+            "input_features": {
+                "performance_rating": features.performance_rating,
+                "potential_rating": features.potential_rating,
+                "leadership_score": features.leadership_score,
+                "missing_skills_count": features.missing_skills_count,
+                "technical_score": features.technical_score,
+                "communication_score": features.communication_score,
+                "experience_years": features.experience_years
+            },
+            "prediction": {
+                "readiness_status": prediction.predicted_readiness,
+                "confidence": round(prediction.confidence, 3),
+                "probabilities": {k: round(v, 3) for k, v in prediction.probabilities.items()}
+            }
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Readiness prediction failed: {str(e)}")
+
+@app.post("/readiness/predict/batch", summary="Batch Predict Employee Readiness", description="Predict readiness status for multiple employees from MongoDB")
+async def predict_batch_employee_readiness(request: EmployeeBatchRequest):
+    """Predict readiness status for multiple employees."""
+    try:
+        # Fetch employees from MongoDB
+        employees_data = get_employees_for_batch_readiness_prediction(request.employee_ids)
+        if not employees_data:
+            raise HTTPException(status_code=404, detail="No employees found with provided IDs")
+        
+        results = []
+        for employee_data in employees_data:
+            try:
+                # Extract features for ML model
+                features = EmployeeFeatures(
+                    performance_rating=employee_data["performance_rating"],
+                    potential_rating=employee_data["potential_rating"],
+                    leadership_score=employee_data["assessment_scores"]["leadership"],
+                    missing_skills_count=employee_data["missing_skills_count"],
+                    technical_score=employee_data["assessment_scores"]["technical"],
+                    communication_score=employee_data["assessment_scores"]["communication"],
+                    experience_years=employee_data["experience_years"]
+                )
+                
+                # Make prediction
+                prediction = readiness_model.predict_readiness(features, employee_data["id"])
+                
+                results.append({
+                    "employee_id": employee_data["id"],
+                    "employee_name": employee_data["name"],
+                    "current_role": employee_data["role"],
+                    "target_role": employee_data["target_success_role"],
+                    "readiness_status": prediction.predicted_readiness,
+                    "confidence": round(prediction.confidence, 3),
+                    "probabilities": {k: round(v, 3) for k, v in prediction.probabilities.items()}
+                })
+                
+            except Exception as e:
+                results.append({
+                    "employee_id": employee_data["id"],
+                    "employee_name": employee_data["name"],
+                    "error": f"Prediction failed: {str(e)}"
+                })
+        
+        # Generate summary
+        status_summary = {}
+        successful_predictions = [r for r in results if "readiness_status" in r]
+        for result in successful_predictions:
+            status = result["readiness_status"]
+            status_summary[status] = status_summary.get(status, 0) + 1
+        
+        return {
+            "total_requested": len(request.employee_ids),
+            "total_found": len(employees_data),
+            "successful_predictions": len(successful_predictions),
+            "failed_predictions": len(results) - len(successful_predictions),
+            "summary": status_summary,
+            "results": results
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Batch readiness prediction failed: {str(e)}")
+
+@app.post("/readiness/predict/manual", summary="Predict Readiness with Manual Features", description="Predict employee readiness using manually provided features")
+async def predict_readiness_manual_features(features: ReadinessFeatures):
+    """Predict employee readiness using manually provided features."""
+    try:
+        # Convert Pydantic model to EmployeeFeatures dataclass
+        employee_features = EmployeeFeatures(
+            performance_rating=features.performance_rating,
+            potential_rating=features.potential_rating,
+            leadership_score=features.leadership_score,
+            missing_skills_count=features.missing_skills_count,
+            technical_score=features.technical_score,
+            communication_score=features.communication_score,
+            experience_years=features.experience_years
+        )
+        
+        # Make prediction
+        prediction = readiness_model.predict_readiness(employee_features, "MANUAL_INPUT")
+        
+        return {
+            "input_features": features.dict(),
+            "prediction": {
+                "readiness_status": prediction.predicted_readiness,
+                "confidence": round(prediction.confidence, 3),
+                "probabilities": {k: round(v, 3) for k, v in prediction.probabilities.items()}
+            }
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Manual readiness prediction failed: {str(e)}")
 
 @app.get("/database/status", summary="Check MongoDB Connection", description="Check database connection and get collection statistics")
 async def database_status():
@@ -303,14 +452,29 @@ async def database_status():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database check failed: {str(e)}")
 
-# @app.get("/download/chart", summary="Download Chart File", description="Download the generated nine-box matrix chart")
-# async def download_chart():
-#     """Download the generated chart file."""
-#     chart_path = "visuals/latest_nine_box_matrix.png"
-#     if os.path.exists(chart_path):
-#         return FileResponse(chart_path, media_type="image/png", filename="latest_nine_box_matrix.png")
-#     else:
-#         raise HTTPException(status_code=404, detail="Chart not found. Please generate visualization first.")
+@app.post("/idp/generate/enhanced", summary="Generate Enhanced Individual Development Plan", description="Generate comprehensive IDP with LLM integration, web search, and mentor matching")
+async def generate_enhanced_idp_endpoint(request: EmployeeIdRequest):
+    """Generate Enhanced Individual Development Plan for an employee using multi-agent workflow."""
+    try:
+        # Generate IDP using the DB-driven orchestrator
+        result = generate_employee_idp(request.employee_id)
+
+        if result and result.get("success"):
+            return {
+                "success": True,
+                "message": f"Enhanced IDP generated successfully for employee {request.employee_id}",
+                "idp": result.get("idp"),
+                "warning": result.get("warning")  # In case storage failed
+            }
+
+        # If generation failed, propagate error
+        error_msg = result.get("error") if isinstance(result, dict) else "Unknown error"
+        raise HTTPException(status_code=500, detail=f"Enhanced IDP generation failed: {error_msg}")
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Enhanced IDP generation failed: {str(e)}")
 
 @app.get("/health", summary="Health Check", description="Check if the API is running")
 async def health_check():

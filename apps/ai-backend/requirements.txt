@@ -12,4 +12,7 @@ pymongo
 scikit-learn
 pandas
 joblib
+requests
+python-dotenv
+tavily-python
 ngrok
