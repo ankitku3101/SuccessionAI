@@ -4,6 +4,7 @@ import { getMentorCandidates, requestMentorship, updateMe } from '../controllers
 import { getSuccessProfiles } from '../controllers/employee.controller';//added for success-profile
 import { acceptMentorship, getMentorshipStatus } from '../controllers/employee.controller';
 import { me } from '../controllers/auth.contoller';
+import { getDevelopmentPlan } from '../controllers/employee.controller';
 
 const router = Router();
 
@@ -15,6 +16,7 @@ router.get('/success-profile',authenticateJWT,authorizeRoles('employee', 'commit
 //-----------------------------------------//
 router.patch("/mentorship-accept", authenticateJWT, authorizeRoles("employee", "committee"), acceptMentorship);
 router.get("/mentorship-status", authenticateJWT, authorizeRoles("employee"), getMentorshipStatus);
+router.get('/development-plan', authenticateJWT, authorizeRoles('employee'), getDevelopmentPlan);
 
 export default router;
 
