@@ -1,6 +1,8 @@
 import { Response } from 'express';
 import Employee from '../models/Employee';
+import SuccessRoleModel from '../models/SuccessRole';
 import { AuthRequest } from '../middlewares/auth.middleware';
+import SuccessRole from '../models/SuccessRole';
 
 
 // GET /employee/me
@@ -92,3 +94,30 @@ export async function requestMentorship(req: AuthRequest, res: Response) {
 }
 
 
+//GET : to get list of current success profiles
+export async function getSuccessProfiles(req: AuthRequest, res: Response) {
+  try {
+    //Check authentication
+    if (!req.user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+
+    //Fetch all success roles
+    const profiles = await SuccessRole.find({})
+      .select('-__v') 
+      .sort({ required_experience: 1 }); 
+
+    if (!profiles || profiles.length === 0) {
+      return res.status(404).json({ message: 'No success profiles found' });
+    }
+
+    //Send the list
+    return res.status(200).json({
+      count: profiles.length,
+      profiles,
+    });
+  } catch (error) {
+    console.error('Error fetching success profiles:', error);
+    return res.status(500).json({ message: 'Server error', error });
+  }
+}
