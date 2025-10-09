@@ -10,6 +10,7 @@ import ProfileSection from "./sections/ProfileSection"
 import MentorshipSection from "./sections/MentorshipSection"
 import SuccessProfilesSection from "./sections/SuccessProfilesSection"
 import EmployeeGapAnalysis from "./sections/EmployeeGapAnalysis"
+import DashboardView from "./sections/DashboardView"
 
 export default function EmployeeDashboard() {
   const router = useRouter()
@@ -36,7 +37,6 @@ export default function EmployeeDashboard() {
   }, [])
 
   const [profile, setProfile] = React.useState<any>(null)
-  const mentorship = profile?.mentorship
 
   // access control
   React.useEffect(() => {
@@ -97,26 +97,7 @@ export default function EmployeeDashboard() {
               key={activeView}
               className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 px-4 lg:px-6"
             >
-              {activeView === "dashboard" && (
-                <div className="px-4 lg:px-6">
-                  <h1 className="text-xl font-semibold">Employee dashboard</h1>
-                  <p className="text-sm text-muted-foreground">Quick summary</p>
-                  <div className="mt-4 grid gap-2 text-sm">
-                    <div>
-                      <span className="font-medium">Name:</span> {profile?.name}
-                    </div>
-                    <div>
-                      <span className="font-medium">Role:</span>{" "}
-                      {profile?.role || "—"}
-                    </div>
-                    <div>
-                      <span className="font-medium">Mentorship Status:</span>{" "}
-                      {mentorship?.status || "none"}
-                    </div>
-                  </div>
-                </div>
-              )}
-
+              {activeView === "dashboard" && <DashboardView />}
               {activeView === "profile" && <ProfileSection />}
               {activeView === "mentorship" && <MentorshipSection />}
               {activeView === "successProfiles" && <SuccessProfilesSection />}
