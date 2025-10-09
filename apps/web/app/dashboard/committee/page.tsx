@@ -24,7 +24,6 @@ export default function CommitteeDashboard() {
   const [selected, setSelected] = useState<any | null>(null)
   const [goals, setGoals] = useState("")
   const [trainings, setTrainings] = useState("")
-  const [successProfiles, setSuccessProfiles] = useState<any[]>([])
 
   // Access control
   useEffect(() => {
@@ -34,17 +33,6 @@ export default function CommitteeDashboard() {
     if (user?.user_role !== "committee") return router.replace("/dashboard/employee")
     setReady(true)
   }, [router])
-
-  // Load Success Profiles only
-  useEffect(() => {
-    async function load() {
-      if (activeView === "profiles") {
-        const res = await apiGet("/api/committee/success-profiles")
-        if (res.ok) setSuccessProfiles(await res.json())
-      }
-    }
-    load()
-  }, [activeView])
 
   if (!ready) return null
 
@@ -80,7 +68,7 @@ export default function CommitteeDashboard() {
                   setTrainings={setTrainings}
                 />
               )}
-              {activeView === "profiles" && <SuccessProfilesSection profiles={successProfiles} />}
+              {activeView === "profiles" && <SuccessProfilesSection />}
               {activeView === "reports" && <CommitteeReports />}
               {activeView === "nine_box_matrix" && <NineBoxMatrix />}
             </div>
