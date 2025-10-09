@@ -10,6 +10,11 @@ const employeeSchema = new mongoose.Schema({
   id: Number,
   name: String,
   role: String,
+  designation: {
+    type: String,
+    enum: ["JUNIOR","SENIOR"],
+    default: "JUNIOR"
+  },
   department: String,
   education: String,
   recruitment_channel: String,
