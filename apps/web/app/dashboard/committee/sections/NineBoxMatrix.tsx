@@ -92,6 +92,12 @@ export default function NineBoxMatrix() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const colors = {
+    background: isDarkMode ? "#0B0B0B" : "#FFFFFF",
+    foreground: isDarkMode ? "#EAEAEA" : "#1A1A1A",
+    mutedForeground: isDarkMode ? "#9CA3AF" : "#4B5563",
+    destructive: isDarkMode ? "#F87171" : "#B91C1C",
+  };
 
   useEffect(() => {
     const updateTheme = () => {
@@ -163,7 +169,7 @@ export default function NineBoxMatrix() {
         marker: {
           size: 8,
           color: color,
-          line: { width: 1, color: 'var(--background)' } // DARK MODE FIX: Use main background for contrast
+          line: { width: 1, color: colors.background } // DARK MODE FIX: Use main background for contrast
         },
         name: employees[0]?.segment || segment,
         hovertemplate: '<b>%{text}</b><br>Performance: %{x:.2f}<br>Potential: %{y:.2f}<extra></extra>'
@@ -179,8 +185,8 @@ export default function NineBoxMatrix() {
         y0: seg.bounds.y_min,
         y1: seg.bounds.y_max,
         fillcolor: seg.color,
-        line: { width: 2, color: 'var(--background)' }, // DARK MODE FIX: Use main background for contrast
-        opacity: isDarkMode ? 0.4 : 0.25, // DARK MODE FIX: Increase opacity in dark mode
+        line: { width: 1, color: colors.background },
+        opacity: isDarkMode ? 0.4 : 0.25,
         layer: 'below' as const,
       })),
     ];
@@ -192,7 +198,7 @@ export default function NineBoxMatrix() {
       showarrow: false,
       font: { 
         size: 11, 
-        color: 'var(--color-muted-foreground)',
+        color: colors.destructive ,
         family: 'Inter, sans-serif' 
       },
     }));
@@ -203,7 +209,7 @@ export default function NineBoxMatrix() {
           font: { 
             family: 'Inter, sans-serif', 
             size: 24, 
-            color: 'var(--color-foreground)'
+            color: colors.foreground
           },
           x: 0.5,
           xanchor: 'center',
@@ -211,7 +217,7 @@ export default function NineBoxMatrix() {
       xaxis: {
         title: {
             text: styling?.x_axis_label || 'Performance',
-            font: { family: 'Inter, sans-serif', size: 14, color: 'var(--color-muted-foreground)' }
+            font: { family: 'Inter, sans-serif', size: 14, color: colors.mutedForeground }
         },
         range: [config.axis_limits.x_min, config.axis_limits.x_max],
         showgrid: false,
@@ -223,7 +229,7 @@ export default function NineBoxMatrix() {
       yaxis: {
         title: {
             text: styling?.y_axis_label || 'Potential',
-            font: { family: 'Inter, sans-serif', size: 14, color: 'var(--color-muted-foreground)' }
+            font: { family: 'Inter, sans-serif', size: 14, color: colors.mutedForeground }
         },
         range: [config.axis_limits.y_min, config.axis_limits.y_max],
         showgrid: false,
@@ -240,7 +246,7 @@ export default function NineBoxMatrix() {
         y: -0.2,
         xanchor: 'center',
         x: 0.5,
-        font: { color: 'var(--color-muted-foreground)' },
+        font: { color: colors.mutedForeground },
         bgcolor: 'transparent',
       },
       margin: { t: 80, b: 120, l: 60, r: 60 },
@@ -287,26 +293,15 @@ export default function NineBoxMatrix() {
   }
 
   return (
-    <div className="min-h-screen p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen p-2 sm:p-3">
         <div className="max-w-7xl mx-auto">
-          <header className="relative flex items-center justify-between mb-6">
-             <div className="flex items-center gap-3">
-                 <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
-                    <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 012-2h2a2 2 0 012 2v6m-8-12V7a2 2 0 012-2h4a2 2 0 012 2v2m-6 9h.01M5 12H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2v-6a2 2 0 00-2-2h-1m-6-4h.01M17 8h.01"></path></svg>
-                 </div>
-                 <h1 className="text-2xl font-bold text-[var(--foreground)]">
-                    Talent Matrix
-                 </h1>
-             </div>
-          </header>
-          
           <div className="bg-card rounded-xl shadow-lg border border-[var(--border)] p-2 sm:p-4">
             <Plot
               data={traces as any}
               layout={layout as any}
               config={{
                 responsive: true,
-                displayModeBar: false,
+                displayModeBar: true,
                 displaylogo: false,
               }}
               style={{ width: '100%', height: '100%' }}
