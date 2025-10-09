@@ -114,6 +114,13 @@ export function AppSidebar({
             icon: IconUserCircle,
             onClick: () => setActiveView?.("successProfiles"),
           },
+          {
+            id: "employeeGapAnalysis",
+            title: "Gap Analysis",
+            url: "#",
+            icon: IconUserCircle,
+            onClick: () => setActiveView?.("employeeGapAnalysis"),
+          },
         ]
 
   return (

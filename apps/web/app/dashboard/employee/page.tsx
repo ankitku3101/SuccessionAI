@@ -9,6 +9,7 @@ import { apiGet } from "@/lib/api"
 import ProfileSection from "./sections/ProfileSection"
 import MentorshipSection from "./sections/MentorshipSection"
 import SuccessProfilesSection from "./sections/SuccessProfilesSection"
+import EmployeeGapAnalysis from "./sections/EmployeeGapAnalysis"
 
 export default function EmployeeDashboard() {
   const router = useRouter()
@@ -16,7 +17,7 @@ export default function EmployeeDashboard() {
 
   // which view is active
   const [activeView, setActiveView] = React.useState<
-    "profile" | "mentorship" | "dashboard" | "successProfiles"
+    "profile" | "mentorship" | "dashboard" | "successProfiles" | "employeeGapAnalysis"
   >("dashboard")
 
   // wrapper so AppSidebar can call with a string and we safely update the typed state
@@ -25,7 +26,8 @@ export default function EmployeeDashboard() {
       view === "profile" ||
       view === "mentorship" ||
       view === "dashboard" ||
-      view === "successProfiles"
+      view === "successProfiles" ||
+      view === "employeeGapAnalysis"
     ) {
       setActiveView(view)
     } else {
@@ -118,6 +120,7 @@ export default function EmployeeDashboard() {
               {activeView === "profile" && <ProfileSection />}
               {activeView === "mentorship" && <MentorshipSection />}
               {activeView === "successProfiles" && <SuccessProfilesSection />}
+              {activeView === "employeeGapAnalysis" && <EmployeeGapAnalysis />}
             </div>
           </div>
         </div>
