@@ -11,6 +11,7 @@ import EmployeesSection from "./sections/EmployeeSection"
 import SuccessProfilesSection from "./sections/SuccessProfilesSection"
 import CommitteeReports from "./sections/CommitteeReports"
 import { apiGet } from "@/lib/api"
+import NineBoxMatrix from "./sections/NineBoxMatrix"
 
 export default function CommitteeDashboard() {
   const router = useRouter()
@@ -81,6 +82,7 @@ export default function CommitteeDashboard() {
               )}
               {activeView === "profiles" && <SuccessProfilesSection profiles={successProfiles} />}
               {activeView === "reports" && <CommitteeReports />}
+              {activeView === "nine_box_matrix" && <NineBoxMatrix />}
             </div>
           </div>
         </div>

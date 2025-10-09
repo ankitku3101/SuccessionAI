@@ -77,6 +77,13 @@ export function AppSidebar({
             icon: IconReport,
             onClick: () => setActiveView?.("reports"),
           },
+          {
+            id: "nine_box_matrix",
+            title: "9-Box Matrix",
+            url: "#",
+            icon: IconReport,
+            onClick: () => setActiveView?.("nine_box_matrix"),
+          },
         ]
       : [
           {
