@@ -1,8 +1,7 @@
 import { Response } from 'express';
 import Employee from '../models/Employee';
-import SuccessRoleModel from '../models/SuccessRole';
 import { AuthRequest } from '../middlewares/auth.middleware';
-import SuccessRole from '../models/SuccessRole';
+import SuccessRoleModel from '../models/SuccessRole';
 
 
 // GET /employee/me
@@ -69,33 +68,51 @@ export async function getMentorCandidates(req: AuthRequest, res: Response) {
   res.json(candidates);
 }
 
-//GET : to get list of current success profiles
+// GET /employee/success-profile
 export async function getSuccessProfiles(req: AuthRequest, res: Response) {
   try {
-    //Check authentication
+    //Authentication check
     if (!req.user) {
       return res.status(401).json({ message: 'Not authenticated' });
     }
 
-    //Fetch all success roles
-    const profiles = await SuccessRole.find({})
-      .select('-__v') 
-      .sort({ required_experience: 1 }); 
+    // using correct model
+    const profiles = await SuccessRoleModel.find({})
+      .select(
+        'role role_description required_experience required_skills min_performance_rating min_potential_rating required_scores'
+      )
+      .sort({ required_experience: 1 })
+      .lean(); // returns plain JS objects (good for frontend)
 
     if (!profiles || profiles.length === 0) {
       return res.status(404).json({ message: 'No success profiles found' });
     }
 
-    //Send the list
+    //Clean data (ensure empty arrays, not undefined)
+    const formattedProfiles = profiles.map((p) => ({
+      role: p.role || '',
+      role_description: p.role_description || '',
+      required_experience: p.required_experience || 0,
+      required_skills: p.required_skills && Array.isArray(p.required_skills) ? p.required_skills : [],
+      min_performance_rating: p.min_performance_rating || 0,
+      min_potential_rating: p.min_potential_rating || 0,
+      required_scores: {
+        technical: p.required_scores?.technical ?? 0,
+        communication: p.required_scores?.communication ?? 0,
+        leadership: p.required_scores?.leadership ?? 0,
+      },
+    }));
+
     return res.status(200).json({
-      count: profiles.length,
-      profiles,
+      count: formattedProfiles.length,
+      profiles: formattedProfiles,
     });
   } catch (error) {
     console.error('Error fetching success profiles:', error);
     return res.status(500).json({ message: 'Server error', error });
   }
 }
+
 
 // POST /employee/mentorship-request
 export async function requestMentorship(req: AuthRequest, res: Response) {
