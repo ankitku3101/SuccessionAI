@@ -59,6 +59,65 @@ export async function updateEmployee(req: AuthRequest, res: Response) {
   if (!updated) return res.status(404).json({ message: 'Employee not found' });
   res.json(updated);
 }
+// POST /committee/success-profile
+export async function createSuccessProfile(req: AuthRequest, res: Response) {
+  if (!requireCommittee(req, res)) return;
+
+  try {
+    const {
+      role,
+      role_description,
+      required_experience,
+      required_skills,
+      min_performance_rating,
+      min_potential_rating,
+      required_scores,
+    } = req.body;
+
+    // Basic validation
+    if (!role) {
+      return res.status(400).json({ message: "Role name is required" });
+    }
+
+    // Check if role already exists
+    const existing = await SuccessRole.findOne({ role: role.trim() });
+    if (existing) {
+      return res.status(409).json({ message: "A success profile with this role already exists" });
+    }
+
+    // Create a new success profile
+    const newProfile = new SuccessRole({
+      role: role.trim(),
+      role_description: role_description || "",
+      required_experience: Number(required_experience) || 0,
+      required_skills: Array.isArray(required_skills)
+        ? required_skills
+        : typeof required_skills === "string"
+        ? required_skills.split(",").map((s: string) => s.trim())
+        : [],
+      min_performance_rating: Number(min_performance_rating) || 0,
+      min_potential_rating: Number(min_potential_rating) || 0,
+      required_scores: {
+        technical: Number(required_scores?.technical) || 0,
+        communication: Number(required_scores?.communication) || 0,
+        leadership: Number(required_scores?.leadership) || 0,
+      },
+    });
+
+    const savedProfile = await newProfile.save();
+
+    res.status(201).json({
+      message: "Success profile created successfully",
+      profile: savedProfile,
+    });
+  } catch (error) {
+    console.error("Error creating success profile:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+}
+
+
+
 
 // GET /success-profiles
 export async function successProfiles(req: AuthRequest, res: Response) {
