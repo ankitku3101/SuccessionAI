@@ -125,7 +125,7 @@ export default function NineBoxMatrix() {
     });
 
     // Fetch data
-    fetch(`${process.env.NEXT_PUBLIC_API_AI_URL}/visualize/data`) 
+    fetch(`${process.env.NEXT_PUBLIC_API_AI_URL}/visualize/data`, { headers: { 'skip_zrok_interstitial': '1' }})
       .then(res => res.json())
       .then((result: ApiResponse) => {
         if (result.success) {
