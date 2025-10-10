@@ -31,15 +31,54 @@ export async function updateMe(req: AuthRequest, res: Response) {
 
   const updatable: any = {};
   const allowed = ['skills', 'target_success_role', 'num_trainings', 'assessment_scores', 'performance_rating', 'potential_rating'];
+
   for (const key of allowed) {
-    if (req.body[key] !== undefined) updatable[key] = req.body[key];
+    if (req.body[key] !== undefined) {
+
+      // <<< FIX START >>>
+      // Specifically handle the assessment_scores field
+      if (key === 'assessment_scores') {
+        let scores = req.body[key];
+        // If the frontend sends a string, try to parse it as JSON
+        if (typeof scores === 'string') {
+          try {
+            scores = JSON.parse(scores);
+          } catch (error) {
+            // If parsing fails, it's a malformed request.
+            return res.status(400).json({ message: 'Assessment scores must be a valid JSON object string.' });
+          }
+        }
+        // Ensure it's an object before trying to save
+        if (typeof scores !== 'object' || scores === null) {
+          return res.status(400).json({ message: 'Assessment scores must be an object.' });
+        }
+        updatable[key] = scores;
+      } else {
+        // For all other keys, assign as before
+        updatable[key] = req.body[key];
+      }
+      // <<< FIX END >>>
+    }
   }
-  updatable['updatedAt'] = new Date();
 
-  const updated = await Employee.findByIdAndUpdate(req.user.id, { $set: updatable }, { new: true }).select('-password');
-  if (!updated) return res.status(404).json({ message: 'User not found' });
+  // It's good practice to avoid manually setting timestamps if you have them in the schema
+  // Mongoose handles `updatedAt` automatically with `timestamps: true`
+  // updatable['updatedAt'] = new Date(); // This line can be removed
 
-  res.json(updated);
+  if (Object.keys(updatable).length === 0) {
+    return res.status(400).json({ message: 'No valid fields provided for update.' });
+  }
+
+  try {
+    const updated = await Employee.findByIdAndUpdate(req.user.id, { $set: updatable }, { new: true, runValidators: true }).select('-password');
+    if (!updated) return res.status(404).json({ message: 'User not found' });
+
+    res.json(updated);
+  } catch (error: any) {
+    // Catch potential validation errors from Mongoose
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: 'Failed to update profile.', error: error.message });
+  }
 }
 
 // GET /employee/mentor-candidates

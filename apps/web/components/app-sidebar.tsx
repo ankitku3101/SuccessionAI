@@ -109,7 +109,7 @@ export function AppSidebar({
           },
           {
             id: "successProfiles",
-            title: "Success Role",
+            title: "View Success Profiles",
             url: "#",
             icon: IconUserCircle,
             onClick: () => setActiveView?.("successProfiles"),
