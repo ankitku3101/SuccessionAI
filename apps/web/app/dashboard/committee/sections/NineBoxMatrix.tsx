@@ -125,7 +125,7 @@ export default function NineBoxMatrix() {
     });
 
     // Fetch data
-    fetch('http://localhost:8000/visualize/data') 
+    fetch(`${process.env.NEXT_PUBLIC_API_AI_URL}/visualize/data`) 
       .then(res => res.json())
       .then((result: ApiResponse) => {
         if (result.success) {

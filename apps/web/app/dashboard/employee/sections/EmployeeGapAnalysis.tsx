@@ -89,7 +89,7 @@ export default function EmployeeGapAnalysis() {
     setLoading(true)
     setData(null)
     try {
-      const res = await apiPost("http://localhost:8000/gap-analysis", {
+      const res = await apiPost(`${process.env.NEXT_PUBLIC_API_AI_URL}/gap-analysis`, {
         employee_id: employee._id || employee.id || employee.employee_id,
         role_name: selectedRole,
       })
