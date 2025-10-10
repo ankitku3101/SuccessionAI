@@ -121,6 +121,13 @@ export function AppSidebar({
             icon: IconUserCircle,
             onClick: () => setActiveView?.("employeeGapAnalysis"),
           },
+          {
+            id: "enhancedIDP",
+            title: "Enhanced IDP",
+            url: "#",
+            icon: IconFileAi,
+            onClick: () => setActiveView?.("enhancedIDP"),
+          },
         ]
 
   return (

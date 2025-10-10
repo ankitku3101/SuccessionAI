@@ -11,6 +11,7 @@ import MentorshipSection from "./sections/MentorshipSection"
 import SuccessProfilesSection from "./sections/SuccessProfilesSection"
 import EmployeeGapAnalysis from "./sections/EmployeeGapAnalysis"
 import DashboardView from "./sections/DashboardView"
+import EnhancedIDP from "./sections/EnhancedIDP"
 
 export default function EmployeeDashboard() {
   const router = useRouter()
@@ -18,7 +19,7 @@ export default function EmployeeDashboard() {
 
   // which view is active
   const [activeView, setActiveView] = React.useState<
-    "profile" | "mentorship" | "dashboard" | "successProfiles" | "employeeGapAnalysis"
+    "profile" | "mentorship" | "dashboard" | "successProfiles" | "employeeGapAnalysis" | "enhancedIDP"
   >("dashboard")
 
   // wrapper so AppSidebar can call with a string and we safely update the typed state
@@ -28,7 +29,8 @@ export default function EmployeeDashboard() {
       view === "mentorship" ||
       view === "dashboard" ||
       view === "successProfiles" ||
-      view === "employeeGapAnalysis"
+      view === "employeeGapAnalysis" ||
+      view === "enhancedIDP"
     ) {
       setActiveView(view)
     } else {
@@ -102,6 +104,7 @@ export default function EmployeeDashboard() {
               {activeView === "mentorship" && <MentorshipSection />}
               {activeView === "successProfiles" && <SuccessProfilesSection />}
               {activeView === "employeeGapAnalysis" && <EmployeeGapAnalysis />}
+              {activeView === "enhancedIDP" && <EnhancedIDP />}
             </div>
           </div>
         </div>

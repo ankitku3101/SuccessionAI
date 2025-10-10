@@ -1,13 +1,14 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { apiGet, apiPost } from "@/lib/api"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import { User, Target, Lightbulb } from "lucide-react"
+import { User, Target, TrendingUp, Award, AlertCircle, CheckCircle2, XCircle, BarChart3, Sparkles } from "lucide-react"
 import clsx from "clsx"
 
 export default function EmployeeGapAnalysis() {
@@ -18,7 +19,6 @@ export default function EmployeeGapAnalysis() {
   const [selectedRole, setSelectedRole] = useState<string>("")
   const [loadingInitial, setLoadingInitial] = useState(true)
 
-  // Normalize role object to { role_name, ... }
   const normalizeRoles = (arr: any[]) =>
     arr.map((r) => ({
       role_name: (r.role || r.role_name || r.roleTitle || "").toString(),
@@ -44,7 +44,6 @@ export default function EmployeeGapAnalysis() {
           setSuccessRoles(valid)
           if (valid.length > 0) setSelectedRole(valid[0].role_name)
         } else {
-          // rolesRes not ok
           setSuccessRoles([])
         }
       } catch (err) {
@@ -57,33 +56,30 @@ export default function EmployeeGapAnalysis() {
     loadInitial()
   }, [])
 
-  // Colors for bars based on gap severity
   const getBarColor = (employeeVal: number, requiredVal: number) => {
     const diff = requiredVal - employeeVal
-    if (diff <= 0) return "from-emerald-400/80 to-emerald-500/60"
-    if (diff <= 5) return "from-blue-400/60 to-blue-500/40"
-    if (diff <= 15) return "from-amber-400/60 to-amber-500/40"
-    return "from-rose-400/70 to-rose-500/50"
+    if (diff <= 0) return "bg-gradient-to-r from-green-500 to-emerald-500"
+    if (diff <= 5) return "bg-gradient-to-r from-blue-500 to-cyan-500"
+    if (diff <= 15) return "bg-gradient-to-r from-amber-500 to-orange-500"
+    return "bg-gradient-to-r from-rose-500 to-red-500"
   }
 
   const getStatusBadge = (employeeVal: number, requiredVal: number) => {
-    const diff = employeeVal - requiredVal // positive means surplus
-    if (requiredVal === 0) return { label: "N/A", cls: "bg-gray-100 text-gray-800" }
-    if (diff >= 0) return { label: `OK (+${diff})`, cls: "bg-emerald-100 text-emerald-700" }
-    if (Math.abs(diff) <= 5) return { label: `Near (${diff})`, cls: "bg-amber-100 text-amber-800" }
-    return { label: `Gap (${diff})`, cls: "bg-rose-100 text-rose-700" }
+    const diff = employeeVal - requiredVal
+    if (requiredVal === 0) return { label: "N/A", cls: "bg-[var(--muted-900)] text-[var(--muted-400)] border-[var(--border)]", icon: AlertCircle }
+    if (diff >= 0) return { label: "Met", cls: "bg-green-500/10 text-green-400 border-green-500/20", icon: CheckCircle2 }
+    if (Math.abs(diff) <= 5) return { label: "Close", cls: "bg-amber-500/10 text-amber-400 border-amber-500/20", icon: AlertCircle }
+    return { label: "Gap", cls: "bg-rose-500/10 text-rose-400 border-rose-500/20", icon: XCircle }
   }
 
   const safePercent = (employeeVal: number, requiredVal: number) => {
     if (!requiredVal || requiredVal === 0) {
-      // if required is zero but employee has some value, treat as 100%
       return employeeVal > 0 ? 100 : 0
     }
     const p = Math.round((employeeVal / requiredVal) * 100)
     return Math.max(0, Math.min(100, p))
   }
 
-  // Trigger the analysis API
   const fetchGapAnalysis = async () => {
     if (!employee || !selectedRole) return
     setLoading(true)
@@ -115,336 +111,449 @@ export default function EmployeeGapAnalysis() {
     }
   }
 
-
-  // Initial loading state
-  if (loadingInitial)
+  if (loadingInitial) {
     return (
-      <div className="grid gap-4 md:grid-cols-2">
-        {[1, 2].map((i) => (
-          <Card key={i} className="p-4">
-            <Skeleton className="h-5 w-40 mb-3" />
-            <div className="space-y-2">
-              {[1, 2, 3].map((j) => (
-                <Skeleton key={j} className="h-4 w-full" />
+      <div className="min-h-screen bg-[var(--background)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="space-y-3">
+            <div className="grid gap-3 md:grid-cols-3">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 space-y-3">
+                  <Skeleton className="h-4 w-24 bg-[var(--muted)]" />
+                  <Skeleton className="h-8 w-16 bg-[var(--muted)]" />
+                </div>
               ))}
             </div>
-          </Card>
-        ))}
+          </div>
+        </div>
       </div>
     )
+  }
 
-  if (!employee)
+  if (!employee) {
     return (
-      <Card className="p-6 text-center text-muted-foreground">
-        Unable to load your profile.
-      </Card>
+      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center text-[var(--foreground)]">
+        <Card className="max-w-md w-full mx-4 bg-[var(--card)] border-[var(--border)]">
+          <CardContent className="pt-6 text-center">
+            <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mx-auto mb-4">
+              <User className="w-6 h-6 text-red-500" />
+            </div>
+            <h3 className="text-base font-semibold mb-2 text-[var(--foreground)]">Unable to load profile</h3>
+            <p className="text-sm text-[var(--muted-foreground)]">There was an error loading your employee profile.</p>
+          </CardContent>
+        </Card>
+      </div>
     )
+  }
 
-  // Render
   return (
-    <div className="space-y-6">
-      <h2 className="text-xl font-semibold tracking-tight">Gap Analysis</h2>
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-6"
+        >
+          {/* Header */}
+          <div className="mb-4">
+            <h1 className="text-2xl font-bold text-[var(--foreground)]">Gap Analysis</h1>
+            <p className="text-sm text-[var(--muted-foreground)] mt-0.5">Compare your skills against target roles</p>
+          </div>
 
-      {/* Role selection */}
-      <Card className="border border-border/40 shadow-sm p-4">
-        <label className="font-medium">Select Target Success Role</label>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <div className="w-full md:w-1/2 space-y-2">
-            <Select value={selectedRole} onValueChange={setSelectedRole}>
-                <SelectTrigger className="w-full md:w-64">
+          {/* Role Selection */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
+            className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4"
+          >
+            <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-end">
+              <div className="flex-1 w-full space-y-2">
+                <div className="text-sm font-medium text-[var(--muted-foreground)]">Target Role</div>
+                <Select value={selectedRole} onValueChange={setSelectedRole}>
+                  <SelectTrigger className="w-full bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] h-9">
                     <SelectValue placeholder="Select role" />
-                </SelectTrigger>
-                <SelectContent side="right" sideOffset={6} align="start" className="w-80 h-80 overflow-auto">
+                  </SelectTrigger>
+                  <SelectContent className="bg-[var(--card)] border-[var(--border)] text-[var(--foreground)]">
                     {Array.isArray(successRoles) && successRoles.length > 0 ? (
-                        successRoles.map((r) => (
-                            <SelectItem key={r.role_name} value={r.role_name || `role-${r.role_name}`}>
-                                {r.role_name}
-                            </SelectItem>
-                        ))
-                    ) : (
-                        <SelectItem value="no_roles" disabled>
-                            No roles found
+                      successRoles.map((r) => (
+                        <SelectItem key={r.role_name} value={r.role_name} className="text-[var(--foreground)] focus:bg-[var(--muted)] focus:text-[var(--foreground)]">
+                          {r.role_name}
                         </SelectItem>
+                      ))
+                    ) : (
+                      <SelectItem value="no_roles" disabled className="text-[var(--muted-foreground)]">
+                        No roles found
+                      </SelectItem>
                     )}
-                </SelectContent>
-            </Select>
-          </div>
-
-          <div className="flex gap-3 md:gap-4 w-full md:w-auto">
-            <Button onClick={fetchGapAnalysis} disabled={loading || !selectedRole} className="w-full md:w-auto">
-              {loading ? "Analyzing..." : "Run Gap Analysis"}
-            </Button>
-          </div>
-        </div>
-      </Card>
-
-      {/* If analysis not fetched yet, show employee + target quick info only */}
-      {!data && !loading && (
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card className="border border-border/40 shadow-sm">
-            <CardHeader className="flex items-center gap-2 pb-3">
-              <User className="h-4 w-4 text-primary" />
-              <CardTitle className="font-medium">Employee</CardTitle>
-            </CardHeader>
-            <Separator />
-            <CardContent className="p-3 text-sm leading-relaxed">
-              <p><strong>Name:</strong> {employee.name || employee.fullName || "—"}</p>
-              <p><strong>Current Role:</strong> {employee.role || "—"}</p>
-              <p><strong>Experience:</strong> {employee.experience_years ?? employee.years ?? "—"} years</p>
-            </CardContent>
-          </Card>
-
-          <Card className="border border-border/40 shadow-sm">
-            <CardHeader className="flex items-center gap-2 pb-3">
-              <Target className="h-4 w-4 text-primary" />
-              <CardTitle className="font-medium">Target Role (selected)</CardTitle>
-            </CardHeader>
-            <Separator />
-            <CardContent className="p-3 text-sm leading-relaxed">
-              <p><strong>Role:</strong> {selectedRole || "—"}</p>
-              <p className="text-muted-foreground text-sm">Run the analysis to see the full gap breakdown.</p>
-            </CardContent>
-          </Card>
-        </div>
-      )}
-
-      {/* Loading skeleton */}
-      {loading && (
-        <div className="grid gap-4 md:grid-cols-2">
-          {[1, 2].map((i) => (
-            <Card key={i} className="p-4">
-              <Skeleton className="h-5 w-40 mb-3" />
-              <div className="space-y-2">
-                {[1, 2, 3].map((j) => (
-                  <Skeleton key={j} className="h-4 w-full" />
-                ))}
+                  </SelectContent>
+                </Select>
               </div>
-            </Card>
-          ))}
-        </div>
-      )}
+              <Button
+                onClick={fetchGapAnalysis}
+                disabled={loading || !selectedRole}
+                className="gap-2 bg-[var(--accent)] hover:opacity-95 text-[var(--button-foreground)] border-0 h-9 px-4 w-full sm:w-auto"
+              >
+                <BarChart3 className={`w-3.5 h-3.5 ${loading ? "animate-pulse" : ""}`} />
+                {loading ? "Analyzing..." : "Analyze"}
+              </Button>
+            </div>
+          </motion.div>
 
-      {/* Render full analysis */}
-      {!loading && data && (
-        <>
-          {/* Top summary row */}
-          <div className="grid gap-6 md:grid-cols-3">
-            <Card className="border border-border/40 shadow-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium">Overall Skill Match</CardTitle>
-              </CardHeader>
-              <Separator />
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-2xl font-semibold">
-                      {data.gap_analysis?.overall_skill_match ?? "—"}
+          {/* Content */}
+          <AnimatePresence mode="wait">
+            {loading ? (
+              <motion.div
+                key="loading"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                <div className="grid gap-3 md:grid-cols-3">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 space-y-3">
+                      <Skeleton className="h-4 w-24 bg-[var(--muted)]" />
+                      <Skeleton className="h-8 w-16 bg-[var(--muted)]" />
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1">higher is better</div>
-                  </div>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
+              </motion.div>
+            ) : data ? (
+              <motion.div
+                key="data"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="space-y-3"
+              >
+                {/* Summary Stats */}
+                <div className="grid gap-3 md:grid-cols-3">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05, duration: 0.3 }}
+                    className="rounded-lg border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    <div className="p-4 border-b border-[var(--border)]">
+                      <div className="flex items-center gap-2">
+                        <Award className="w-4 h-4 text-purple-400" />
+                        <h3 className="text-sm font-semibold text-[var(--foreground)]">Skill Match</h3>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="text-3xl font-bold text-[var(--foreground)]">
+                        {data.gap_analysis?.overall_skill_match ?? "—"}
+                      </div>
+                      <p className="text-xs text-[var(--muted-foreground)] mt-1">Overall compatibility</p>
+                    </div>
+                  </motion.div>
 
-            <Card className="border border-border/40 shadow-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium">Experience</CardTitle>
-              </CardHeader>
-              <Separator />
-              <CardContent className="p-4 text-sm">
-                <div className="flex justify-between">
-                  <div>
-                    <div className="text-sm text-muted-foreground">You</div>
-                    <div className="font-medium">{data.employee_info?.experience_years ?? employee.experience_years ?? "—"} yrs</div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm text-muted-foreground">Required</div>
-                    <div className="font-medium">{data.target_role_info?.required_experience ?? "—"} yrs</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
+                    className="rounded-lg border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    <div className="p-4 border-b border-[var(--border)]">
+                      <div className="flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4 text-blue-400" />
+                        <h3 className="text-sm font-semibold text-[var(--foreground)]">Experience</h3>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-bold text-[var(--foreground)]">
+                          {data.employee_info?.experience_years ?? employee.experience_years ?? "—"}
+                        </span>
+                        <span className="text-sm text-[var(--muted-foreground)]">/</span>
+                        <span className="text-xl font-semibold text-[var(--muted-foreground)]">
+                          {data.target_role_info?.required_experience ?? "—"}
+                        </span>
+                        <span className="text-xs text-[var(--muted-foreground)]">years</span>
+                      </div>
+                      <p className="text-xs text-[var(--muted-foreground)] mt-1">Your exp / Required</p>
+                    </div>
+                  </motion.div>
 
-            <Card className="border border-border/40 shadow-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium">Skills (matched / missing)</CardTitle>
-              </CardHeader>
-              <Separator />
-              <CardContent className="p-4 text-sm">
-                <div className="flex gap-4 items-center">
-                  <div className="text-center">
-                    <div className="text-lg font-semibold">{(data.gap_analysis?.matched_skills || []).length}</div>
-                    <div className="text-xs text-muted-foreground">Matched</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-lg font-semibold">{(data.gap_analysis?.missing_skills || []).length}</div>
-                    <div className="text-xs text-muted-foreground">Missing</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Score and Rating comparisons */}
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Score Gaps */}
-            <Card className="border border-border/40 shadow-sm">
-              <CardHeader className="flex items-center gap-2 pb-3">
-                <Lightbulb className="h-4 w-4 text-primary" />
-                <CardTitle className="font-medium">Score Comparison</CardTitle>
-              </CardHeader>
-              <Separator />
-              <CardContent className="p-4 space-y-4">
-                {data.gap_analysis && data.gap_analysis.score_gaps ? (
-                  Object.entries(data.gap_analysis.score_gaps).map(([key, val]: any) => {
-                    const emp = Number(val.employee ?? 0)
-                    const req = Number(val.required ?? 0)
-                    const percent = safePercent(emp, req)
-                    const status = getStatusBadge(emp, req)
-                    const gap = emp - req
-                    return (
-                      <div key={key} className="space-y-1">
-                        <div className="flex justify-between items-center">
-                          <div className="text-sm font-medium capitalize">{key}</div>
-                          <div className={clsx("text-xs px-2 py-1 rounded-md", status.cls)}>{status.label}</div>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <div className="flex-1 bg-muted/30 rounded-md h-3 overflow-hidden">
-                            <div
-                              className={clsx("h-3 rounded-md bg-gradient-to-r", getBarColor(emp, req))}
-                              style={{ width: `${percent}%` }}
-                            />
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15, duration: 0.3 }}
+                    className="rounded-lg border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    <div className="p-4 border-b border-[var(--border)]">
+                      <div className="flex items-center gap-2">
+                        <Target className="w-4 h-4 text-green-400" />
+                        <h3 className="text-sm font-semibold text-[var(--foreground)]">Skills</h3>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex gap-6">
+                        <div>
+                          <div className="text-2xl font-bold text-green-400">
+                            {(data.gap_analysis?.matched_skills || []).length}
                           </div>
-                          <div className="w-28 text-xs text-muted-foreground text-right">
-                            {emp}/{req}
-                          </div>
+                          <p className="text-xs text-[var(--muted-foreground)]">Matched</p>
                         </div>
-
-                        <div className="text-xs text-muted-foreground">
-                          Gap: {gap >= 0 ? `+${gap}` : gap}
+                        <div>
+                          <div className="text-2xl font-bold text-rose-400">
+                            {(data.gap_analysis?.missing_skills || []).length}
+                          </div>
+                          <p className="text-xs text-[var(--muted-foreground)]">Missing</p>
                         </div>
                       </div>
-                    )
-                  })
-                ) : (
-                  <div className="text-sm text-muted-foreground">No score gaps available.</div>
-                )}
-              </CardContent>
-            </Card>
+                    </div>
+                  </motion.div>
+                </div>
 
-            {/* Ratings */}
-            <Card className="border border-border/40 shadow-sm">
-              <CardHeader className="flex items-center gap-2 pb-3">
-                <CardTitle className="font-medium">Ratings Comparison</CardTitle>
-              </CardHeader>
-              <Separator />
-              <CardContent className="p-4 space-y-4">
-                {data.gap_analysis && data.gap_analysis.rating_gaps ? (
-                  Object.entries(data.gap_analysis.rating_gaps).map(([key, val]: any) => {
-                    // val.employee and val.required are floats like 2.08 and 3.4
-                    const emp = Number(val.employee ?? 0)
-                    const req = Number(val.required ?? 0)
-                    // convert to percent relative scale (e.g. out of 5)
-                    const percent = safePercent(emp, req)
-                    const status = getStatusBadge(emp, req)
-                    const gapNum = emp - req
-                    const gap = gapNum.toFixed(2)
-                    return (
-                      <div key={key} className="space-y-1">
-                        <div className="flex justify-between items-center">
-                          <div className="text-sm font-medium capitalize">{key}</div>
-                          <div className={clsx("text-xs px-2 py-1 rounded-md", status.cls)}>{status.label}</div>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <div className="flex-1 bg-muted/30 rounded-md h-3 overflow-hidden">
-                            <div
-                              className={clsx("h-3 rounded-md bg-gradient-to-r", getBarColor(emp * 20, req * 20))}
-                              style={{ width: `${percent}%` }}
-                            />
-                          </div>
-                          <div className="w-28 text-xs text-muted-foreground text-right">
-                            {emp}/{req}
-                          </div>
-                        </div>
-
-                        <div className="text-xs text-muted-foreground">Gap: {gapNum >= 0 ? `+${gap}` : gap}</div>
+                {/* Score & Rating Comparison */}
+                <div className="grid gap-3 md:grid-cols-2">
+                  {/* Scores */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
+                    className="rounded-lg border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    <div className="p-4 border-b border-[var(--border)]">
+                      <div className="flex items-center gap-2">
+                        <BarChart3 className="w-4 h-4 text-cyan-400" />
+                        <h3 className="text-sm font-semibold text-[var(--foreground)]">Score Comparison</h3>
                       </div>
-                    )
-                  })
-                ) : (
-                  <div className="text-sm text-muted-foreground">No rating gaps available.</div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
+                    </div>
+                    <div className="p-4 space-y-4">
+                      {data.gap_analysis && data.gap_analysis.score_gaps ? (
+                        Object.entries(data.gap_analysis.score_gaps).map(([key, val]: any, idx) => {
+                          const emp = Number(val.employee ?? 0)
+                          const req = Number(val.required ?? 0)
+                          const percent = safePercent(emp, req)
+                          const status = getStatusBadge(emp, req)
+                          const StatusIcon = status.icon
+                          const gap = emp - req
+                          return (
+                            <motion.div
+                              key={key}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: idx * 0.03, duration: 0.2 }}
+                              className="space-y-2"
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="text-sm font-medium text-[var(--foreground)] capitalize">{key}</span>
+                                <div className={clsx("flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium border", status.cls)}>
+                                  <StatusIcon className="w-3 h-3" />
+                                  {status.label}
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <div className="flex-1 bg-[var(--muted)] rounded-full h-2 overflow-hidden">
+                                  <div
+                                    className={clsx("h-2 rounded-full transition-all", getBarColor(emp, req))}
+                                    style={{ width: `${percent}%` }}
+                                  />
+                                </div>
+                                <span className="text-xs text-[var(--muted-foreground)] w-16 text-right">
+                                  {emp}/{req}
+                                </span>
+                              </div>
+                              <p className="text-[10px] text-[var(--muted-foreground)]">Gap: {gap >= 0 ? `+${gap}` : gap}</p>
+                            </motion.div>
+                          )
+                        })
+                      ) : (
+                        <p className="text-sm text-[var(--muted-foreground)] text-center py-4">No score data</p>
+                      )}
+                    </div>
+                  </motion.div>
 
-          {/* Matched / Missing skills + Recommendations */}
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card className="border border-border/40 shadow-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="font-medium">Skills</CardTitle>
-              </CardHeader>
-              <Separator />
-              <CardContent className="p-4 space-y-4">
-                <div>
-                  <div className="text-sm font-medium mb-2">Matched Skills</div>
-                  <div className="flex flex-wrap gap-2">
-                    {(data.gap_analysis?.matched_skills || []).length === 0 ? (
-                      <div className="text-xs text-muted-foreground">None</div>
-                    ) : (
-                      data.gap_analysis.matched_skills.map((s: string) => (
-                        <span
-                          key={s}
-                          className="px-2 py-1 bg-emerald-500/10 text-emerald-600 rounded-md text-xs font-medium"
-                        >
-                          {s}
-                        </span>
-                      ))
-                    )}
-                  </div>
+                  {/* Ratings */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25, duration: 0.3 }}
+                    className="rounded-lg border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    <div className="p-4 border-b border-[var(--border)]">
+                      <div className="flex items-center gap-2">
+                        <Award className="w-4 h-4 text-amber-400" />
+                        <h3 className="text-sm font-semibold text-[var(--foreground)]">Rating Comparison</h3>
+                      </div>
+                    </div>
+                    <div className="p-4 space-y-4">
+                      {data.gap_analysis && data.gap_analysis.rating_gaps ? (
+                        Object.entries(data.gap_analysis.rating_gaps).map(([key, val]: any, idx) => {
+                          const emp = Number(val.employee ?? 0)
+                          const req = Number(val.required ?? 0)
+                          const percent = safePercent(emp, req)
+                          const status = getStatusBadge(emp, req)
+                          const StatusIcon = status.icon
+                          const gapNum = emp - req
+                          const gap = gapNum.toFixed(2)
+                          return (
+                            <motion.div
+                              key={key}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: idx * 0.03, duration: 0.2 }}
+                              className="space-y-2"
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="text-sm font-medium text-[var(--foreground)] capitalize">{key}</span>
+                                <div className={clsx("flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium border", status.cls)}>
+                                  <StatusIcon className="w-3 h-3" />
+                                  {status.label}
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <div className="flex-1 bg-[var(--muted)] rounded-full h-2 overflow-hidden">
+                                  <div
+                                    className={clsx("h-2 rounded-full transition-all", getBarColor(emp * 20, req * 20))}
+                                    style={{ width: `${percent}%` }}
+                                  />
+                                </div>
+                                <span className="text-xs text-[var(--muted-foreground)] w-16 text-right">
+                                  {emp.toFixed(1)}/{req.toFixed(1)}
+                                </span>
+                              </div>
+                              <p className="text-[10px] text-[var(--muted-foreground)]">Gap: {gapNum >= 0 ? `+${gap}` : gap}</p>
+                            </motion.div>
+                          )
+                        })
+                      ) : (
+                        <p className="text-sm text-[var(--muted-foreground)] text-center py-4">No rating data</p>
+                      )}
+                    </div>
+                  </motion.div>
                 </div>
 
-                <div>
-                  <div className="text-sm font-medium mb-2">Missing Skills</div>
-                  <div className="flex flex-wrap gap-2">
-                    {(data.gap_analysis?.missing_skills || []).length === 0 ? (
-                      <div className="text-xs text-muted-foreground">None</div>
-                    ) : (
-                      data.gap_analysis.missing_skills.map((s: string) => (
-                        <span key={s} className="px-2 py-1 bg-rose-500/10 text-rose-600 rounded-md text-xs font-medium">
-                          {s}
-                        </span>
-                      ))
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                {/* Skills & Recommendations */}
+                <div className="grid gap-3 md:grid-cols-2">
+                  {/* Skills */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.3 }}
+                    className="rounded-lg border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    <div className="p-4 border-b border-[var(--border)]">
+                      <div className="flex items-center gap-2">
+                        <Target className="w-4 h-4 text-emerald-400" />
+                        <h3 className="text-sm font-semibold text-[var(--foreground)]">Skills Breakdown</h3>
+                      </div>
+                    </div>
+                    <div className="p-4 space-y-4">
+                      <div>
+                        <div className="text-xs font-medium text-[var(--muted-foreground)] mb-2 flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3 h-3 text-green-400" />
+                          Matched Skills
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {(data.gap_analysis?.matched_skills || []).length === 0 ? (
+                            <span className="text-xs text-[var(--muted-foreground)]">None</span>
+                          ) : (
+                            data.gap_analysis.matched_skills.map((s: string, i: number) => (
+                              <motion.span
+                                key={s}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: i * 0.02, duration: 0.2 }}
+                                className="px-2 py-1 bg-green-500/10 text-green-400 rounded text-[10px] font-medium border border-green-500/20"
+                              >
+                                {s}
+                              </motion.span>
+                            ))
+                          )}
+                        </div>
+                      </div>
 
-            <Card className="border border-border/40 shadow-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="font-medium">Recommendations</CardTitle>
-              </CardHeader>
-              <Separator />
-              <CardContent className="p-4 space-y-3">
-                {data.gap_analysis?.recommendations?.length ? (
-                  <ul className="list-disc pl-5 text-sm space-y-3">
-                    {data.gap_analysis.recommendations.map((r: string, i: number) => (
-                      <li key={i} className="flex items-start justify-between gap-3">
-                        <span>{r}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="text-sm text-muted-foreground">No recommendations found.</div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </>
-      )}
+                      <div>
+                        <div className="text-xs font-medium text-[var(--muted-foreground)] mb-2 flex items-center gap-1.5">
+                          <XCircle className="w-3 h-3 text-rose-400" />
+                          Missing Skills
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {(data.gap_analysis?.missing_skills || []).length === 0 ? (
+                            <span className="text-xs text-[var(--muted-foreground)]">None</span>
+                          ) : (
+                            data.gap_analysis.missing_skills.map((s: string, i: number) => (
+                              <motion.span
+                                key={s}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: i * 0.02, duration: 0.2 }}
+                                className="px-2 py-1 bg-rose-500/10 text-rose-400 rounded text-[10px] font-medium border border-rose-500/20"
+                              >
+                                {s}
+                              </motion.span>
+                            ))
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Recommendations */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35, duration: 0.3 }}
+                    className="rounded-lg border border-[var(--border)] bg-[var(--card)] overflow-hidden hover:border-[var(--border-hover)] transition-colors"
+                  >
+                    <div className="p-4 border-b border-[var(--border)]">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-blue-400" />
+                        <h3 className="text-sm font-semibold text-[var(--foreground)]">Recommendations</h3>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      {data.gap_analysis?.recommendations?.length ? (
+                        <div className="space-y-3">
+                          {data.gap_analysis.recommendations.map((r: string, i: number) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.05, duration: 0.2 }}
+                              className="flex items-start gap-2"
+                            >
+                              <div className="w-1 h-1 rounded-full bg-blue-400 mt-1.5 shrink-0" />
+                              <p className="text-sm text-[var(--foreground)] leading-relaxed">{r}</p>
+                            </motion.div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-[var(--muted-foreground)] text-center py-4">No recommendations</p>
+                      )}
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="empty"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                className="rounded-lg border border-dashed border-[var(--border)] bg-[var(--card-muted)]"
+              >
+                <div className="flex flex-col items-center justify-center py-12 text-center px-4">
+                  <div className="w-12 h-12 rounded-full bg-[var(--muted)] flex items-center justify-center mb-3">
+                    <BarChart3 className="w-6 h-6 text-[var(--muted-foreground)]" />
+                  </div>
+                  <h3 className="text-base font-semibold mb-1.5 text-[var(--foreground)]">No Analysis Yet</h3>
+                  <p className="text-sm text-[var(--muted-foreground)] max-w-sm mb-4">
+                    Select a target role and run the analysis to see detailed skill gaps and recommendations.
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </div>
     </div>
   )
 }
