@@ -72,7 +72,7 @@ export default function DashboardView({ profile: initialProfile }: { profile?: P
         // 9-box segment (keep fetch call)
         const segRes = await fetch(`${process.env.NEXT_PUBLIC_API_AI_URL}/segment/single`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", 'skip_zrok_interstitial': '1' },
           body: JSON.stringify({ employee_id: userId })
         })
         if (segRes.ok) {

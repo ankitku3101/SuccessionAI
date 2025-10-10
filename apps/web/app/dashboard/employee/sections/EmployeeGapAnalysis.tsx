@@ -88,11 +88,20 @@ export default function EmployeeGapAnalysis() {
     if (!employee || !selectedRole) return
     setLoading(true)
     setData(null)
+
     try {
-      const res = await apiPost(`${process.env.NEXT_PUBLIC_API_AI_URL}/gap-analysis`, {
-        employee_id: employee._id || employee.id || employee.employee_id,
-        role_name: selectedRole,
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_AI_URL}/gap-analysis`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "skip_zrok_interstitial": "1",
+        },
+        body: JSON.stringify({
+          employee_id: employee._id || employee.id || employee.employee_id,
+          role_name: selectedRole,
+        }),
       })
+
       if (res.ok) {
         const json = await res.json()
         setData(json)
@@ -105,6 +114,7 @@ export default function EmployeeGapAnalysis() {
       setLoading(false)
     }
   }
+
 
   // Initial loading state
   if (loadingInitial)
