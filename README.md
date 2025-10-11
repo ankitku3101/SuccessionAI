@@ -153,63 +153,9 @@ npm run dev --filter=web
 
 ### Access Applications
 - **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
+- **Express Backend API**: http://localhost:5000
+- **FastAPI Backend API**: http://localhost:8000
 - **API Documentation**: http://localhost:8000/docs
-
-## API Endpoints
-
-### Employee Analysis
-- `POST /segment/single` - Analyze single employee segment
-- `POST /segment/batch` - Batch employee segmentation
-- `GET /visualize/data` - Get visualization data
-
-### Gap Analysis
-- `POST /gap-analysis` - Perform skills and performance gap analysis
-- `GET /database/status` - Check database connectivity
-
-### Readiness Assessment  
-- `POST /readiness/predict` - Predict role readiness
-- `POST /readiness/predict/batch` - Batch readiness prediction
-- `POST /readiness/predict/manual` - Manual feature input
-
-### IDP Generation
-- `POST /idp/generate/enhanced` - Generate comprehensive development plan
-
-## Data Models
-
-### Employee Profile
-```json
-{
-  "id": "string",
-  "name": "string", 
-  "role": "string",
-  "department": "string",
-  "skills": ["array"],
-  "performance_rating": "float",
-  "potential_rating": "float",
-  "assessment_scores": {
-    "technical": "int",
-    "communication": "int", 
-    "leadership": "int"
-  }
-}
-```
-
-### Success Role
-```json
-{
-  "role": "string",
-  "required_skills": ["array"],
-  "required_experience": "int",
-  "min_performance_rating": "float",
-  "min_potential_rating": "float",
-  "required_scores": {
-    "technical": "int",
-    "communication": "int",
-    "leadership": "int"
-  }
-}
-```
 
 ## AI Components
 
@@ -227,24 +173,6 @@ npm run dev --filter=web
 - **Workflow**: Data retrieval → Gap analysis → Recommendations → Resource matching → Mentor pairing
 - **Integration**: MongoDB + LLM + Web search (Tavily)
 
-## Configuration
-
-### MongoDB Collections Setup
-```javascript
-// Employee document structure
-{
-  "_id": ObjectId,
-  "name": "string",
-  "role": "string", 
-  "department": "string",
-  "skills": ["array"],
-  "performance_rating": "number",
-  "potential_rating": "number",
-  "target_success_role": "string",
-  "segment": "string",        // Computed field
-  "readiness": "string"       // Computed field  
-}
-```
 
 ### Turborepo Configuration
 The `turbo.json` defines build and development pipelines for efficient monorepo management.
