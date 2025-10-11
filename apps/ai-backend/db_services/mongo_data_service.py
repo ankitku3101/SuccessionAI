@@ -30,9 +30,13 @@ class MongoDataFetcher:
         if config:
             self.config = config
         else:
-            # Default configuration
+            # Get MONGO_URI from environment
+            mongo_uri = os.getenv("MONGO_URI")
+            if not mongo_uri:
+                raise ValueError("MONGO_URI environment variable is required")
+            
             self.config = MongoConfig(
-                connection_string="mongodb+srv://testerguy3101:ThreeAndHalf@threeandhalf.prvxg.mongodb.net/"
+                connection_string=mongo_uri
             )
         
         self.client = MongoClient(self.config.connection_string)
