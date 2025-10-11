@@ -39,7 +39,7 @@ export function NavMain({
             return (
               <SidebarMenuItem key={item.title}>
                 {item.onClick ? (
-                  <SidebarMenuButton isActive={isActive} onClick={item.onClick}>
+                  <SidebarMenuButton className="cursor-pointer" isActive={isActive} onClick={item.onClick}>
                     <IconComponent />
                     <span>{item.title}</span>
                   </SidebarMenuButton>
