@@ -486,5 +486,6 @@ if __name__ == "__main__":
     # authtoken = os.getenv("NGROK_AUTHTOKEN")
     # listener = ngrok.forward(addr=8000, domain="mole-model-drake.ngrok-free.app", authtoken = authtoken)
     # print(listener.url())
-    uvicorn.run("main:app", host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
     # ngrok.disconnect()

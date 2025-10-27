@@ -20,6 +20,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/employee', employeeRoutes);
 app.use('/api/committee', committeeRoutes);
 
+app.use('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
