@@ -21,6 +21,8 @@ app.use('/api/employee', employeeRoutes);
 app.use('/api/committee', committeeRoutes);
 
 app.use('/health', (req, res) => {
+  const ua = req.get('User-Agent') || 'unknown';
+  console.log(ua === 'unknown' ? 'Health check hit by cron/job' : `Health check hit by browser from IP: ${req.ip || req.connection.remoteAddress}`);
   res.status(200).send('OK');
 });
 
